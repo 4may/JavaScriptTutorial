@@ -2,8 +2,49 @@
 <html>
     <body>
         <p>Before the script...</p>
+        <!--
+            HTMLの中にコードを記述できる。
+        -->
         <script>
             alert('Hello, world!');
+        </script>
+        <!--
+            type属性：javascriptモジュールを指定する
+            HTML4までは指定が必須であったが、5からは指定は任意になった
+        -->
+        <script type=""></script>
+        <!--
+            lang属性：使用するプログラミング言語を指定する
+            HTML5ではjavascriptがデフォルトのため指定しなくて良い。
+        -->
+        <script lang=""></script>
+        <script>
+            //本当に古いコードではscriptタグの中でコメントが存在するが、現環境ではコンパイルエラーになるため使用不可
+            //<!--
+            //    -->
+        </script>
+
+        <!--
+            勿論、別のファイルに分けることもできる。
+            3通りの方法で指定できる。
+            * 絶対パス
+            * 相対パス
+            * URL
+
+            ※HTML内に直書きする処理は極力簡単な処理のみに留めるべき。
+            複数のHTMLページで一つのスクリプトを共有して使うことができるため、
+            処理を別ファイルとすることで、無駄なトラフィックの発生を防ぐことができる。
+        -->
+        <!--
+            HTML内に複数のスクリプトが存在する場合、ファイルの上から順番に逐次実行される
+        -->
+        <script src="goodbye.js"></script>
+
+        <!--
+            src指定がある場合、直書きのスクリプトは無視される
+        -->
+        <script src="goodbye.js">
+            alert('goodbye2'); //ignored
         </script>
         <p>After the script.</p>
     </body>
