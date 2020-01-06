@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script>
+    //問題ない例'
+    [1, 2].forEach(alert)
+
+    /*問題ある例(２つ目の処理が実行されない)
+    []の前では暗黙的なセミコロンの挿入が行われない*/
+    alert("There will be an error")
+    [1, 2].forEach(alert)
+
+    //問題ない例
+    alert("All fine now");
+    [1, 2].forEach(alert)
+</script>
