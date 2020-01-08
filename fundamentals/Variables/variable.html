@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<script>
+    "use strict";
+    /*変数はletで宣言
+    ※es5以前の文法では、let無しの宣言も使えた
+    例)message = "Hello"
+    ※古くはvarを使っていた
+    */
+
+    let message;
+    message = 'Hello';
+    alert(message);
+
+    let message2 = 'Hello!';
+    alert(message2);
+
+    //可読性が低いので行を分けて書く方がベター
+    let user = 'John', age = 25, message3 = 'Hello';
+
+    //値の入れ替えも可能
+    let text;
+    text = 'Hello!';
+    text = 'World!';
+    alert(text); //World!
+
+    //変数値の代入
+    let text1 = 'Text1';
+    let text2 = text1; //ディープコピー
+    alert(text1);
+    alert(text2);
+    
+    text2 = 'Text2';
+    alert(text1); //Text1
+    alert(text2); //Text2
+
+    /*
+    変数の命名規則
+    ・文字、数字、$、_のいずれか
+    ・数字で始まらない
+    ・camelCaseが一般的
+    ・日本語も変数名に使える(一般的には英語を使う)
+    ・大文字/小文字を区別する
+    */
+    //valid
+    let userName;
+    let test123;
+    let $ = 1;
+    let _ = 2;
+    alert($ + _); //3
+
+    let 名前;
+
+    let apple;
+    let Apple;
+
+    /*
+    invalid
+    let 1a
+    let my-name
+    */
+
+    //定数はconstで宣言
+    const myBirthday = '18.04.1982';
+
+    /*
+    慣習的に、大文字と_の組み合わせで書く場合がある
+    一般に、実行前に値が確定しているもの(ハードコーディングされているもの)について使われる。
+    */
+    const COLOR_RED = "#F00";
+    const COLOR_GREEN = "#0F0";
+</script>
