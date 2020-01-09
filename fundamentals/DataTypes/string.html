@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    三種類のクオート(",',`)のいずれかで括る。
+    ”と'は違い無し。
+    `は変数や式を埋め込むことができる。
+    */
+    let str = "Hello";
+    let str2 = 'Single quotes are ok too';
+    let phrase = `can embed another ${str}`;
+
+    let name = "John";
+
+    //変数の埋め込み
+    alert(`Hello, ${name}!`); //Hello, John!
+
+    //式の埋め込み
+    alert(`the result is ${1 + 2}`); //the result is 3
+</script>
