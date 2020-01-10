@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    string変換
+    alert関数では、引数の型を暗黙的にstring型に変換している
+    */
+    let value = true;
+    alert(typeof value); //boolean
+
+    //最初に割り当てた型とは異なる型を割り当てできる
+    value = String(value);
+    alert(typeof value); //string
+
+    alert(value); //true
+</script>

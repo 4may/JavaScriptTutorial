@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    数値変換
+    ・除算子/は暗黙的に数値へ変換する。
+    ・Number(value)関数を使えば明示的に数値変換できる
+    ・変換ルール
+    　・undefined → NaN
+    　・null      → 0
+    　・true/false→ 1/0
+    　・string    → 数値を表している場合、その数値。そうでない場合、NaN
+    */
+    alert("6"/"2"); //3
+
+    let str = "123";
+    alert(typeof str); //string
+
+    let num = Number(str); //数値へ変換
+    alert(typeof num); //Number
+
+    //Number(value)関数のvalueが違反な場合、NaNが返る
+    let age = Number("an arbitrary string instead of a number");
+    alert(age); //NaN, conversion failed
+</script>
