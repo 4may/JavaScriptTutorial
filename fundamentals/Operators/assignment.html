@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    assingment
+    */
+    let x = 2 * 2 + 1;
+    alert(x); //5
+
+    //連続させることができる
+    let a,b,c;
+    //右から左へ評価される。最初に2+2が評価され、4という結果がまずcへ割り当てられ、そのごb,aと割り当てられる。
+    a = b = c = 2 + 2;
+    alert(a); //4
+    alert(b); //4
+    alert(c); //4
+
+    //assignment operatorは値も返す
+    let d = 1;
+    let e = 2;
+    let f = 3 - (d = e + 1);
+    alert(d); //3
+    alert(f); //0
+</script>

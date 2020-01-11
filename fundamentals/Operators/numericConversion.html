@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    unary +:非Number型変数をNumber型に変換する。オペランドがNumber型の場合、何も起こらない。
+    Number(val)と同じことができるが、unaryの方がより短い。
+    */
+    let x = 1;
+    alert(+x); //1
+
+    let y = -2;
+    alert(+y); //-2
+
+    alert(+true); //1
+    alert(+""); //0
+
+    let apples = "2";
+    let oranges = "3";
+
+    //unaryの優先順位 > binaryの優先順位のため
+    //先に数値変換が行われた後、足算が行われる。
+    alert(+apples + +oranges); //5
+</script>
