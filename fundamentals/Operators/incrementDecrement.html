@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //increment,decrement
+    let inc = 2;
+    inc++;
+    alert(inc); //3
+
+    let dec = 2;
+    dec--;
+    alert(dec); //1
+
+    //前に書く、後ろに書く
+    let counter1 = 1;
+    let a = ++counter1; //counter1を増やした後にaに値を割り当て
+    alert(a); //2
+
+    let counter2 = 1;
+    let b = counter2++; //bに値を割り当てた後に、counter2を1増やす
+    alert(b); //1
+
+    //*や/よりも優先順位が高い
+    //なお、一行でかくと読みづらいので、基本的に「一行一処理」を心がける
+    let counter3 = 1;
+    alert(2 * ++counter3); //4
+
+    let counter4 = 1;
+    alert(2 * counter4++); //2
+</script>
