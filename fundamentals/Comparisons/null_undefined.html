@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //型が違うためfalse
+    alert(null === undefined); //false
+
+    //nullとundefinedのペアは特例でtrueとなっている
+    alert(null == undefined); //true
+
+    //null vs 0
+    alert(null > 0); //false
+    alert(null == 0); //false
+    alert(null >= 0); //true
+    /*
+    等価性検証子==と比較演算子>,<,>=,<=では挙動が異なる。
+    前者はオペランドの「変換を行わない」
+    後者はオペランドの「数値への変換を行う」
+    つまり、1,3番目の比較時にはnullは0に置換されている。
+    一方、2番目の比較時にはnullは0に置換されず、null型として検証されている。
+    */
+
+    //undefined
+    alert(undefined > 0); //false(undefinedがNaNに変換されているため)
+    alert(undefined < 0); //false(同上)
+    alert(undefined == 0); //false(undefinedはnull or undefinedとのみ等価であるため)
+
+    /*
+    ポイント
+    ・nullやundefinedになりうる変数に対して、比較演算子を用いるのは避けるべき
+    ・nullやundefinedのチェックは分けて行おう
+    */
+</script>

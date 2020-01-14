@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    alert(5>4); //true
+    alert("apple">"pineapple"); //false(辞書順でpの方が大きいから)
+    alert("2">"12"); //true(辞書順で2の方が大きいから。同じ型同士の比較なので、数値変換は行われない)
+    alert(undefined==null); //true
+    alert(undefined===null); //false(異なる型同士の比較)
+    alert(null=="¥n0¥n"); //false(nullはundefinedとのみイコール)
+    alert(null === +"¥n0¥n"); //false(異なる型同士の比較)
+</script>

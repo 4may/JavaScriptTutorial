@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //異なる型の変数同士を比較する場合、数値への変換が行われる
+    alert('2'>1); //true
+    alert('01'==1); //true
+
+    alert(true==1); //true
+    alert(false==0); //true
+
+    let a = 0;
+    alert(Boolean(a)); //false
+    let b = "0";
+    alert(Boolean(b)); //true(空文字でない)
+    alert(a==b); //true
+</script>

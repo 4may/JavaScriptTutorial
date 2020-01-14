@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //string型変数の比較は辞書順に基づいて行われる
+    //比較は文字列の先頭から一文字ずつ行っていき、大小がつき次第終了
+    alert('z'>'a'); //true
+    alert('glow'>'glee'); //true
+    alert('bee'>'be'); //true(より長い方が大)
+    alert('a'>'A'); //true(直感的にはAの方が大きく感じるが、javascriptのエンコーディング(unicode)のインデックス上ではaの方が後)
+</script>

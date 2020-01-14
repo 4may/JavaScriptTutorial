@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //==の問題として、0,false,""を区別できないことがある
+    //これは、上記いずれのvalueも比較の際に数値0に変換されてしまうため
+    alert(0==false); //true
+    alert(""==false); //true
+
+    //上記の問題を解決する方法として、===がある
+    //===はオペランドが異なる型の変数である場合、falseを返す
+    alert(0===false); //false
+
+    //!==という演算子もある
+    alert(0!==false); //true
+</script>
