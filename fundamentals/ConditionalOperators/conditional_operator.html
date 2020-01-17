@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    let result = condition ? value1 : value2;
+    conditionが真ならvalue1, 偽ならvalue2
+    */
+    let age = prompt('How old are you?', '');
+    //()を付けなくても同義であるが、可読性の観点から付けた方が良い
+    //let accessAllowed = age > 18;でも同じ動作
+    let accessAllowed = (age > 18) ? true : false;
+    alert(accessAllowed);
+</script>

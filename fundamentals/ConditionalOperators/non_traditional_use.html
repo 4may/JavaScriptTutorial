@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //しばしば、?をifの代わりに複数の処理を使い分けるために用いることがある
+    //が、この使い方は可読性の観点から「非推奨」
+    //?は値の割り当て程度に留めるべき
+    let company = prompt('Which company created Javascript?', '');
+    (company == 'Netscape') ? alert('Right!') : alert('Wrong.');
+
+    if(company == 'Netscape')
+    {
+        alert('Right!');
+    }
+    else
+    {
+        alert('Wrong.');
+    }
+</script>
