@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //and演算子&&
+    alert(true && true); //true
+    alert(true && false); //false
+    alert(false && true); //false
+    alert(false && false); //false
+
+
+    let hour = 12;
+    let minute = 30;
+    if(hour == 12 && minute == 30)
+    {
+        alert('The time is 12:30');
+    }
+
+    /*
+    and演算子の処理手順
+    ・オペランドを左から右へ評価
+    ・最初にfalseとなるオペランドの結果を返す。その場合、以降のオペランドは評価されない。
+    ・どのオペランドもfalseとならなかった場合、最後のオペランドの値を返す。
+    */
+    alert(1 && 0); //0
+    alert(1 && 5); //5
+    alert(null && 5); //null
+    alert(0 && "no matter what"); //0
+    
+    //if文の代替(可読性の観点から、非推奨)
+    let x = 1;
+    (x > 0) && alert('Greater than zero!');
+</script>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //not演算子!の働き
+    //1.オペランドをboolean型に変換
+    //2.値を反転する(trueをfalseへ、falseをtrueへする)
+    alert(!true); //false
+    alert(!0); //true
+    
+    //1の働きを活かし、!!がboolean型への変換に使われる
+    alert(!!"non-empty string"); //true
+    alert(!!null); //false
+    alert(Boolean("non-empty string")); //true
+    alert(Boolean(!!null)); //false
+</script>
