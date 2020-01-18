@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    if(-1 || 0) alert('first'); //execute, -1
+    if(-1 && 0) alert('second'); //not execute, 0
+    if(null || -1 && 1) alert('third'); //execute, 1
+</script>

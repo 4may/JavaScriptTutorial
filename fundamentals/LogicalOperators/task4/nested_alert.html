@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    alert(alert(1) && alert(2)); //1が表示され、続いてundefinedが表示される
+
+    /*
+    and評価時にalert(1)が実行される。　→　1が表示される
+    alert(1)の戻り値はundefined　→　and評価終了　→　評価の結果であるundefinedが表示される
+    */
+</script>
