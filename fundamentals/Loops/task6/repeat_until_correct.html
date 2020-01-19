@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    以下の１つでも満たすとき、処理を終了する
+    ・ユーザが100より大きい数字を入力する
+    ・何も入力しない
+    ・ESCをおす
+    */
+    
+    while(true)
+    {
+        let number = +prompt('Type a number which is greater than 100');
+        if(number > 100 || !number) break;
+    }
+</script>
