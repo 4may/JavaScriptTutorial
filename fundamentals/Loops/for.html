@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    for(let i = 0; i < 3;i++)
+    {
+        //iはinline変数。このスコープ内でのみ使用可能
+        alert(i);
+    }
+
+    //for文の簡略化1
+    let j = 0;
+    for(;j < 3;j++) //既に宣言、初期化している変数を使う
+    {
+        alert(j);
+    }
+
+    //for文の簡略化2
+    let k = 0;
+    for(;k < 3;)
+    {
+        alert(k++);
+    }
+
+    //無限ループ
+    for(;;)
+    {
+    }
+</script>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let sum = 0;
+    while(true)
+    {
+        let value = +prompt("Enter a number", "");
+        if(!value) break; //ユーザが何も入力しない場合や、ESCを押した場合
+        sum += value;
+    }
+    alert("sum:"+sum);
+</script>
