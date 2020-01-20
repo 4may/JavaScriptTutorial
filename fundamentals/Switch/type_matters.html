@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let arg = prompt("Enter a value?");
+    //case文の等価検証はstrict。比較対象が同じ型でない場合、必ずfalseとなる。
+    switch(arg)
+    {
+        case '0': //if(arg === '0')と等価
+        case '1':
+            alert('One or zero');
+            break;
+        case '2':
+            alert('Two');
+            break;
+        case 3: //argはstring型である一方、3はnumber型であるため、この条件が満たされることはない
+            alert('Never executes!');
+            break;
+        default:
+            alert('An unknown value');
+    }
+</script>

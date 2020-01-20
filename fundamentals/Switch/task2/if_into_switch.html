@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let a = +prompt('a?', '');
+
+    switch(a)
+    {
+        case 0:
+            alert(0);
+            break;
+        case 1:
+            alert(1);
+            break;
+        case 2:
+        case 3:
+            alert('2,3');
+            break; //なくても動作は変わらないが、将来的な拡張性を考慮して明記しておく方がベター
+    }
+</script>
