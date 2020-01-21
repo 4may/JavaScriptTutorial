@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //関数宣言.function 関数名(引数){関数処理}
+    function showMessage()
+    {
+        //関数内で宣言した変数は、関数のスコープ内でしか使用できない
+        let message = 'you can use this variable only in this scope';
+        alert('Hello everyone!');
+    }
+
+    //変数messageは使えない
+    showMessage();
+
+    /*
+    より良い関数宣言
+    ・一関数一アクション
+    　・関数名に書かれていることより多くのことはしない
+    ・関数名は動詞で始める
+    　・get,calc,create,check...
+    */
+</script>

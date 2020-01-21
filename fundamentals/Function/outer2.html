@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //グローバル変数
+    //可読性の観点から、グローバル変数は出来るだけ少なくすること。
+    let userName = 'John';
+    
+    function showMessage()
+    {
+        //スコープ外で宣言されている変数と同名の変数も宣言できる。
+        //その場合、ローカルの変数が使用される。スコープ外の変数の値をいじることはできない。
+        let userName = 'Bob'; 
+        let message = 'Hello, ' + userName; //Bob
+        alert(message);
+    }
+
+    showMessage(); //Hello, Bob
+
+    alert(userName); //John
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //戻り値の型を書かなくて良い
+    function sum(a,b)
+    {
+        return a + b;
+    }
+
+    let result = sum(1,2);
+    alert(result);
+
+    function checkAge(age)
+    {
+        //複数のreturn文を書ける
+        if(age >= 18)
+        {
+            return true;
+        }
+        else
+        {
+            return confirm('Do you have permission from your parents?');
+        }
+    }
+
+    let age = prompt('How old are you?', 18);
+    if(checkAge(age))
+    {
+        alert('Access granted');
+    }
+    else
+    {
+        alert('Access denied');
+    }
+
+    function showMovie(age)
+    {
+        if(!checkAge(age))
+        {
+            return; //実行終了
+        }
+    }
+
+    function doNothing(){}
+    alert(doNothing() === undefined);
+
+    function doNothing2()
+    {
+        return;
+    }
+    alert(doNothing2() === undefined);
+</script>

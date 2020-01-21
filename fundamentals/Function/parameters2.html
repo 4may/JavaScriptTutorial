@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function showMessage(from, text)
+    {
+        from = '*' + from + '*';
+        alert(from + ': ' + text);
+    }
+
+    //関数引数と同名のグローバル変数
+    let from = 'Ann';
+
+    showMessage(from ,"Hello");
+
+    //関数引数のfromとグローバル変数のfromはメモリアドレスが異なる別の変数
+    //従って、一方の値を変えてももう一方の値は変化しない
+    alert(from); //Ann
+</script>

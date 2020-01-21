@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let userName = 'John';
+
+    function showMessage()
+    {
+        //関数のスコープ外で宣言した変数は使える
+        userName = 'Bob';
+        let message = 'Hello, ' + userName;
+        alert(message);
+    }
+
+    alert(userName); //John
+
+    showMessage(); //userNameがBobに変わる
+
+    alert(userName); //Bob
+</script>

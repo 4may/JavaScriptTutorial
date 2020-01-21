@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //値が割り当てられなかった場合の初期値を設定できる
+    //なお、明示的に初期値を書いていない場合、undefinedが初期値となる
+    //古いjavascriptだとデフォルト値が対応されていないため別の方法を取る
+    //if(text === undefined) text = "no text given"
+    //text = text || "no text given"
+    function showMessage(from, text = "no text given")
+    {
+        alert(from + ": " + text);
+    }
+
+    showMessage(); //undefined: no text given
+
+    showMessage("Ann"); //Ann: no text given
+</script>
