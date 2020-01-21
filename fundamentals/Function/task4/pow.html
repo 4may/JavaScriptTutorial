@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function pow(x, n)
+    {
+        let pow = 1;
+        for(let i = 0; i < n; i++)
+        {
+            pow *= x;
+        }
+        return pow;
+    }
+
+    let x = prompt("x?", '');
+    let n = prompt("n?", '');
+    if(n < 0)
+    {
+        alert(`power ${n} is not supported, use a non negative number`);
+    }
+    else
+    {
+        alert(pow(x, n));
+    }
+</script>

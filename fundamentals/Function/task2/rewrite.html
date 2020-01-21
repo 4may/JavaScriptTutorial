@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function checkAge2(age)
+    {
+        return (age > 18) ? true : confirm('Did parents allow you?');
+    }
+
+    function checkAge3(age)
+    {
+        return (age > 18) || confirm('Did parents allow you?'); //orはオペランドがfalseだと評価されない
+    }
+
+    let age = +prompt("how old are you?", 18);
+    alert("checkAge2:"+checkAge2(age));
+    alert("checkAge3:"+checkAge3(age));
+</script>
