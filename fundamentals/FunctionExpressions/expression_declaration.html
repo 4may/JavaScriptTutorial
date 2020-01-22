@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    関数宣言と関数表現の使い分け
+    ・関数宣言は、可読性が高い
+    ・関数表現は、処理の分岐に適している(条件によって、関数の処理を使い分けたいときなど)
+    */
+    function sum1(a, b)
+    {
+        return a + b;
+    }
+
+    let sum2 = function(a,b)
+    {
+        return a + b;
+    };
+
+    //関数が、いつjava scriptのエンジンによって作られるかが異なる。
+    /*
+    関数宣言(sum1)の場合
+    処理の実行前に確定。同じコードブロック内からであれば、どこからでも利用可能
+    以下のコードは動作する
+    */
+    sayHi("John");
+    function sayHi(name)
+    {
+        alert(`Hello, ${name}`);
+    }
+    
+    /*
+    関数表現(sum2)の場合
+    処理の実行時に値が確定。確定する前に呼び出すことはできない。
+    以下のコードは動作しない。
+    */
+    sayHiError("Nao");
+    let sayHiError = function(name)
+    {
+        alert(`Hello, ${name}`);
+    }
+
+    let age = prompt("what is your age?", 18);
+    //let welcome; //ifブロックの外で宣言しておけば、ifブロック外でも使える
+    if(age < 18)
+    {
+        welcome(); //run
+        //welcome = function(){ alert("hello") };
+        function welcome()
+        {
+            alert("hello!");
+        }
+        welcome(); //run
+    }
+    else
+    {
+        function welcome()
+        {
+            alert("greetings!");
+        }
+    }
+
+    welcome(); //error
+
+    let welcomeExp = (age < 18) ? 
+        function() { alert("hello!") } :
+        function() { alert("greetings!") };
+    welcomeExp(age);
+</script>

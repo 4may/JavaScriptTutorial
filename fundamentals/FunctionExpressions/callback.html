@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function ask(question, yes, no)
+    {
+        if(confirm(question))
+        {
+            yes();
+        }
+        else
+        {
+            no();
+        }
+    }
+
+    function showOk()
+    {
+        alert('you agreed.');
+    }
+
+    function showCancel()
+    {
+        alert('you canceled the execution.');
+    }
+
+    //showOk, showCancelはask関数の引数として渡される
+    //これら２つの関数をコールバック関数と呼ぶ
+    ask('do you agree?', showOk, showCancel);
+
+    //無名関数
+    ask
+    (
+        "do you agree?",
+        function(){ alert("you agreed."); },
+        function(){ alert(" you canceld the execution."); }
+    );
+</script>

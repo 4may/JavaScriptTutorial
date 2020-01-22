@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function sayHi() //let sayHi = function() でもOK
+    {
+        alert("Hello");
+    }
+
+    let func = sayHi; //関数は値なので、コピーができる
+    func();  //Hello
+    sayHi(); //Hello
+</script>
