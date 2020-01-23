@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //アロー関数
+    //あまり有名でなく、かつ読みづらいがお手軽に一行で処理を書ける
+    let sum = (a, b) => a + b;
+    alert(sum(1, 2)); //3
+
+    //引数が一つのアロー関数
+    //カッコは省略できる
+    let double = n => n * 2;
+    alert(double(3)); //6
+
+    //引数なしのアロー関数
+    let sayHi = () => alert("hello");
+    sayHi();
+
+    //関数表現と同じ
+    let age = prompt("what is your age?", 18);
+    let welcome = (age < 18) ? 
+        () => alert('hello') : 
+        () => alert('greetings');
+    welcome();
+
+    //中括弧{}を使えば、複数行書くこともできる
+    let sum = (a, b) =>
+    {
+        let result = a + b;
+        return result;
+    }
+    alert(sum(1, 2)); //3
+</script>
