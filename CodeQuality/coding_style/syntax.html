@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //読みやすいコードを目指して
+    function pow(x ,n)
+    {
+        let result = 1;
+
+        //演算子の間にスペースを空ける
+        for(let i = 0; i < n; i++)
+        {
+            result *= x;
+        }
+
+        return result;
+    }
+
+    //論理的な区切りには改行を入れる
+    let x = prompt("x?", "");
+    let n = prompt("n?", "");
+
+    if(n < 0)
+    {
+        //一行に長く書きすぎない(最大80~120文字程度)
+        alert(`Power ${n} is not supported ,
+            please enter a non-negative integer number`);
+    }
+    else
+    {
+        //ネストされている処理は前後にスペースを空ける
+        alert( pow(x, n) );
+    }
+
+    /*
+    そのた
+    ・ヘルパー関数の場所
+    　・コードの「後」が適切
+    　　・我々が知りたいのは何をしているか
+    　　・ヘルパー関数は処理そのものではないため、優先順位を下げる
+    ・コーディング規約
+    　・https://google.github.io/styleguide/javascriptguide.xml
+    　・https://github.com/airbnb/javascript
+    ・linterの使用
+    　・linterとは：コーディング規約を自動的に検査、必要に応じてより良い形式を提案してくれるもの
+    */
+</script>
