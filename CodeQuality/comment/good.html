@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    良いコメント
+    ・アーキテクチャを説明している
+    ・関数の引数や使い方を記載している
+    ・理由(なぜこの方法を採用しているか)を説明している
+    */
+
+    /*
+    self descriptive
+    ・複雑な処理を関数として括り出すことで、処理をわかりやすくする。
+    ・括り出した関数自体がコメントとも考えられる
+    ・以下の例では、isPrimeがself descriptive
+    */
+    function showPrimes(n)
+    {
+        for(let i = 2; i < n; i++)
+        {
+            if(!isPrime(i)) continue;
+
+            alert(i);
+        }
+    }
+
+    function isPrime(n)
+    {
+        for(let i = 2; i < n; i++)
+        {
+            if(n % i == 0) return false;
+        }
+
+        return true;
+    }
+
+    /*
+    関数の使い方
+    JSDocが一般的
+    https://devdocs.io/jsdoc/about-getting-started
+    */
+    /**
+    * Returns x raised to the n-th power.
+    *
+    * @param {number} x The number to raise.
+    * @param {number} n The power, must be a natural number.
+    * @return {number} x raised to the n-th power.
+    */
+    function pow(x, n) 
+    {
+    }
+</script>
