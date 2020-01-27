@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!--1.外部のライブラリへのパスを通す-->
+<head>
+    <!--add mocha css, to show results-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <!--add mocha framework core-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd'); //minimal setup
+    </script>
+    <!--add chai-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        //chai has a lot of stuff, let's make assert global
+        let assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <!--2.テスト対象の関数-->
+    <script>
+        function pow(x, n)
+        {
+
+        }
+    </script>
+
+    <!--3.テストコードへのパス(別ファイルにテストコードを記載)-->
+    <!--the script with tests (describe, it...)-->
+    <script src="test.js"></script>
+
+    <!--4.テスト結果を出力する-->
+    <!--the element with id="mocha" will contain test results-->
+    <div id="mocha"></div>
+
+    <!--5.テストを実行する-->
+    <!--run tests!-->
+    <script>
+        mocha.run();
+    </script>
+</body>
+</html>
