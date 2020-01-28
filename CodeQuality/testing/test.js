@@ -31,6 +31,16 @@ describe("pow", function()
         }
         );
 
+        it("for negative n the result is NaN", function()
+        {
+            assert.isNaN( pow(2, -1) );
+        });
+
+        it("for non-integer n the result is NaN", function()
+        {
+            assert.isNaN( pow(2, 1.5) );
+        });
+
         //対象のユースケースを記載。人間が読める形式で書く。
         it("2 raised to power 3 is 8", function()
         {
@@ -44,8 +54,5 @@ describe("pow", function()
         {
             //テスト関数
             assert.equal(pow(3, 4), 81);
-        });
-
-        
-        
+        });   
     });
