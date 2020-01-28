@@ -1,9 +1,17 @@
 describe("pow", function()
     {
         //対象のユースケースを記載。人間が読める形式で書く。
-        it("raises to n-th power", function()
+        it("2 raised to power 3 is 8", function()
         {
             //テスト関数
             assert.equal(pow(2, 3), 8);
+        });
+
+        //1it1assertがおすすめ。
+        //it内では、assertエラーが発生した場合、次以降のassert文は実行されないため。
+        it("3 raised to power 4 is 81", function()
+        {
+            //テスト関数
+            assert.equal(pow(3, 4), 81);
         });
     });
