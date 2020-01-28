@@ -1,5 +1,16 @@
 describe("pow", function()
     {
+        /* 
+        setup function
+        ・before/after:各テストの前後に一度実行される処理
+        ・beforeEach/afterEach:各itの前後に一度実行される処理
+        */
+       before(() => alert("testing started - before all tests"));
+       after(() => alert("testing finished - after all tests"));
+
+       beforeEach(() => ("before a test - enter a test"));
+       afterEach(() => ("after a test - exit a test"));
+
         //nested describe
         describe("raises x to power 3", function()
         {
