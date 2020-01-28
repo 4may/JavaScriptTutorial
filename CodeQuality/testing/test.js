@@ -1,5 +1,25 @@
 describe("pow", function()
     {
+        //nested describe
+        describe("raises x to power 3", function()
+        {
+            function makeTest(x)
+            {
+                let expected = x * x * x;
+                it(`${x} in the power 3 is ${expected}`, function()
+                {
+                    assert.equal( pow(x, 3), expected);
+                }
+                );
+            }
+
+            for(let x = 1; x <=5; x++)
+            {
+                makeTest(x);
+            }
+        }
+        );
+
         //対象のユースケースを記載。人間が読める形式で書く。
         it("2 raised to power 3 is 8", function()
         {
@@ -15,18 +35,6 @@ describe("pow", function()
             assert.equal(pow(3, 4), 81);
         });
 
-        function makeTest(x)
-        {
-            let expected = x * x * x;
-            it(`${x} in the power 3 is ${expected}`, function()
-            {
-                assert.equal( pow(x, 3), expected);
-            }
-            );
-        }
-
-        for(let x = 1; x <=5; x++)
-        {
-            makeTest(x);
-        }
+        
+        
     });
