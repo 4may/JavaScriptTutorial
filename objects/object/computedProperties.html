@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    key名を動的につける場合、よりスタイリッシュな書き方(computed properties)がある
+    */
+    let fruit = prompt("which fruit to buy?", "apple");
+    let bag = 
+    {
+        //[]なしで書くとfruitというkey名となってしまうが、[var]付けで書くことによってvarは変数とみなされる
+        [fruit] : 5,
+    };
+    alert(bag.apple); //fruitがappleの場合、5.それ以外の場合、undefined
+
+    /*
+    より凝った使い方もできる
+    */
+    let fruit2 = 'apple';
+    let bag2 = 
+    {
+        [fruit2 + 'Computers'] : 5,
+    };
+    alert(bag2.appleComputers);
+
+    /*
+    keyへのアクセスについて、一般的な使い分け
+    単純な処理のときは、.を使う。
+    複雑な処理のときは、[]を使う。
+    */
+</script>
