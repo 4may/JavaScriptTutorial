@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    複数単語を使うkeyにおいて、以下の書き方はコンパイルエラーになる
+    user.likes birds = true
+    */
+
+    /*
+    square bracket notationという仕組みがある
+    */
+    let user = {};
+    //set
+    user["likes birds"] = true;
+    //get
+    alert(user["likes birds"]); //true
+    //delete
+    delete user["likes birds"];
+
+    /*
+    keyは変数の値を使っても良い
+    */
+    let key = "likes birds";
+    user[key] = true;
+    alert(user[key]);
+
+    let user2 = 
+    {
+        name : "John",
+        age  : 30,
+    };
+    let key2 = prompt("what do you want to know about the user?", "name");
+    alert(user2[key2]);
+</script>
