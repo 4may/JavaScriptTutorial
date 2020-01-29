@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    object宣言は2つの書き方ができる
+    */
+    let user1 = new Object(); //object constructor
+    let user2 = {}; //object literal(より一般的)
+
+    /*
+    JSのobjectはkey,value構造をとる.
+    keyはstring型、valueはどんな型でも良い
+    */
+    let user3 = 
+    {
+        name : "John",
+        age  : 30,
+    };
+
+    /*
+    valueへのアクセス
+    */
+    alert(user3.name); //John
+    alert(user3.age); //30
+
+    /*
+    objectの宣言後に、プロパティを追加できる。
+    (辞書への要素追加と考えれば、、、)
+    */
+    user3.isAdmin = true;
+    alert(user3.isAdmin);
+
+    /*
+    プロパティを消すには、delete
+    */
+    delete user.age;
+
+    /*
+    keyは複数ワードにすることもできる
+    その場合、クオート"で括る必要がある
+    */
+    let user4 = 
+    {
+        name : "John",
+        age  : 30,
+        "likes birds" : true, //プロパティの最後は、カンマ,で終わらせておく。後から要素の追加・削除・移動がしやすい。
+    };
+</script>
