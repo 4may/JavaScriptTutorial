@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    既存の変数名と使いたいプロパティ名がかぶるときがよくある
+    */
+    function makeUser(name, age)
+    {
+        return{ //return文の後の{を別行に書いてしまうと、return; とみなされ処理が終了してしまうので注意
+            name: name,
+            age: age
+            // ...other properties
+        };
+    }
+
+    let user = makeUser("John", 30);
+    alert(user.name);
+
+    /*
+    以下のように、記述を簡単化できる
+    */
+    function makeUser2(name, age)
+    {
+        return{
+            name,
+            age
+        };
+    }
+
+    let user2 = makeUser2("Nao", 20);
+    alert(user2.name);
+</script>
