@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    for ... inループによって、objectのプロパティに順次アクセスできる
+    */
+    let user = 
+    {
+        name : "John",
+        age : 30,
+        isAdmin : true
+    };
+
+    for(let key in user)
+    {
+        alert(key); //name, age, isAdmin
+        alert(user[key]); //John, 30, true
+    }
+</script>
