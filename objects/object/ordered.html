@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    /*
+    オブジェクトのオーダーについて
+    ・integer型のプロパティについては、昇順にならぶ
+    ・integer以外のプロパティについては、作成順にならぶ
+    */
+    'use strict';
+
+    //プロパティ名がinteger型の例
+    let codes = 
+    {
+        "49" : "Germany",
+        "41" : "Switzerland",
+        "44" : "Great Britain",
+        //...,
+        "1" : "USA",
+    }
+
+    for(let code in codes)
+    {
+        alert(code); //1, 41, 44, 49
+    }
+
+    //プロパティ名が非integer型の例
+    let user = 
+    {
+        name : "John",
+        surname : "Smith"
+    };
+    user.age = 25;
+
+    for(let prop in user)
+    {
+        alert(prop); //name, surname, age
+    }
+</script>
