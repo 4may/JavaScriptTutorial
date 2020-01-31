@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ディープコピー
+    ディープコピーを行う関数は標準では用意されていないため、自前で処理を実装する必要がある
+    */
+    let user = 
+    {
+        name : "John",
+        age : 30
+    };
+
+    let clone = {}; //userのコピーを作る
+
+    for(let key in user)
+    {
+        clone[key] = user[key];
+    }
+
+    clone.name = "Pete";
+
+    alert(user.name); //John
+    alert(clone.name); //Pete
+
+    /*
+    Object.assignメソッドを使う方法もある
+    Object.assign(dest, [src1, src2, src3, ...])
+    第二引数以降のオブジェクト[src1, src2, ...]をdestへコピー、destを返却する。
+    */
+    let myUser = { name : "John" };
+    let permission1 = { canView : true };
+    let permission2 = { canEdit : true };
+
+    Object.assign(myUser, permission1, permission2);
+    //myUser = {name : "John", canView : true, canEdit : true};
+
+    /*
+    追加するプロパティ名と既存のプロパティ名とが重複する場合、プロパティの値が上書きされる
+    */
+    let user2 = { name : "John" };
+    Object.assign(user2, { name : "Pete", isAdmin : true});
+    //user = {name : "Pete", isAdmin : true}
+    alert(user2.name); //Pete
+
+    /*
+    assignを使ったディープコピー
+    空のオブジェクトにuser2をコピー、その結果を取得する。
+    assign関数がオブジェクトを返却することがポイント。
+    */
+    let clone2 = Object.assign({}, user2);
+
+    /*
+    オブジェクトのプロパティに参照型が含まれるケース
+    参照型のプロパティまで別々のオブジェクトとするなら、
+    プロパティがオブジェクトかどうか調べ、オブジェクトの場合はループ回してコピー・・・というのを繰り返す必要がある。
+    ライブラリが充実している。https://lodash.com/
+    */
+    let user3 = 
+    {
+        name : "John",
+        sizes : 
+        {
+            height : 182,
+            width : 50
+        }
+    };
+
+    alert(user3.sizes.height); //182
+
+    let clone3 = Object.assign({}, user3);
+    alert(clone3.sizes === user3.sizes);
+
+    user.sizes.width++;
+    alert(clone3.sizes.width); //51.clone3とuser3のsizesは共通のオブジェクト
+</script>
