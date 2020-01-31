@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    同じオブジェクトを参照している場合(同じメモリアドレスを保持している場合)、true
+    */
+    let a = {};
+    let b = a;
+    alert(a == b); //true
+    alert(a === b); //true
+
+    /*
+    異なるオブジェクトを参照している場合(異なるメモリアドレスを保持ている場合)、false
+    (例え、オブジェクトが共に空としても)
+    */
+    let c = {};
+    let d = {};
+    alert(c == d); //false
+    alert(c === d); //false
+</script>
