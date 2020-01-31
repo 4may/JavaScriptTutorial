@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function mutiplyNumeric(menu)
+    {
+        for(let key in menu)
+        {
+            if(typeof menu[key] == "number")
+            {
+                menu[key] *= 2;
+            }
+        }
+
+        return menu;
+    }
+
+    let menu = 
+    {
+        width : 200,
+        height : 300,
+        title : "My menu"
+    };
+
+    //メニューの数値を倍にする
+    menu = mutiplyNumeric(menu);
+
+    alert(menu.width); //400
+    alert(menu.height); //600
+</script>
