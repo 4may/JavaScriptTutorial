@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function marry(man, woman)
+    {
+        woman.husband = man;
+        man.wife = woman;
+
+        return{
+            father : man,
+            mother : woman
+        }
+    }
+
+    let family = marry
+    (
+        {
+            name : "John"
+        },
+        {
+            name : "Ann"
+        }
+    );
+
+    family = null; //rootであるfamily変数が解放されたため、father,motherも解放される。
+
+    /*
+    GCの最適化
+    ・世代管理：オブジェクトは「新しいもの」と「古いもの」に分けられる。メモリ上に残っている期間が長い古いものの検証頻度は下げられる。
+    ・増分管理：処理の負荷分散を目的として、GCの処理自体を細かく複数回に分けて行う。まとめて一回行うよりも遅延を抑えることができる。
+    ・アイドル時間管理：CPUのアイドル時間にGCが動く。
+    細かく知りたい場合は、v8 ガベージコレクターを参照
+    http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection
+    */
+</script>

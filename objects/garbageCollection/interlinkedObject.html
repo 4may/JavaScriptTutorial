@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function marry(man, woman)
+    {
+        //husband, wifeという２つのパラメータを追加
+        woman.husband = man;
+        man.wife = woman;
+
+        //father, motherという2つのパラメータを追加
+        return{
+            father : man,
+            mother : woman
+        }
+    }
+
+    let family = marry
+    (
+        {
+            name : "John"
+        },
+        {
+            name : "Ann"
+        }
+    );
+
+    //Johnという名前のオブジェクトのみが消える
+    delete family.father;
+    delete family.mother.husband;
+
+    alert(family.father != null); //false
+    alert(family.mother != null); //true
+</script>
