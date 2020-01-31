@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    constで宣言したオブジェクトのプロパティは、変更「できる」
+    メモリアドレスは変更「できない」
+    */
+    const user = 
+    {
+        name : "John"
+    };
+
+    user.age = 25;
+    //user = null; userのメモリアドレスを変更しようとしたため、コンパイルエラー
+
+    alert(user.age); //25
+</script>
