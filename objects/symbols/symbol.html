@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Symbol : stringと同様に、objectのkeyに用いられる型。一意の識別子を表す。
+    */
+    let id = Symbol();
+
+    /*
+    Symbolオブジェクトの説明をつけることも可能
+    */
+    let id2 = Symbol("id2");
+
+    /*
+    同じ引数でも、Symbolオブジェクトの値は異なる
+    引数は単なる「ラベル」でオブジェクトには影響を与えない
+    */
+    let id3 = Symbol("id3");
+    let id4 = Symbol("id4");
+    alert(id3 == id4); //false
+
+    /*
+    Symbol型はstring型へ自動変換できない
+    SymbolとStringは根本的に異なるため
+    */
+    //alert(id3); コンパイルエラー
+    alert(id3.toString()); //Symbol(id3)
+    alert(id3.description); //id3 (ディスクリプションのみ表示) 
+</script>
