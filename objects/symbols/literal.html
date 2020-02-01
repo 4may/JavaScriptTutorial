@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let id = Symbol("id");
+
+    /*
+    オブジェクトリテラル{}の中でSymbol変数を使う際には[]でSymbol変数を括る
+    単純に、「変数」であるから。
+    */
+    let user = 
+    {
+        name : "John",
+        [id] : 123 //id : 123 ではダメ.
+    }
+
+    alert(user[id]); //123
+</script>
