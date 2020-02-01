@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Symbol型プロパティはfor ... inループに含まれない
+    これは、symbol型プロパティの秘匿性を担保するため。(別のライブラリに追加した際、誤作動を招くのを防ぐ)
+    */
+    let id = Symbol("id");
+    let user = 
+    {
+        name : "John",
+        age : 30,
+        [id] : 123
+    };
+
+    for(let key in user)
+    {
+        alert(key); //name, age
+    }
+
+    //直アクセスは機能
+    alert(user[id]); //123
+
+    /*
+    コピーはできる
+    */
+    let clone = Object.assign({}, user);
+    alert(clone[id]); //123
+</script>
