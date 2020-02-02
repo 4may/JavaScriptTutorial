@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Symbol, String以外の型をkeyとして使うと、自動的にstring型に置換される
+    */
+    let key = true;
+    let obj = 
+    {
+        0 : "number",
+        [key] : "boolean"
+    }
+    alert(obj[0]); //number
+    alert(obj["0"]);
+    alert(obj[key]);
+    alert(obj[true]);
+    alert(obj["true"]);
+</script>
