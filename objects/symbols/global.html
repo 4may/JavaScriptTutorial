@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    global symbols
+    ランタイム全体に跨る共通のSymbol変数(グローバルシンボル)を定義できる
+    グローバルシンボルは専用のレジストリに保存される
+    */
+
+    //Symbol変数を新規追加
+    let id = Symbol.for("id");
+
+    //既存のグローバルシンボルを読み出し
+    let idAgain = Symbol.for("id");
+
+    alert(id === idAgain); //true
+
+    /*
+    グローバルシンボルから名前を取得することも可能
+    */
+    let sym = Symbol.for("name");
+    let sym2 = Symbol.for("id");
+
+    alert(Symbol.keyFor(sym)); //name
+    alert(Symbol.keyFor(sym2)); //id
+
+    /*
+    ローカルシンボルに対してkeyFor関数を呼び出すと、undefinedが返る
+    (keyForはグローバルシンボルレジストリのみをチェックしている)
+    */
+    let globalSymbol = Symbol.for("name");
+    let localSymbol = Symbol("name");
+
+    alert(Symbol.keyFor(globalSymbol)); //name
+    alert(Symbol.keyFor(localSymbol)); //undefined
+
+    alert(localSymbol.description);
+</script>
