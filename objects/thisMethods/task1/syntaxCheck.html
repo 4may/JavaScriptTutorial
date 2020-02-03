@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let user =
+    {
+        name : "John",
+        go : function() //go()
+        { 
+            alert(this.name) 
+        }
+    }//ここにセミコロン;がないため、エラーになる。JSでは、(obj.func)()の前に自動ではセミコロンを挿入しない
+
+    (user.go)(); //エラー。(user.go)の括弧は何も影響を与えない。
+</script>

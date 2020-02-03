@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function makeUser()
+    {
+        return{
+            name : "John",
+            ref : this //ref() { return this }
+        };
+    };
+
+    let user = makeUser();
+    //以下の処理は.付きのメソッド呼び出しではなく、関数呼び出しとなっているためエラーとなる。
+    //user.ref().nameであれば、動作する。
+    alert(user.ref.name); //エラー
+</script>

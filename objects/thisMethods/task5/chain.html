@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    メソッドチェイン
+    */
+    let ladder =
+    {
+        step : 0,
+        up()
+        {
+            this.step++;
+            return this; //自分自身のインスタンスを返す
+        },
+        down()
+        {
+            this.step--;
+            return this;
+        },
+        showStep : function(){
+            alert(this.step);
+            return this;
+        }
+    };
+
+    ladder.up().up().down().showStep(); //1
+</script>

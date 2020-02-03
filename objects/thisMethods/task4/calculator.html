@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let calculator =
+    {
+        read()
+        {
+            this.value1 = +prompt("value1?", 0);
+            this.value2 = +prompt("value2?", 0);
+        },
+        sum()
+        {
+            return this.value1 + this.value2;
+        },
+        mul()
+        {
+            return this.value1 * this.value2;
+        },
+    };
+
+    calculator.read();
+    alert( calculator.sum() );
+    alert( calculator.mul() );
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    "use strict";
+
+    let obj, method;
+
+    obj = 
+    {
+        go: function()
+        {
+            alert(this);
+        }
+    };
+
+    /*
+    下記のような動作をするのはなぜか
+    1. .が最初に処理される
+    2. .が最初に処理される(括弧はあるが、処理の順序は変わっていない)
+    3. method = obj.go; method(); のようにthisが存在しない関数呼び出しとなっている。.によるreference typeは失われている。
+    4. 3と同様、(式).method()のように.の左が式となっている。
+    */
+    obj.go(); //[object Object]
+    (obj.go)(); //[object Object]
+    (method = obj.go)(); //undefined
+    (obj.go || obj.stop)(); //undefined
+</script>
