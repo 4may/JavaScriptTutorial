@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let user = 
+    {
+        name : "John",
+        age : 30
+    };
+
+    /*
+    関数表現を使うパターン
+    */
+    user.sayHi = function()
+    {
+        alert("hello");
+    };
+
+    user.sayHi(); //hello
+
+    /*
+    事前に宣言している関数を利用するパターン
+    */
+    function goodbye()
+    {
+        alert("goodbye");
+    };
+    user.goodbye = goodbye;
+    user.goodbye();
+
+    /*
+    オブジェクトリテラルを利用するパターン
+    */
+    let visitor = 
+    {
+        hello() //same as hello : function()
+        {
+            alert("Hello");
+        }
+    };
+
+    visitor.hello();
+</script>
