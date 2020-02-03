@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    thisキーワード
+    ・自身のプロパティへアクセスする際には、2通りの方法がある
+    　1.this.propertyName
+    　2.outerVariableName.propertyName
+    */
+    /*
+    1.thisを使うパターン
+    */
+    let user = 
+    {
+        name : "John",
+        age : 30,
+
+        sayHi()
+        {
+            alert(this.name);
+        }
+    };
+
+    user.sayHi(); //John
+
+    /*
+    2.outer変数名を使うパターン
+    */
+    let user2 =
+    {
+        name : "Ann",
+        age : 30,
+
+        sayHi()
+        {
+            alert(user2.name);
+        }
+    };
+    user2.sayHi(); //Ann
+
+    /*
+    2ではうまくいかないケース
+    */
+    let user3 =
+    {
+        name : "Nao",
+        age : 30,
+
+        sayHi()
+        {
+            alert(user3.name); //thisならうまくいった
+        }
+    };
+    
+    let admin = user3;
+    user3 = null;
+    admin.sayHi(); //null referenceエラー。
+</script>
