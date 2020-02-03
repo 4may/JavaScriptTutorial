@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    thisがundefinedとみなされる例
+    */
+    let user =
+    {
+        name : "John",
+
+        hi() 
+        {
+            alert(this.name)  
+        },
+        
+        bye() 
+        {
+            alert("bye")
+        },
+    };
+
+    user.hi(); //John
+
+    (user.name == "John" ? user.hi : user.bye)(); //エラーが発生. thisはundefinedを指す
+
+    /*
+    なぜエラーが発生するのか？
+    jsでは、.(ドット)は関数ではなく「reference type」という言語内部でのみ使用する特別な型を返している。
+    reference typeは(base, name, strict)で構成される。
+    ・base:オブジェクト自身
+    ・name:プロパティ名
+    ・strict:strictモードが有効ならtrue, 無効ならfalse
+    例えば、user.hiでは(user, "hi", true)というreference typeとなる。
+    reference typeに対して、関数実行命令()が与えられたとき、オブジェクトに関する全ての情報が与えられて初めてthisを確定できる。
+    そして、このreference typeは「.を使った文でのみ有効」であり、変数に一時格納することはできない。
+    例えば、let hi = user.hi; hi(); のような記述は無効である。
+    上記の処理において、reference typeの情報が失われてしまい、thisが確定できなくなったことが原因である。
+    */
+</script>
