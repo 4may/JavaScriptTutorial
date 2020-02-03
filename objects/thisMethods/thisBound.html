@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSのthisは他のプログラミング言語とは異なり、文脈に基づいて「実行時に評価される」
+    thisはobj.functionのobjを指す。
+    これには、メリットとデメリットがある。
+    ・異なるオブジェクトで同じ関数を使いまわせる
+    ・柔軟さが却ってミスを招く
+    */
+    /*
+    以下のコードはコンパイルエラーにならない.
+    */
+    function sayHi()
+    {
+        alert(this.name);
+    }
+
+    let user =
+    {
+        name : "John"
+    };
+    let admin =
+    {
+        name : "Admin"
+    };
+
+    user.f = sayHi;
+    admin.f = sayHi;
+
+    user.f(); //John(thisはuserを指す)
+    admin.f(); //Admin(thisはadminを指す)
+
+    admin['f']();
+
+    function test()
+    {
+        alert(this);
+    }
+
+    test(); //undefined. オブジェクトが未指定の場合、thisはundefinedとなる。
+</script>
