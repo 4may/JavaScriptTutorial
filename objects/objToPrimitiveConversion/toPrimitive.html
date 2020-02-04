@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    プリミティブ型への変換ルール
+    ・boolean型へ変換する場合、必ずtrueとなる
+    ・数値型への変換は、数値演算をする場合に行われる。例えば、Date型オブジェクトの引き算ではその差分が得られる
+    ・文字列型への変換は、オブジェクトの表示をする場合などに行われる。例えば、alert(object)
+    */
+
+    /*
+    string型への変換
+    */
+    let obj = {};
+    //表示
+    alert(obj); //[object Object]
+
+    //プロパティキー
+    let anotherObj = {};
+    anotherObj[obj] = 123;
+
+    /*
+    number型への変換
+    */
+    //明示的な型変換
+    let num = Number(obj);
+
+    //数値演算
+    let n = +obj;
+    let date1 = new Date();
+    let date2 = new Date();
+    let delta = date1 - date2;
+    alert(delta); //0
+
+    //大小比較
+    let user1 = {};
+    let user2 = { name : "John" };
+    let greater = user1 > user2;
+    alert(greater); //false
+
+    /*
+    default
+    たまに、変換先の型候補が一意に決まらない時がある
+    例えば、＋は文字列結合にも数値の加算にも使える
+    また、==も型のチェックを行わないため、どの型へ変換すれば良いかが曖昧になる
+
+    その際には、symbol, string, number/defaultの順に型変換を試みる。
+    1.obj[Symbol.toPrimitive](hint)を実行する(オリジナルの変換ルールを書ける)
+    2.hintがstringならば、obj.toString(), obj.valueOf()の順に試す
+    3.hintがnumber or defaultならば、obj.valueOf(), obj.toString()の順に試す
+    */
+    let obj1 = { name : "John" };
+    let obj2 = { name : "Ann" };
+    let total = obj1 + obj2;
+    alert(total); //[object Object][object Object] hintはstringとなる。
+
+    let user =
+    {
+        name : "John",
+        money : 1000,
+
+        [Symbol.toPrimitive](hint)
+        {
+            alert(`hint: ${hint}`);
+            return hint == "string" ? `{name : "${this.name}"}` : this.money;
+        }
+    };
+
+    alert(user); //hint: string name : John
+    alert(+user); //hint: number 1000
+    alert(user + 500); //hint: default 1500
+
+    /*
+    toString(), valueOf()
+    全てのオブジェクトに標準で用意されている。それぞれ、デフォルトでは以下のように動作する。
+    ・toString() : [object Object]を返す 
+    ・valueOf() : オブジェクトをそのまま返す
+    */
+    let testUser = { name : "John" };
+    alert(testUser); //[object Object]
+    alert(testUser.valueOf() === testUser); //true
+
+    //自前の変換規則を定義
+    let adUser =
+    {
+        name : "John",
+        money : 1000,
+
+        toString()
+        {
+            return `{name: "${this.name}"}`;
+        },
+
+        valueOf()
+        {
+            return this.money;
+        }
+    };
+
+    alert(user); //toString, name: John
+    alert(+user); //valueOf, 1000
+    alert(user + 500); //valueOf, 1500
+
+    //全ての型変換で同じ挙動をさせたければ、toString()だけ書く
+    let user2 =
+    {
+        name : "John",
+
+        toString()
+        {
+            return this.name;
+        }
+    };
+
+    alert(user2); //John
+    alert(user2 + 500); //John500
+</script>
