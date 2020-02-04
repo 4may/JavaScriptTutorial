@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    new.targetプロパティを使うことで
+    関数がnewと共に呼び出されたかどうかを知ることができる
+    */
+
+    function User()
+    {
+        alert(new.target);
+    }
+
+    User(); //undefined
+
+    new User(); //function User()...
+
+    /*
+    上記を利用することで、newを伴わない場合にも対応できる
+    (たまに使われるが、明示的にnewをつける方が何をしているかわかりやすい)
+    */
+    function Admin(name)
+    {
+        if(!new.target)
+        {
+            return new Admin(name);
+        }
+
+        this.name = name;
+    }
+
+    let admin = Admin("John");
+    alert(admin.name);
+</script>
