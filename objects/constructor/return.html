@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    コンストラク内にreturnを書くことができる。
+    その場合、以下のルールに従って動作する。
+    ・戻り値がobjectの場合、thisの代わりにそのobjectを返す
+    ・戻り値がプリミティブ型の場合、無視してthisを返す
+    */
+
+    function BigUser()
+    {
+        this.name = "John";
+
+        return { name : "Godzilla" };
+    }
+
+    alert(new BigUser().name); //Godzilla
+
+    function SmallUser()
+    {
+        this.name = "John";
+
+        return;
+    }
+
+    alert(new SmallUser().name); //John
+
+    /*
+    ちなみに、new Function()の()は省略できる(可読性の観点からは、控えた方が良い)
+    */
+    let small = new SmallUser;
+    alert(small.name); //John
+</script>
