@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    hintの型と、戻り値の型とが「一致するとは限らない」
+    ただ一つ、プリミティブ型を返さなければいけない。
+    */
+
+    let user =
+    {
+        name : "100",
+        money : 500,
+
+        toString()
+        {
+            return this.money;
+        },
+
+        valueOf()
+        {
+            return this.name;
+        }
+    };
+
+    alert(user); //500
+    alert(+user); //john
+</script>
