@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ３つのメソッドを持つコンストラクタを作る
+    */
+    function Calculator()
+    {
+        this.read = function()
+        {
+            this.value1 = +prompt("value1?", 0);
+            this.value2 = +prompt("value2?", 0);
+        };
+
+        this.sum = function()
+        {
+            return this.value1 + this.value2;
+        };
+
+        this.mul = function()
+        {
+            return this.value1 * this.value2;
+        };
+    }
+
+    let calculator = new Calculator();
+    calculator.read();
+
+    alert("Sum=" + calculator.sum());
+    alert("Mul=" + calculator.mul());
+</script>
