@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    コンストラクタ
+    ・大文字で始める
+    ・呼び出し時には、new演算子を前につける
+    ・文法的には、どんな関数でもコンストラクタとすることができる
+    */
+    function User(name)
+    {
+        //this = {}; 暗黙的に空のオブジェクトが生成される
+
+        this.name = name;
+        this.isAdmin = false;
+
+        //return this; 暗黙的に自身のインスタンスを返却する
+    }
+
+    let user = new User("Jack");
+
+    alert(user.name); //Jack
+    alert(user.isAdmin); //false
+</script>
