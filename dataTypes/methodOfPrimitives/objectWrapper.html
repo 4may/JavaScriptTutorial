@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    object wrapper
+    ・プリミティブ型用の便利な関数が定義されているオブジェクト
+    ・大文字で始まる String, Number, Boolean, Symbol
+    ・必要に応じて一時生成される。
+    ・明示的に作成することもできるが、誤作動を招くので非推奨 例）new Number(0)
+    */
+    let str = "hello";
+    /*
+    動作
+    1.変数strがstring型のため、Stringオブジェクトが作成される
+    2.StringオブジェクトのtoUpperCase()関数が実行され、変数strが変更される
+    3.Stringオブジェクトは破棄され、プリミティブ型のstrのみが残る
+    */
+    alert(str.toUpperCase()); //HELLO
+
+    /*
+    Numberオブジェクトが一時生成される例
+    */
+    let n = 1.23456;
+    alert(n.toFixed(2)); //1.23
+</script>
