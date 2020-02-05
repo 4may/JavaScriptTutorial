@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    isNaN
+    */
+    alert(isNaN(NaN)); //true
+    alert(isNaN("string")); //true
+    alert(NaN === NaN); //false
+
+    /*
+    isFinite
+    通常の数字であれば、trueを返す. 型はstring型でも良い
+    */
+    alert(isFinite(19)); //true
+    alert(isFinite("15")); //true
+    alert(isFinite("str")); //false
+    alert(isFinite(Infinity)); //false
+    alert(isFinite("")); //true, 空文字とスペースは0扱い 
+
+    /*
+    Object.is関数
+    2つの点をのぞいて===と一緒
+    ・NaNの比較ができる 
+    ・0, -0を区別する
+    */
+    alert(Object.is(NaN, NaN)); //true
+    alert(Object.is(0, -0)); //false
+</script>

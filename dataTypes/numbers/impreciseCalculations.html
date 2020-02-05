@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSのnumber型は64bit
+    ・52 : 桁
+    ・11 : 小数点以下
+    ・1 : 記号
+    */
+    alert(1e500); //Infinity
+
+    /*
+    二進数のシステムでは、1/10や1/5を完璧に表せない。
+    これは、ruby, perl, java, cなど同じシステムを使っている他のプログラミング言語でも同じ
+    */
+    alert(0.1 + 0.2); //0.30000000000000004
+
+    /*
+    .toFixed(n)関数を使って修正する
+    */
+    let sum = 0.1 + 0.2;
+    alert(sum.toFixed(2)); //0.30
+</script>
