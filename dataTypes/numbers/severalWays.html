@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //めんどくさい
+    let billion = 1000000000;
+
+    /*
+    ０の個数を表現するのに、eが使える
+    */
+    let billion2 = 1e9;
+    alert(7.3e9);
+
+    //めんどくさい
+    let ms = 0.000001;
+
+    /*
+    同様に、小数点以下もeが使える
+    */
+    let ms2 = 1e-6;
+
+    /*
+    hex : 0x〇〇
+    binary : 0b〇〇
+    octal : 0o〇〇
+    */
+    alert(0xff); //255
+    alert(0xFF); //255
+
+    let a = 0b11111111; //255
+    let b = 0o377; //255
+    alert(a == b);
+</script>
