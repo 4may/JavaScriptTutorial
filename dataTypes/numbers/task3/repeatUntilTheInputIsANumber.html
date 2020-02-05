@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function readNumber()
+    {
+        while(true)
+        {
+            let num = prompt("value?", "");
+            
+            if(num === null || num === "")
+            {
+                return null;
+            }
+
+            if(isFinite(num))
+            {
+                return +num;
+            }
+        }
+    }
+
+    let val = readNumber();
+    alert(val);
+</script>
