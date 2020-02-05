@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    プリミティブ型にプロパティを追加することはできない。
+    ラッパーオブジェクトはあくまで一時生成されるだけ。
+    */
+    let str = "Hello";
+    str.test = 5; //Uncaught TypeError: Cannot create property 'test' on string 'Hello'
+    alert(str.test);
+</script>
