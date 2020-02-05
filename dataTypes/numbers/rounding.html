@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    丸め関数
+    ・Math.floor : 切り捨て
+      3.3 → 3, -1.2 → -2
+    ・Math.ceil : 切り上げ
+      3.3 → 4, -1.2 → -1
+    ・Math.round : 四捨五入
+    ・Math.trunc(IEではサポートされていない) : 小数点以下捨てる
+    */
+
+    alert(Math.floor(3.3)); //3
+    alert(Math.ceil(-1.3)); //-1
+    alert(Math.round(3.5)); //4
+    alert(Math.trunc(2.5)); //2
+
+    /*
+    小数点以下n桁を得る方法
+    ・掛け算と割り算
+    */
+    let num = 1.23456;
+    alert(Math.floor(num * 100) / 100); //1.23
+
+    /*
+    ・toFixed(n)を使う
+    ・丸められるので注意
+    ・戻り値はstring型
+    */
+    let num2 = 12.36;
+    alert(num2.toFixed(1)); //12.4
+
+</script>
