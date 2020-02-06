@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    str.indexOf(substr, pos)
+    substrに部分一致する文字列が存在する場合、その文字列の先頭の番号を返却する
+    substrが見つからない場合は、-1を返却する
+    */
+    let str = 'Widget with id';
+
+    alert(str.indexOf('Widget')); //0
+    alert(str.indexOf('widget')); //-1, wが小文字
+    alert(str.indexOf('id')); //1
+
+    alert(str.indexOf('id', 2)); //12
+
+    let str2 = 'As sly as a fox, as strong as an ox';
+
+    let target = 'as';
+
+    let pos = 0;
+    while(true)
+    {
+        let foundPos = str2.indexOf(target, pos);
+        if(foundPos == -1) break;
+        alert(`Found at ${foundPos}`);
+        pos = foundPos + 1;
+    }
+    
+    /*
+    bitwise not trick
+    ~n は -(n+1) と同義
+    */
+    alert(~2); //-3(=-(2+1))
+    alert(~1); //-2
+    alert(~0); //-1
+    alert(~-1); //0
+
+    /*
+    レガシーコードでよくある例
+    -1のときのみ0になるという性質を利用
+    */
+    let str = "Widget";
+    if(~str.indexOf("Widget")) //Widgetが見つかった
+    {
+        alert('Found it!');
+    }
+
+    /*
+    includes, startsWith, endsWith
+    */
+    alert("Widget with id".includes("Widget")); //true
+    alert("Hello".includes("Bye")); //false
+    alert("Widget".includes("id", 3)); //false
+    alert("Widget".startsWith("Wid")); //true
+    alert("Widget".endsWith("get")); //true
+</script>
