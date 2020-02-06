@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    back quotes``は複数行にまたがって記述できる
+    */
+    let guestList = `Guests:
+        * John
+        * Pete
+        * Mary
+        `;
+
+    alert(guestList);
+
+    /*
+    special characters
+    */
+    let guestList2 = "Guests:\n * John\n * Pete\n * Mary    ";
+    alert(guestList2);
+
+    let str1 = "Hello\nWorld";
+    let str2 = `Hello
+World`;
+    alert(str1 == str2); //true
+
+    /*
+    unicode
+    */
+    alert("\u00A9");
+    alert("\u{20331}");
+    alert("\u{1F60D}");
+
+    /*
+    escape sequence
+    */
+    alert('I\'m the Walrus!');
+</script>
