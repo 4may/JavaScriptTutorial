@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    特定の位置の文字を得る方法
+    ・str[位置]
+    ・str.charAt(位置)
+    近年では、前者の方がおすすめ
+    */
+    let str = "Hello";
+
+    alert(str[0]); //H
+    alert(str.charAt(0)); //H
+    alert(str[length - 1]); //o
+
+    /*
+    2つの手法の違いは、存在しない位置にアクセスした時の戻り値
+    ・[] : undefined
+    ・charAt : ''
+    */
+    let str2 = `Hello`;
+
+    alert(str2[1000]); //undefined
+    alert(str2.charAt(1000)); //''(空文字)
+
+    /*
+    for..of
+    */
+    for(let c of str)
+    {
+        alert(c);
+    }
+</script>
