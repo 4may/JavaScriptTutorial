@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    string型変数は後から変更できない
+    */
+    let str = 'Hi';
+
+    //str[0] = 'h'; Uncaught SyntaxError: Unexpected end of input
+
+    /*
+    別のstring型変数として定義し直す
+    */
+    let str2 = 'Hi';
+    str2 = 'h' + str2[1];
+    alert(str2);
+</script>
