@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    サロゲートペア
+    UTF16では文字を基本的には2byteで表現する。
+    が、2byteでは存在する全ての文字を表現することはできないため、一部の文字については
+    2byte二つ分(ペア)で表現している。そのペアのことをサロゲートペアと呼ぶ。
+    サロゲートペアの長さは、2となる。(1ではなく)
+    */
+    alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
+    alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
+    alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
+
+    /*
+    サロゲートペアを成すコードは、単体だと意味を持たない
+    */
+    alert( '𝒳'[0] ); // strange symbols...
+    alert( '𝒳'[1] ); // ...pieces of the surrogate pair
+
+    /*
+    ダイアクリティカルマークと正規化
+    */
+    /*
+    ダイアクリティカルマークへの変換
+    Sの後に、ドットハットマーク(\u0307)を書く
+    */
+    alert('S\u0307'); //Ṡ
+
+    /*
+    変換による不都合
+    */
+    let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below
+    let s2 = 'S\u0323\u0307'; // Ṩ, S + dot below + dot above
+
+    alert( `s1: ${s1}, s2: ${s2}` ); //表示上の文字は一緒だが・・・
+
+    alert(s1 == s2); //false,文字コードは異なる
+
+    /*
+    上記の問題を解決するための関数normalize
+    */
+    alert(s1.normalize() == s2.normalize()); //true
+    alert(s1.normalize().length); //1
+    alert(s1.normalize() == "\u1e68"); //true
+</script>
