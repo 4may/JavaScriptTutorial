@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    要素の数をカウントしているのではなく、
+    最大の数値インデックスに1を足している
+    */
+    let fruits = [];
+    fruits[123] = "Apple";
+    alert(fruits.length); //124
+
+    /*
+    lengthプロパティは書き換え可能
+    その際、要素数が減った場合はその分だけ要素が消える。
+    そして、その操作は不可逆であり消えた要素は元に戻らない
+    */
+    let arr = [1, 2, 3, 4, 5];
+    arr.length = 2;
+    alert(arr); //1, 2
+    arr.length = 5;
+    alert(arr[3]); //undefined
+
+    /*
+    配列を空にしたければ、lengthプロパティに0を入れれば良い
+    */
+    arr.length = 0;
+</script>
