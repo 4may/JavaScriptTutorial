@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let arr = ["Apple", "Orange", "Pear"];
+    /*
+    インデックスを参照する方法
+    */
+    for(let i = 0; i < arr.length; i++)
+    {
+        alert(arr[i]);
+    }
+    
+    /*
+    let...of構文
+    */
+    for(let element of arr)
+    {
+        alert(element);
+    }
+
+    /*
+    let...in構文(非推奨)
+    Arrayもオブジェクトの一種のため
+    課題が２つある。
+    ・全てのプロパティ(数値型だけでなく、lengthなど非数値型も含めたプロパティ)を参照する点
+    　・一般的に、数値型のインデックスを参照できれば事足りることが多い。また、余分なプロパティへのアクセスが却って問題となることも多い
+    ・for...inループはobject用に最適化されているため、arrayでは10~100倍遅い
+    */
+    for(let key in arr)
+    {
+        alert(arr[key]);
+    }
+</script>
