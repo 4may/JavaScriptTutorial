@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    宣言
+    */
+    let arr = new Array();
+    let arr3 = [];
+
+    /*
+    初期化
+    */
+    let fruits = ["Apple", "Orange", "Plum"];
+    
+    /*
+    アクセス
+    */
+    alert(fruits[0]);
+    alert(fruits[1]);
+    alert(fruits[2]);
+
+    /*
+    値の置換
+    */
+    fruits[2] = "Pear";
+
+    /*
+    要素を追加
+    */
+    fruits[3] = "Lemon"; //["Apple", "Orange", "Plum", "Lemon"]
+
+    /*
+    要素の長さ
+    */
+    alert(fruits.length); //4
+
+    /*
+    要素の表示
+    */
+    alert(fruits); //Apple, Orange, Plum, Lemon
+
+    let arr2 = ['Apple', {name : "John"}, true, function(){ alert("Hello"); }];
+    alert(arr2[1].name); //John
+    arr2[3](); //Hello
+</script>
