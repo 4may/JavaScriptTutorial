@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    shift-push(queue) : FIFO
+    pop-push(stack) : LIFO
+
+    JSのArrayはどちらも対応
+    */
+
+    /*
+    pop
+    */
+    let fruits = ["Apple", "Orange", "Pear"];
+    alert(fruits.pop()); //Pear
+    alert(fruits); //Apple, Orange, Pear
+
+    /*
+    push
+    */
+    fruits = ["Apple", "Orange"];
+    fruits.push("Pear");
+    alert(fruits); //Apple, Orange, Pear
+
+    /*
+    shift
+    */
+    fruits = ["Apple", "Orange", "Pear"];
+    alert(fruits.shift()); //Apple
+    alert(fruits); //Orange, Pear
+
+    /*
+    unshift
+    */
+    fruits = ["Orange", "Pear"];
+    fruits.unshift('Apple'); 
+    alert(fruits); //Apple, Orange, Pear
+
+    /*
+    push, unshiftは複数の要素を追加できる
+    */
+    fruits = ["Apple"];
+    fruits.push("Orange", "Peach"); 
+    fruits.unshift("Pineapple", "Lemon");
+
+    alert(fruits); //Pineapple, Lemon, Apple, Orange, Peach
+</script>
