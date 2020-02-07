@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Arrayオブジェクトには特有の最適化が為されている。
+    その最適化が行われるためにはいくつかの条件が必要であり、条件が守られないと最適化の恩恵が得られなくなる。
+    例えば、
+    ・非数値型のプロパティを追加する arr.test = 5
+    ・「穴」を空ける {"test", "", "", "", ..., ""}
+    ・逆順で埋める
+    */
+    let fruits = ["Banana"];
+    let arr = fruits;
+    alert(arr === fruits); //true
+    arr.push("Pear");
+    alert(fruits); //Banana, Pear
+
+    
+</script>
