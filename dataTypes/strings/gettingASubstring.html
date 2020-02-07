@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    文字列の抽出、3つの方法がある
+    ・substring
+    ・substr
+    ・slice おすすめ！
+    */
+
+    /*
+    str.slice(start[, end])
+    ・end番目のcharacterは含まない
+    ・数字にマイナスをつけると、右端を1として右から数える
+    ・start > end の場合、空文字が返却される
+    */
+    let str = "stringify";
+    alert(str.slice(0, 5)); //strin
+    alert(str.slice(0, 1)); //s
+    alert(str.slice(2)); //ringify
+    alert(str.slice(-4, -1)); //gif
+    alert(str.slice(6, 2)); //""
+
+    /*
+    str.substring(start [,end])
+    ・start > end　となっても良い
+    ・負数は指定できない
+    */
+    alert(str.substring(6, 2)); //ring
+
+    /*
+    str.substr(start [,length])
+    ・startは負数でも良い
+    */
+    alert(str.substr(2, 4)); //ring
+    alert(str.substr(-4, 2)); //gi
+</script>
