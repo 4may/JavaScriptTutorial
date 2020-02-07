@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function truncate(str, maxlength)
+    {
+        let truncated = str.substr(0, maxlength - 1);
+        if(str.length >= maxlength)
+        {
+            truncated = truncated + "...";
+        }
+        return truncated;
+    }   
+
+    alert(truncate("What I'd like to tell on this topic is:", 20) );
+    alert(truncate("Hi everyone!", 20));
+</script>

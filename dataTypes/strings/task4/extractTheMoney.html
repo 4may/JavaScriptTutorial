@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function extractCurrencyValue(str)
+    {
+        //先頭の$記号を取り除くだけであれば、以下でも良い
+        //return +str.slice(1);
+        let extracted = "";
+        for(let c of str)
+        {
+            if(isNaN(+c)) continue;
+            extracted += c;
+        }
+        return +extracted;
+    }
+
+    alert(extractCurrencyValue('$120'));
+</script>
