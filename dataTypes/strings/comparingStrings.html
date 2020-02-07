@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    文字比較
+    ・エンコーディングはUTF16を使っている
+    ・文字比較の際には、各文字のコードの大小を比べている
+    */
+
+    /*
+    小文字より大文字の方が常に大きい
+    */
+    alert('a' > 'Z'); //true
+
+    /*
+    ダイアクリティカル記号付きの文字はアルファベットよりも大きい
+    */
+    alert('Österreich' > 'Zealand'); //true
+    alert('Österreich' > 'Österreici'); //false
+
+    /*
+    str.codePointAt(pos)
+    strのpos番目の文字のコードが得られる
+    */
+    alert("z".codePointAt(0)); //122
+    alert("Z".codePointAt(0)); //90
+
+    /*
+    String.fromCodePoint(code)
+    */
+    alert(String.fromCodePoint(90)); //Z
+    alert('\u005a'); //Z
+</script>
