@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function sumInput()
+    {
+        let inputs = [];
+
+        while(true)
+        {
+            let val = prompt("value?", 0);
+            if(!isFinite(val) || val === "" || val === null) break;
+            inputs.push(+val);
+        }
+
+        let sum = 0;
+        for(let input of inputs)
+        {
+            sum += input;
+        }
+
+        return sum;
+    }
+
+    alert(sumInput());
+</script>
