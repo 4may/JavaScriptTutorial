@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let arr = ["I", "go", "home"];
+    delete arr[1];
+    alert(arr[1]); //undefined
+    alert(arr.length); //3 ["I", , "home"]
+
+    /*
+    arr.splice(index,[ deleteCount, elem1, ..., elemN])
+    index番目からdeleteCount個の要素を削除、削除した要素にelem1, ..., elemNを格納する
+    なお、削除した要素の配列を戻り値として返す
+    */
+    let arr2 = ["I", "study", "JavaScript"];
+    arr2.splice(1, 1);
+    alert(arr2); //["I", "JavaScript"]
+
+    let arr3 = ["I", "study", "JavaScript", "right", "now"];
+    arr3.splice(0, 3, "Let's", "dance"); //[Let's, dance, right, now]
+    alert(arr3);
+
+    let arr4 = ["I", "study", "JavaScript", "right", "now"];
+    let removed = arr4.splice(0, 2);
+    alert(removed); //[I, study]
+
+    /*
+    削除を行わずに、挿入のみを行う
+    */
+    let arr5 = ["I", "study", "JavaScript"];
+    arr5.splice(2, 0, "complex", "language");
+    alert(arr5); //[I, study, complex, language, JavaScript]
+
+    /*
+    負数も使える
+    */
+    let arr6 = [1, 2, 5];
+    arr6.splice(-1, 0, 3, 4);
+    alert(arr6); //[1, 2, 3, 4, 5]
+</script>
