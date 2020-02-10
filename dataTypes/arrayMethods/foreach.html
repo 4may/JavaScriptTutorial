@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    arr.forEach(function(item, index, array))
+    {
+        //do something with item
+    }
+    */
+    ["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
+
+    ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+        alert(`${item} is at index ${index} in ${array}`);
+    }); //Bilbo is at index 0 in Bilbo,Gandalf,Nazgul ...
+</script>
