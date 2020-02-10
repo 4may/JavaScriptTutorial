@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let strings = ["Hare", "Krishna", "Hare", "Krishna", "Krishna", "Krishna", "Hare", "Hare", ":-O"];
+
+    alert(unique(strings));
+
+    function unique(arr)
+    {
+        let uniqued = [];
+
+        for(let elem of arr)
+        {
+            if(!uniqued.includes(elem)) uniqued.push(elem);;
+        }
+
+        return uniqued;
+    }
+</script>

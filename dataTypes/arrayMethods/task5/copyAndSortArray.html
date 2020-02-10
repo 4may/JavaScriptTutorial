@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function copySorted(arr)
+    {
+        let sorted = [];
+        for(let item of arr)
+        {
+            sorted.push(item);
+        }
+        return sorted.sort();
+
+        //slice関数で配列のコピーが作れる
+        //return arr.slice().sort()
+    }
+
+    let arr = ["HTML", "JavaScript", "CSS"];
+
+    let sorted = copySorted(arr);
+
+    alert(sorted); //CSS, HTML, JavaScript
+    alert(arr); //HTML, JavaScript, CSS
+</script>

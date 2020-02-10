@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function Calculator()
+    {
+        this.operators =
+        {
+            "+" : (a, b) => a + b,
+            "-" : (a, b) => a - b,
+        },
+
+        this.calculate = function(stat)
+        {
+            let splited = stat.split(" ");
+            return this.operators[splited[1]](+splited[0], +splited[2]);
+        },
+
+        this.addMethod = function(name, func)
+        {
+            this.operators[name] = func;
+        }
+    }
+
+    let calc = new Calculator;
+    alert(calc.calculate("3 + 7")); //10
+    calc.addMethod("*", (a, b) => a * b);
+    calc.addMethod("/", (a, b) => a / b);
+    calc.addMethod("**", (a, b) => a ** b);
+
+    let result = calc.calculate("2 ** 3");
+    alert(result);
+</script>

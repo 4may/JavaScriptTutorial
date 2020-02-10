@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let arr = [5, 2, 1, -10, 8];
+    alert(decreasingOrder(arr)); //8, 5, 2, 1, -10
+
+    function decreasingOrder(arr)
+    {
+        return arr.sort((a, b) => 
+        {
+            if(a > b) return -1;
+            if(a == b) return 0;
+            if(a < b) return 1;
+        });
+
+        //return arr.sort((a, b) => b - a);
+    }
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let arr = [1, 2, 3];
+    alert(shuffle(arr));
+    alert(shuffle(arr));
+    alert(shuffle(arr));
+    
+    function shuffle(arr)
+    {
+        let selectedPositions = [];
+        let shuffledArray = [];
+        for(let i = 0; i < arr.length; i++)
+        {
+            while(true)
+            {
+                let position = Math.round(0.5 + Math.random() * (arr.length - 0.5)) - 1;
+                if(!selectedPositions.includes(position))
+                {
+                    selectedPositions.push(position);
+                    break;
+                }
+            }
+            shuffledArray[i] = arr[selectedPositions[i]];
+        }
+
+        return shuffledArray;
+    }
+</script>
