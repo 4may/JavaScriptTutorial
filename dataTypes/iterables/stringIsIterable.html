@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    stringはiterable
+    */
+    for(let char of "test")
+    {
+        alert(char);
+    }
+
+    /*
+    サロゲートペアに対しても有効
+    */
+    let str = '𝒳😂';
+    for(let char of str)
+    {
+        alert(char);
+    }
+</script>
