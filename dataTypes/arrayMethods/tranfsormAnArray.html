@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    map
+    */
+    let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+    alert(lengths); //5, 7, 6
+
+    /*
+    sort
+    ・デフォルトだと各要素をstringg型として扱う
+    ・数値として比較を行いたい場合などは、自前で処理を書く必要がある
+    　・なお、「大きい」を示す正数と「小さい」を示す負数のみ返却可能
+    */
+    let arr = [1, 2, 15];
+    arr.sort();
+    alert(arr); //1, 15, 2
+
+    function compare(a, b)
+    {
+        if(a > b) return 1;
+        if(a == b) return 0;
+        if(a < b) return -1;
+    }
+    arr = [3, 1, 2];
+    arr.sort(compare);
+    alert(arr); //1, 2, 15
+
+    /*
+    localeCompareメソッド
+    記号つきアルファベットも考慮してソートできる
+    */
+    let countries = ['Österreich', 'Andorra', 'Vietnam'];
+    alert(countries.sort((a, b) => a.localeCompare(b))); //Andorra, Vietnam, Österreich
+
+    /*
+    reverse
+    */
+    let reversed = [1, 2, 3, 4, 5];
+    reversed.reverse();
+    alert(reversed); //5, 4, 3, 2, 1
+
+    /*
+    split(dem, max)
+    dem:区切り文字
+    max:最大要素数
+    ・demに空文字を指定すると、一文字ずつに分ける
+    */
+    let names = 'Bilbo, Gandalf, Nazgul';
+    let splited = names.split(', ');
+
+    for(let name of splited)
+    {
+        alert(`A message to ${name}`);
+    }
+
+    let arr2 = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+    alert(arr2);
+
+    alert("test".split("")); //t,e,s,t
+
+    /*
+    join(glue)
+    */
+    alert(countries.join(";"));
+
+    /*
+    reduce(function(accumulator, item, index, array)
+    {
+        //処理
+    }, [initial])
+    accumulator:結果
+    item:現在の様子
+    index:現在のインデックス
+    array:配列自身
+    initial:accumulatorの初期値
+    　・initialが未指定の場合、配列の先頭要素を初期値と見なす
+    　・配列が空の場合、エラーとなる
+    　・そのため、基本的に初期値をセットする方が良い
+    */
+    let numbers = [1, 2, 3, 4, 5];
+    let result = numbers.reduce((sum, current) => sum + current, 0);
+    alert(result); //15
+</script>
