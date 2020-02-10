@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    iterableとarray likeは異なる
+    ・iterable:Symbol.iteratorを実装しているオブジェクト
+    ・array like:インデックスとlengthプロパティをもっているオブジェクト
+
+    stringはどちらの特性も満たしている。
+    iterableだけどもarray likeではないオブジェクトやその逆も存在する。
+
+    array likeなオブジェクトには、pop/pushなどの便利なメソッドは存在しない。
+    */
+
+    /*
+    Array.from(obj[, mapFn, thisArg])
+    ・mapFn:変換規則
+    iterable/array likeなオブジェクトから、本物のArrayオブジェクトを生成する
+    */
+    let arrayLike = 
+    {
+        0 : "Hello",
+        1 : "World",
+        length : 2
+    };
+
+    let arr = Array.from(arrayLike);
+    alert(arr.pop()); //World
+
+    let range =
+    {
+        from : 1,
+        to : 5,
+
+        [Symbol.iterator]()
+        {
+            this.current = this.from;
+            return this;
+        },
+
+        next()
+        {
+            if(this.current <= this.to)
+            {
+                return {done : false, value : this.current++};
+            }
+            else
+            {
+                return {done : true};
+            }
+        }
+    };
+
+    //Arrayオブジェクトに変換する際、各要素を累乗する
+    let arr2 = Array.from(range, num => num * num);
+    alert(arr2);
+
+    /*
+    stringオブジェクトに対しても適用できる
+    */
+    let str = '𝒳😂𩷶';
+    let chars = Array.from(str);
+
+    alert(chars[0]);
+    alert(chars[1]);
+    alert(chars.length);
+
+    function slice(str, start, end)
+    {
+        return Array.from(str).slice(start, end).join('');
+    }
+
+    alert(slice(str, 1, 3));
+</script>
