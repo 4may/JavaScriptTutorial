@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    arr.indexOf(item, from)
+    ・from番目以降の要素のうち、初めてitemと合致する要素のインデックスを返す。
+    ・合致には === が用いられる。
+    ・見つからない場合は、-1を返す
+    */
+    let arr = [1, 0, false];
+    alert(arr.indexOf(0)); //1
+    alert(arr.indexOf(null)); //-1
+
+    let arr2 = [0,0,0];
+    alert(arr2.indexOf(0)); //0
+
+    /*
+    arr.lastIndexOf(item, from)
+    ・indexOfの逆順バージョン
+    */
+    alert(arr.lastIndexOf(false)); //2
+
+    /*
+    arr.includes(item)
+    ・arrの要素としてitemが存在すればtrue、存在しなければfalse
+    ・indexOf/lastIndexOfとの違いとして、NaNの存在確認も可能
+    */
+    alert(arr.includes(1)); //true
+    alert(arr.includes(2)); //false
+    
+    let arr3 = [NaN];
+    alert(arr3.includes(NaN)); //true
+    alert(arr3.indexOf(NaN)); //-1
+
+    /*
+    arr.find(function(item, index, array))
+    {
+        arrの要素としてitemが存在すれば、itemを返す
+        存在しなければ、undefinedを返す
+    }
+    */
+    let users = 
+    [
+        {id : 1, name : "John"},
+        {id : 2, name : "Pete"},
+        {id : 3, name : "Mary"},
+    ];
+    let user = users.find(item => item.id == 1);
+    alert(user.name);
+
+    /*
+    arr.filter(function(item, index, array))
+    {
+        条件に合致するitemを全て返却する
+        合致するitemが一つも存在しない場合、空の配列を返却する
+    }
+    */
+    let someUsers = users.filter(item => item.id < 3);
+    alert(someUsers.length); //2
+</script>
