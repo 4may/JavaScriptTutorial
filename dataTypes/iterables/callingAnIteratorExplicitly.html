@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    明示的にイテレータを呼び出す
+    */
+    let str = "hello";
+
+    let iterator = str[Symbol.iterator]();
+
+    while(true)
+    {
+        let result = iterator.next();
+        if(result.done == true) break;
+        alert(result.value);
+    }
+</script>
