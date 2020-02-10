@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    rangeオブジェクトをiterableにしたい(for...of構文を使えるようにしたい)
+    →
+    Symbol.iteratorというビルトイン関数を実装する
+    */
+    let range =
+    {
+        from : 1,
+        to : 5
+    };
+
+    //1.for...of構文の最初に、呼び出される
+    range[Symbol.iterator] = function()
+    {
+        //2.for...ofはreturnされたオブジェクトを使って動作する
+        return{
+            current : this.from,
+            last : this.to,
+
+            //3.次の値が欲しい時は、next関数を呼び出す
+            //rangeオブジェクトそのものにはnext関数を実装していないことに注意
+            next()
+            {
+                if(this.current <= this.last)
+                {
+                    //4.形式が決まっている。done:イテレーションを終えるならtrue, 終えないならfalse. value:次の値
+                    return {done : false, value : this.current++};
+                }
+                else
+                {
+                    return {done : true};
+                }
+            }
+        }
+    }
+
+    for(let num of range)
+    {
+        alert(num);
+    }
+
+    /*
+    一つのオブジェクトの中にiteratorを実装する方法
+    */
+    let range2 =
+    {
+        from : 1,
+        to : 5,
+
+        [Symbol.iterator]()
+        {
+            this.current = this.from;
+            return this;
+        },
+
+        next()
+        {
+            if(this.current <= this.to)
+            {
+                return {done : false, value : this.current++};
+            }
+            else
+            {
+                return {done : true};
+            }
+        }
+    }
+
+    for(let num of range2)
+    {
+        alert(num);
+    }
+</script>
