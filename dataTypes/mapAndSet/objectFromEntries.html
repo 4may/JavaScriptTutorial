@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    map → object
+    */
+    let prices = Object.fromEntries([
+        ['banana', 1],
+        ['orange', 2],
+        ['meat', 4]
+    ]);
+
+    alert(prices.orange);
+
+    let map = new Map();
+    map.set('banana', 1);
+    map.set('orange', 2);
+    map.set('meat', 4);
+
+    /*
+    mapオブジェクトを使う場合は、entries()で配列ペアに展開する
+    または、そのままmapオブジェクトを指定する
+    */
+    let obj = Object.fromEntries(map.entries());
+    alert(obj.orange);
+</script>
