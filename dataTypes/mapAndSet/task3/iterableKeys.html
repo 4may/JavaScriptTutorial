@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let map = new Map();
+    map.set("name", "John");
+
+    //map.keys()の戻り値はArrayではなく、IterableIterator
+    let keys = Array.from(map.keys());
+
+    keys.push("more");
+
+    alert(keys);
+</script>
