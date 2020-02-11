@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let set = new Set(["oranges", "apples", "bananas"]);
+
+    for(let value of set) alert(value);
+
+    /*
+    mapとsetとの互換性のために3つの引数が存在
+    */
+    set.forEach((value, value2, set) => {
+        alert(value);
+    });
+</script>
