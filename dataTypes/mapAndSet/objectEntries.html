@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Mapの初期値は、配列としてまとめて指定することもできる
+    */
+    let map = new Map([
+        ['1', 'str1'],
+        [1, 'num1'],
+        [true, 'bool1']
+    ]);
+
+    alert(map.get(1)); //num1
+
+    /*
+    ObjectのプロパティをMapに格納する
+    */
+    let obj = {
+        name : "John",
+        age : 30
+    };
+
+    let map2 = new Map(Object.entries(obj));
+    alert(map2.get('name'));
+</script>
