@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Map
+    ・Objectと同様、キーと値をペアで持つデータ構造。
+    ・存在しないキーに対しては、undefinedを返す
+    ・Objectとの違いはキーの型が任意であること。(Objectの場合は、string型以外のキーはstring型に置換していた。)
+    ・map[key] = value という構文は、mapをObject型として扱うことになる。mapとして扱うならsetを使う。
+    */
+    let map = new Map();
+    map.set('1', 'str1'); //string key
+    map.set(1, 'num1'); //numeric key
+    map.set(true, 'bool1'); //boolean key
+
+    //mapの場合は、以下の２つのキーは区別される
+    alert(map.get(1)); //num1
+    alert(map.get('1')); //str1
+
+    alert(map.size); //3
+
+    /*
+    objectもキーに使える
+    */
+    let john = { name : "John" };
+    let visitCountMap = new Map();
+    visitCountMap.set(john, 123);
+    alert(visitCountMap.get(john));
+
+    /*
+    keyの一致には、sameValueZeroというアルゴリズムを使っている。
+    ===の一致に加え、NaNとNaNを等しいと見なす。
+    (NaNもkeyとして使えるということ)
+    */
+
+    /*
+    set関数は戻り値として自分自身のインスタンスを返す
+    */
+    let chain = new Map();
+    chain.set(1, 1).set(2, 2).set(3, 3);
+    alert(chain.get(3));
+</script>
