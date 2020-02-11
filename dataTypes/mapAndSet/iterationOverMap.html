@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let recipeMap = new Map([
+        ['cucumber', 500],
+        ['tomatoes', 350],
+        ['onion', 50]
+    ]);
+
+    for(let vegetable of recipeMap.keys())
+    {
+        alert(vegetable);
+    }
+
+    for(let amount of recipeMap.values())
+    {
+        alert(amount);
+    }
+
+    for(let entry of recipeMap.entries())
+    {
+        alert(entry);
+    }
+
+    /*
+    MapにはMap用のforEach()がある
+    */
+    recipeMap.forEach((value, key, map) => {
+        alert(`${key} : ${value}`);
+    });
+</script>
