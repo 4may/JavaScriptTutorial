@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Set
+    ・値の集合
+    ・各値は一意である
+    ・一意の保証には高速なアルゴリズムを使っている
+    */
+    let set = new Set();
+
+    let john = { name : "John" };
+    let pete = { name : "Pete" };
+    let mary = { name : "Mary" };
+
+    set.add(john);
+    set.add(pete);
+    set.add(mary);
+    set.add(john);
+    set.add(mary);
+
+    alert(set.size); //3
+
+    for(let user of set)
+    {
+        alert(user.name);
+    }
+</script>
