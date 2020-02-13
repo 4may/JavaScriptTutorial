@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    weakmapの使い道その１「追加データの保存場所」
+    */
+    //-----------外部ライブラリ----------------------
+    let visitsCountMap = new WeakMap();
+
+    function countUser(user)
+    {
+        let count = visitsCountMap.get(user) || 0;
+        visitsCountMap.set(user, count + 1);
+    }
+    //---------------------------------------------
+
+    let john = { name : "John" };
+    countUser(john);
+    /*
+    johnは去ったので、メモリは開放されるのが理想
+    Mapの場合は、keyの参照がなくなったとしてもMapオブジェクト自体を削除しないとkeyのメモリも開放されない。
+    一方、WeakMapの場合は、未参照となったkeyを削除する仕様となっているため、mapを削除しなくてもkeyのメモリは開放される。
+    */
+    john = null;
+</script>
