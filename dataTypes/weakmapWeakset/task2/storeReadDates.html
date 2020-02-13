@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let messages =
+    [
+        {text : "Hello", from : "John"},
+        {text : "How goes?", from : "John"},
+        {text : "See you soon?", from : "Alice"},
+    ];
+
+    /*
+    メッセージを読んだ日付を管理
+    メッセージとそのメッセージを読んだ日をペアで記憶する必要がある
+    */
+    let readDates = new WeakMap();
+
+    readDates.set(messages[0], new Date(2017, 1, 1)); //新規追加
+    readDates.set(messages[1], new Date(2019, 2, 3)); //新規追加
+    readDates.set(messages[0], new Date(2020, 4, 1)); //上書き
+
+    alert(readDates.get(messages[0]));
+</script>
