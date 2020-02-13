@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    WeakSet
+    ・WeakMapと同様に、オブジェクトのみを追加できる。
+    */
+    let visitedSet = new WeakSet();
+
+    let john = { name : "John" };
+    let pete = { name : "Pete" };
+    let mary = { name : "Mary" };
+
+    visitedSet.add(john);
+    visitedSet.add(pete);
+    visitedSet.add(john);
+
+    alert(visitedSet.has(john)); //true
+    alert(visitedSet.has(mary)); //false
+
+    john = null;
+
+    //visitedSetからjohnオブジェクトが消える
+</script>
