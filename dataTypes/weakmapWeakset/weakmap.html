@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    weakmap
+    ・keyはオブジェクト型である必要がある
+    */
+    let weakMap = new WeakMap();
+
+    let obj = {};
+
+    weakMap.set(obj, "ok");
+
+    /*
+    weakmapのkeyが何物からも参照されなくなった時、そのkeyはGCによりメモリ上から消える
+    */
+    let john = { name : "john" };
+    weakMap.set(john, "...");
+
+    john = null; //
+    //GCによりjohnはメモリ上から削除される
+
+    /*
+    weakmapにはkeyを列挙する関数が存在しない
+    ・keys(), values(), entries()など
+    ・これは、GCによりkeyがいつ消えるかを判断する方法がないため。
+    */
+</script>
