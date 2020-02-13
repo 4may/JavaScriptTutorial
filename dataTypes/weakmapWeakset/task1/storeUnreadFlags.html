@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let messages = 
+    [
+        { text : "Hello", from : "John" },
+        { text : "How goes?", from : "John" },
+        { text : "See you soon?", from : "Alice"}
+    ];
+
+    //既読の本の一覧
+    let readMessages = new WeakSet();
+
+    //２冊の本を読んだ
+    readMessages.add(messages[0]);
+    readMessages.add(messages[1]);
+
+    //二度同じメッセージが読まれることもある
+    readMessages.add(messages[0]);
+
+    //メッセージが削除される。これに伴い、既読本の一覧からも削除したメッセージオブジェクトが削除される。
+    messages.shift();
+</script>
