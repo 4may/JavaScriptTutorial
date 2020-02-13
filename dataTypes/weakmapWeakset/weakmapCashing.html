@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //---------cache----------
+    let cache = new WeakMap();
+
+    function process(obj)
+    {
+        if(!cache.has(obj))
+        {
+            let result = obj;
+            cache.set(obj, result);   
+        }
+
+        return cache.get(obj);
+    }
+    //-------------------------
+
+    //---------use------------
+    let obj = {/*some object*/}; //処理が終わったら不要
+
+    let result1 = process(obj);
+    let result2 = process(obj);
+
+    obj = null;
+</script>
