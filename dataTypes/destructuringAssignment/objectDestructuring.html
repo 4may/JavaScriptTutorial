@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    objectの分解代入
+    プロパティ名を記載する
+    {var1, var2} = {var1:..., var2:...};
+    */
+    let options =
+    {
+        title : "Menu",
+        width : 100,
+        height : 200
+    };
+
+    let {title, width, height} = options;
+    
+    alert(title); //Menu
+    alert(width); //100
+    alert(height); //200
+
+    /*
+    割り当て先のプロパティ名を割り当て元とは異なる名前にしたい場合、:の後に使いたい名前を書く
+    */
+    let {width : w, height : h, title : t} = options;
+    alert(t);
+    alert(w);
+    alert(h);
+
+    /*
+    デフォルト値も使える.
+    関数宣言も使える.
+    */
+    let note =
+    {
+        script : "Math"
+    };
+    let {pages = 20, cost = prompt("cost?"), script} = note;
+    alert(pages);
+    alert(cost);
+    alert(script);
+
+    /*
+    必要なプロパティのみを抽出することもできる
+    */
+    let {title : need} = options;
+    alert(need);
+
+    /*
+    arrayと同様、...　を使って残りのプロパティをオブジェクトとしてまとめて取得もできる
+    */
+    let {t1, ...restProperties} = options;
+    alert(restProperties.height); //200
+    alert(restProperties.width); //100
+</script>
