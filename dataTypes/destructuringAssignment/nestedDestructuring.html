@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let options =
+    {
+        size :
+        {
+            width : 100,
+            height : 200
+        },
+        items : ["Cake", "Donut"],
+        extra : true
+    };
+
+    let 
+    {
+        size : 
+        {
+            width,
+            height
+        },
+        items : [item1, item2],
+        title = "Menu"
+    } = options;
+
+    alert(title); //Menu
+    alert(width); //100
+    alert(height); //200
+    alert(item1); //Cake
+    alert(item2); //Donut
+    //sizeやitemsといった変数は作成されていないことに注意
+    //分解代入という言葉通り、1つの値に対して単一の変数が作られる。
+    //alert(size); //Uncaught ReferenceError: size is not defined
+</script>
