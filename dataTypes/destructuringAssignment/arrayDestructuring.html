@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    arrayの分解代入(destructuring assignment)
+    */
+    let arr = ["Ilya", "Kantor"];
+
+    let [firstName, surname] = arr;
+
+    alert(firstName); //Ilya
+    alert(surname); //Kantor
+
+    /*
+    split関数の戻り値を取得する際に便利
+    */
+    let [split1, split2] = "Java Script".split(" ");
+    alert(split1); //Java
+    alert(split2); //Script
+
+    /*
+    割り当て先の変数を用意しなくても良い
+    その場合、カンマだけを書く
+    */
+    let [a, , c] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+    alert(c); //Consul
+
+    /*
+    arrayだけでなく、iterableなオブジェクトなら分解代入できる
+    */
+    let [first, second, third] = "abc";
+    let [one, two, three] = new Set([1, 2, 3]);
+
+    /*
+    左辺は割り当て可能なものなら何でも良い
+    */
+    let user = {};
+    [user.name, user.surname] = "Ilya Kantor".split(" ");
+    alert(user.name); //Ilya
+
+    /*
+    .entries()も使える
+    */
+    let user2 =
+    {
+        name : "John",
+        age : 30
+    };
+
+    for(let [key, value] of [Object.entries(user2)])
+    {
+        alert(`${key} : ${value}`); //name : John, age : 30
+    }
+
+    /*
+    ... : 残りの分解要素を保持する配列
+    */
+    let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+    alert(name1); //Julius
+    alert(name2); //Caesar
+
+    alert(rest[0]); //Consul
+    alert(rest[1]); //of the Roman Republic
+    alert(rest.length); //2
+
+    /*
+    割り当て先の数が分解要素の数よりも多い場合、割り当てられない変数の値は未割り当て(undefined)となる
+    */
+    let [undefined1, undefined2] = [];
+    alert(undefined1);
+    alert(undefined2);
+
+    /*
+    デフォルト値を設定できる
+    */
+    let [part1 = "Guest", part2 = "Anonymous"] = ["Julius"];
+    alert(part1); //Julius
+    alert(part2); //Anonymous
+
+    /*
+    関数割り当てもできる
+    右辺から値が割り当てられなかった時のみ実行される
+    */
+    let [p1 = prompt("name?"), p2 = prompt("surname?")] = ["Julius"];
+    alert(p1); //Julius
+    alert(p2); //ユーザの入力値
+</script>
