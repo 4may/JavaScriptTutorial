@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Objectに対して、Arrayクラスのオブジェクトを使いたい時
+    1.obj -> array by Object.entries(obj)
+    2.array.map/filter/reduce/...
+    3.array -> obj by Object.fromEntries(array)
+    */
+    let prices =
+    {
+        banana : 1,
+        orange : 2,
+        meat : 4
+    };
+
+    let doublePrices = Object.fromEntries(
+        Object.entries(prices).map(([key, value]) => [key, value * 2])
+    );
+
+    alert(doublePrices.meat); //8
+</script>
