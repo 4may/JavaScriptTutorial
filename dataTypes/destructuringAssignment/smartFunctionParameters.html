@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    関数パラメータをオブジェクトとしてまとめる
+    */
+    let options =
+    {
+        title : "My menu",
+        items : ["Item1", "Item2"]
+    };
+
+    function showMenu({title = "Untitled", width = 200, height = 100, items = []} = {})
+    {
+        alert(`${title} ${width} ${height}`); //My menu 200 100
+        alert(items); //Item1, Item2
+    }
+
+    showMenu(options);
+
+    /*
+    全てデフォルト値を使うならば、空のオブジェクトを指定する
+    または、引数のオブジェクト自身にデフォルト値({})を与える
+    */
+    showMenu({});
+</script>
