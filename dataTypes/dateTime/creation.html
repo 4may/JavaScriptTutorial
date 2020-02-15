@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    new Date()
+    */
+    let now = new Date();
+    alert(now); //現在時刻 Sun Feb 16 2020 07:31:32 GMT+0900 (日本標準時)
+
+    /*
+    new Date(miliseconds)
+    1970/1/1/9:00を始点にした時間
+    */
+    let Jan01_1970 = new Date(0);
+    alert(Jan01_1970); //Thu Jan 01 1970 09:00:00 GMT+0900 (日本標準時)
+
+    let Jan02_1970 = new Date(24 * 3600 * 1000);
+    alert(Jan02_1970); //Fri Jan 02 1970 09:00:00 GMT+0900 (日本標準時)
+
+    /*
+    遡ることもできる
+    */
+    let Dec31_1969 = new Date(-24 * 3600 * 1000);
+    alert(Dec31_1969);
+
+    /*
+    new Date(datestring)
+    */
+    let date = new Date("2017-01-26");
+    alert(date);
+
+    /*
+    new Date(year, month, date, hours, minutes, seconds, ms) 
+    ・year:xxxxの四文字で指定する必要がある
+    ・month:数字一桁の月は0から始める
+    ・date:省略時は1
+    ・hours~ms:省略時は0
+    */
+    alert(new Date(2011, 0, 1, 0, 0, 0, 0)); //Sat Jan 01 2011 00:00:00 GMT+0900 (日本標準時)
+    alert(new Date(2011, 0, 1)); //Sat Jan 01 2011 00:00:00 GMT+0900 (日本標準時)
+</script>
