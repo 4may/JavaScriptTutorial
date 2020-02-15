@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    getTimeの方が速い
+    これは、型変換を行っていないため。
+    */
+    function diffSubtract(date1, date2)
+    {
+        return date2 - date1;
+    }
+
+    function diffGetTime(date1, date2)
+    {
+        return date2.getTime() - date1.getTime();
+    }
+
+    function bench(f)
+    {
+        let date1 = new Date(0);
+        let date2 = new Date();
+
+        let start = Date.now();
+        for(let i = 0; i < 1000000; i++) f(date1, date2);
+        return Date.now() - start;
+    }
+
+    let time1 = 0;
+    let time2 = 0;
+
+    /*
+    ポイント！
+    一回限りの実行だとCPUリソースをうまく使えていない可能性がある
+    そのため、複数回にわたって実行する
+    */
+    for(let i = 0; i < 10; i++)
+    {
+        time1 += bench(diffSubtract);
+        time2 += bench(diffGetTime);
+    }
+
+    alert(`total time for diffSubtract: ` + time1); //total time for diffSubtract: 1765
+    alert(`total time for diffGetTime: ` + time2); //total time for diffGetTime: 113
+</script>
