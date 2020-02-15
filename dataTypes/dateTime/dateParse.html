@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Date.parse
+    ・YYYY-MM-DDTHH:mm:ss.sssZ
+    　・Tはデリミタ
+    　・Zはタイムゾーンを表す。単にZだと、UTC+0
+    ・タイムスタンプを返す。
+    ・無効なフォーマットの場合、NaNを返す
+    */
+   let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
+   alert(ms); //1327611110417
+</script>
