@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let salaries =
+    {
+        "John" : 100,
+        "Pete" : 300,
+        "Mary" : 250,
+        "Nao"  : 300,
+        "Goro" : 500
+    };
+
+    function topSalary(salaries)
+    {
+        if(!salaries || salaries == []) return null;
+
+        let topPaidPeople = [];
+        let maxSalary = 0;
+        for(let [name, salary] of Object.entries(salaries))
+        {
+            if(salary >= maxSalary)
+            {
+                if(salary > maxSalary) topPaidPeople = [];
+                topPaidPeople.push(name);
+                maxSalary = salary;
+            }
+        }
+
+        return topPaidPeople;
+    }
+
+    alert(topSalary(salaries));
+</script>
