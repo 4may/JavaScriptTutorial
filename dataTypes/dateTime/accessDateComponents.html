@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    現在のローカルタイムゾーンに基づいた時間を返却する。
+    UTC+0の時間が欲しい場合は、getXXXX -> getUTCXXXXのようにUTCを足す
+    */
+    let date = new Date();
+    alert(date.getHours()); //7
+    alert(date.getUTCHours()); //22
+
+    /*
+    以下の２つのメソッドは例外的に、UTC版がない
+    ・getTime()
+    ・getTimeOffset() : UTCとローカルタイムゾーンのずれを分表記で返す
+    */
+    alert(new Date().getTimezoneOffset()); //-540
+</script>
