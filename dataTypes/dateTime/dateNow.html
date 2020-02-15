@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Date.now()
+    ・現在時刻のタイムスタンプを返す。
+    ・Dateオブジェクトを作らないため、高速かつGCに影響を与えない
+    */
+   let start = Date.now();
+
+   for(let i = 0; i < 100000; i++)
+   {
+       let doSomething = i * i * i;
+   }
+   
+   let end = Date.now();
+   alert(`the loop took ${end - start} ms`); //the loop took 6 ms
+</script>
