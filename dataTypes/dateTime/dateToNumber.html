@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    date型の数字変換
+    ms表記の時間が得られる
+    */
+    let date = new Date();
+    alert(+date); //1581807814375
+    alert(date.getTime()); //1581807814375
+
+    /*
+    差分
+    */
+   let start = new Date();
+   for(let i = 0; i < 100000; i++)
+   {
+       let doSomething = i * i * i;
+   }
+   let end = new Date();
+   alert(`the loop took ${end - start} ms`); //the loop took 5 ms
+</script>
