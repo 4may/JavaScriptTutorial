@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let date = new Date(2012, 0, 3);
+    alert(getWeekDay(date));
+    alert(getWeekDayAnswer(date));
+
+    function getWeekDay(date)
+    {
+        let weekday = date.toString().slice(0, 3);
+        switch(weekday)
+        {
+            case "Mon" : return "MO";
+            case "Tue" : return "TU";
+            case "Wed" : return "WE";
+            case "Thu" : return "TH";
+            case "Fri" : return "FR";
+            case "Sat" : return "SA";
+            case "Sun" : return "SU";
+        }
+    }
+
+    /*
+    getDayメソッドは曜日の番号を返す(Sundayが0, Saturdayが6)
+    曜日を要素にもつ配列を列挙する
+    */
+    function getWeekDayAnswer(date)
+    {
+        let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+        return days[date.getDay()];
+    }
+</script>

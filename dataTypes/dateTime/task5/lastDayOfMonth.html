@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function getLastDayOfMonth(year, month)
+    {
+        let date = new Date(year, (month + 1) % 12);
+        date.setDate(date.getDate() - 1);
+        return date.getDate();
+    }
+
+    function getLastDayOfMonthAnswer(year, month)
+    {
+        //ポイント！ 日付に0を代入することで、1日前を表現できる
+        let date = new Date(year, (month + 1) % 12, 0);
+        return date.getDate();
+    }
+
+    let tmp = new Date(2011, 12);
+
+    alert(getLastDayOfMonth(2012, 1));
+    alert(getLastDayOfMonth(2012, 11));
+    alert(getLastDayOfMonthAnswer(2012, 1));
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let date = new Date(2015, 0, 2);
+
+    alert(getDateAgo(date, 1));
+    alert(getDateAgo(date, 2));
+    alert(getDateAgo(date, 365));
+    alert(getDateAgoAnswer(date, 2));
+
+    /*
+    dateの日とdays日分だけ前の日を返す
+    ex)dateが2/1、days=2なら1/30
+    */
+    function getDateAgo(date, days)
+    {
+        let timestamp = date.getTime();
+        let agoTimeStamp = timestamp - (days * 24 * 3600 * 1000);
+        return new Date(agoTimeStamp).getDate();
+    }
+
+    /*
+    auto correction機能を使えば、わざわざ自分で計算する必要がない！
+    */
+   function getDateAgoAnswer(date, days)
+   {
+       let dateCopy = new Date(date);
+
+       dateCopy.setDate(date.getDate() - days);
+       return dateCopy.getDate();
+   }
+</script>
