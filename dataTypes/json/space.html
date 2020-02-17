@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    stringify(value[, replacer, space])
+    space:インデントの数.ネットワーク経由でデータを送信するときは、容量が小さい方が良いので0が好まれる。
+    　　　　一方、「きれいに」出力したい時は適切な値を指定する方が見やすい。
+    */
+    let user = 
+    {
+        name : "John",
+        age : 25,
+        roles :
+        {
+            isAdmin : false,
+            isEditor : true
+        }
+    };
+
+    alert(JSON.stringify(user, null, 4));
+    /*
+    {
+        "name": "John",
+        "age": 25,
+        "roles": {
+            "isAdmin": false,
+            "isEditor": true
+        }
+    }
+    */
+
+</script>
