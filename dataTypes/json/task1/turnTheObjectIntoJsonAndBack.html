@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let user =
+    {
+        name : "John Smith",
+        age : 35
+    };
+
+    let userData = JSON.stringify(user);
+    alert(userData); //{"name":"John Smith","age":35}
+
+    let anotherUser = JSON.parse(userData);
+    alert(anotherUser.name); //John Smith
+    alert(anotherUser.age); //35
+</script>
