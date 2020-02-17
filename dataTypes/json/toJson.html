@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSON.stringify(...)は内部的にtoJson()というメソッドを呼び出している。
+    toJson()は自作することもできる。
+    */
+    let room =
+    {
+        number : 23,
+        toJSON()
+        {
+            return this.number;
+        }
+    };
+
+    let meetup =
+    {
+        title : "Conference",
+        room
+    };
+
+    alert(JSON.stringify(room)); //23
+
+    alert(JSON.stringify(meetup)); //{"title":"Conference","room":23}
+</script>

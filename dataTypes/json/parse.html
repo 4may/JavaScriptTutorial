@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSON.parse(str, [reviver])
+    reviver : replacerのparse版。parse時に各key, valueペアに対して呼び出される関数を定義することができる
+    */
+    let numbers = "[0, 1, 2, 3]";
+
+    numbers = JSON.parse(numbers);
+
+    alert(numbers[1]); //1
+
+    /*
+    ネストにも対応
+    */
+    let userData = '{ "name" : "John", "age" : 35, "isAdmin" : false, "friends" : [0, 1, 2, 3] }';
+
+    let user = JSON.parse(userData);
+
+    alert(user.friends[2]); //2
+
+    //やりがちなミス
+    let json = `{
+        name : "John", //プロパティ名を"で括っていない
+        "surname" : 'Smith', //値を'で括っている
+        'isAdmin' : false, //プロパティ名を'で括っている
+        "birthday" : new Date(2000, 2, 3), //newは許されていない
+        "friends" : [0,1,2,3] //OK
+    }`;
+</script>
