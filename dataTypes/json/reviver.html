@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    reviverの実装
+    parseは全ての値をstring型として返すため、string型以外に変換したい場合は自前で処理を書く
+    */
+    let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
+
+    let meetup = JSON.parse(str, function(key, value)
+    {
+        if(key == 'date') return new Date(value);
+        return value;
+    }
+    );
+
+    alert(meetup.date.getDate());
+</script>
