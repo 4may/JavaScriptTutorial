@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSON(JavaScript Object Notation)
+    */
+
+    /*
+    JSON.stringify(obj) : Object -> JSON(string型)
+    ・JSONエンコードされた
+    ・シリアライズされた
+    ・stringified
+    ・マーシャライズされた
+
+    単なるstring型への変換ではないことに注意
+    ・string型の変数を'ではなく"で括る
+    ・プロパティ名も"で括られる
+    */
+    let student =
+    {
+        name : 'John',
+        age : 30,
+        isAdmin : false,
+        courses : ['html', 'css', 'js'],
+        wife : null
+    };
+
+    let json = JSON.stringify(student); //string
+    
+    alert(typeof json);
+
+    alert(json); //{"name":"John","age":30,"isAdmin":false,"courses":["html","css","js"],"wife":null}
+
+    /*
+    stringifyはプリミティブ型に対しても使える
+    */
+    alert(JSON.stringify(1)); //1
+    alert(JSON.stringify('test')); //"test"
+    alert(JSON.stringify(true)); //true
+    alert(JSON.stringify([1, 2, 3])); //[1,2,3]
+
+    /*
+    JSONは言語非依存のデータ構造であるため、JS特有のオブジェクトプロパティはstringifyの対象外となる(プロパティが存在しなくなる)
+    ・関数プロパティ
+    ・Symbol型
+    ・undefined
+    */
+    let user = 
+    {
+        sayHi() //するー
+        {
+            alert("Hello");
+        },
+        [Symbol("id")] : 123, //するー
+        something : undefined //するー
+    };
+
+    alert(JSON.stringify(user)); //{}
+
+    /*
+    ネスト構造にも対応
+    */
+    let meetup =
+    {
+        title : "Conference",
+        room :
+        {
+            number : 23,
+            participants : ["john", "ann"]
+        }
+    };
+
+    alert(JSON.stringify(meetup)); //{"title":"Conference","room":{"number":23,"participants":["john","ann"]}}
+</script>
