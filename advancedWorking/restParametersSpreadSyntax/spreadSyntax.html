@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    alert(Math.max(3, 5, 1)); //5
+
+    /*
+    spread syntax
+    ...arr : 配列を個別の引数に展開する
+    */
+    let arr = [3, 5, 1]; 
+    alert(Math.max(...arr)); //5
+
+    /*
+    展開対象の配列を複数指定することもできる
+    */
+    let arr1 = [1, -2, 3, 4];
+    let arr2 = [8, 3, -8, 1];
+    alert(Math.max(...arr1, ...arr2)); //8
+
+    /*
+    通常の値を組み合わせることもできる
+    */
+    alert(Math.max(1, ...arr1, 5, ...arr2, 25)); //25
+
+    /*
+    spread syntaxは配列の結合としても使える
+    */
+    let merged = [1, ...arr1, 2, ...arr2];
+    alert(merged);
+
+    /*
+    iterableなら何でも良い
+    */
+    let str = "hello";
+    alert([...str]); //h,e,l,l,o
+
+    /*
+    Array.from(str)でも同じことができる
+    こちらは、iterableにもarray likeにも使えるためより汎用性が高い
+    */
+    alert(Array.from(str)); //h,e,l,l,o
+</script>
