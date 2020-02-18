@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function fib(n)
+    {
+        //nがでかいと処理にめちゃ時間がかかる
+        //同じ値の計算を何度も重複して行っているため
+        return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+    }
+
+    function fibFaster(n)
+    {
+        let a = 1;
+        let b = 1;
+        for(let i = 3; i <= n; i++)
+        {
+            let c = a + b;
+            a = b;
+            b = c;
+        }
+        return b;
+    }
+
+    alert(fib(3));
+    alert(fib(7));
+    //alert(fib(77));
+    alert(fibFaster(3));
+    alert(fibFaster(7));
+    alert(fibFaster(77));
+</script>

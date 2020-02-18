@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    速さ比較
+    fomula > loop > recursion
+    ・fomulaは三回の演算しか行わない
+    ・recursionはネスト処理に加え、関数スタックの管理もやるため遅くなる
+    */
+    /*
+    loop
+    */
+    function sumToLoop(n)
+    {
+        let sum = 0;
+        for(let i = 1; i <= n; i++)
+        {
+            sum += i;
+        }
+        return sum;
+    }
+
+    alert(sumToLoop(100));
+
+    /*
+    recursion
+    */
+    function sumToRecursion(n)
+    {
+        return (n == 1) ? 1 : n + sumToRecursion(n - 1);
+    }
+
+    alert(sumToRecursion(100));
+
+    /*
+    等差数列
+    */
+    function sumToArithmetic(n)
+    {
+        return n * (n + 1) / 2;
+    }
+
+    alert(sumToArithmetic(100));
+
+    /*
+    tail call最適化によって実行できる
+    (tail callは再帰呼び出しが関数の末尾に行われている場合に適用できる。
+    関数の処理を続行するための情報(実行行など)は捨てて、単に戻り値だけを覚えれば良い。)
+    実際、最適化されるかどうかはコンパイラの機能による所もあるので、末尾に再帰処理を書けば必ず最適化されるとは限らないことに注意
+    */
+    alert(sumToRecursion(10000));
+</script>
