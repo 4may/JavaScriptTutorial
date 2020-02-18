@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    linked list
+    ・要素の挿入/削除を高速に行える
+    ・value,nextの2つの要素から構成
+    　・value:値自身
+    　・next:次の要素のアドレス。末尾の場合はnull
+    ・一方、要素へのアクセスは面倒(先頭から一つずつ辿っていかなければいけない)
+    */
+    let list =
+    {
+        value : 1,
+        next:
+        {
+            value : 2,
+            next:
+            {
+                value : 3,
+                next:
+                {
+                    value : 4,
+                    next : null
+                }
+            }
+        }
+    };
+
+    /*
+    split
+    */ 
+    let secondList = list.next.next;
+    secondList.next.next = null;
+
+    /*
+    join
+    */
+    list.next.next = secondList;
+
+    /*
+    insert/remove
+    */
+    //先頭に追加
+    list = { value : "new item", next : list };
+    
+    //途中の要素(1番目の要素)を削除.誰からも参照されなくなった時点でメモリ解放される
+    list.next = list.next.next;
+</script>
