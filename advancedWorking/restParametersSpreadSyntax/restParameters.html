@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    関数呼び出し時、引数を定義していようがいまいが、いくらでも引数を指定できる
+    */
+    function sum(a, b)
+    {
+        return a + b;
+    }
+
+    alert(sum(1, 2, 3, 4, 5));
+
+    /*
+    任意個の引数を表す「...arr」
+    ・arrという名前の配列として取得できる
+    ・引数の末尾に宣言しなければいけない
+    function error(...arr, param1, param2)はだめ
+    */
+    function sumAll(...args)
+    {
+        return args.reduce((sum, current) => sum + current, 0);
+    }
+
+    alert(sumAll(1));
+    alert(sumAll(1, 2, 3));
+    alert(sumAll(1, 2, 3, 4, 5));
+
+    /*
+    個別の変数と、任意長の配列は混在できる
+    */
+    function showName(firstName, lastName, ...titles)
+    {
+        alert(firstName + ' ' + lastName);
+
+        alert(titles[0]); //Consul
+        alert(titles[1]); //Imperator
+        alert(titles.length); //2
+    }
+
+    showName("Julius", "Caesar", "Consul", "Imperator");
+</script>
