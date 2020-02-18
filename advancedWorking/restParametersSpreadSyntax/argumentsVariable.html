@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    隠し変数arguments
+    ・rest parametersがない時代からあった構造
+    ・iterableではあるが、arrayではない
+    ・現在ではrest parametersの方が好ましい
+    */
+    function showName()
+    {
+        alert(arguments.length);
+        alert(arguments[0]);
+        alert(arguments[1]);
+    }
+
+    showName('Julius', 'Caesar'); //2, Julius, Caesar
+    showName('Ilya'); //1, Ilya, undefined
+
+    /*
+    arrow functionにはargumentsは存在しない
+    外側の関数のargumentsを使用する
+    */
+    function f()
+    {
+        let showArg = () => alert(arguments[0]);
+        showArg();
+    }
+
+    f(1); //1
+</script>
