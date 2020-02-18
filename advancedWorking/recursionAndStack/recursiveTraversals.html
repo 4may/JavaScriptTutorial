@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    再帰呼び出しは2段階に分けて考える。
+    1.base : 自身は呼び出さず、値を返す
+    2.recursive step : 自身を呼び出す
+
+    以下の処理では、
+    1.base:引数が配列である場合、各要素の給料を取得して足し合わせる
+    2.recursive step:引数がオブジェクトの場合、オブジェクトのプロパティ値を引数として自身の関数を呼び出す
+    と考えるのが良い
+    */
+    let company =
+    {
+        sales : 
+        [
+            {
+                name : 'John',
+                salary : 1000
+            },
+            {
+                name : 'Alice',
+                salary : 600
+            }
+        ],
+
+        development :
+        {
+            sites : 
+            [
+                {
+                    name : 'Peter',
+                    salary : 2000
+                },
+                {
+                    name : 'Alex',
+                    salary : 1800
+                },
+            ],
+            internals :
+            [
+                {
+                    name : 'Jack',
+                    salary : 1300
+                }
+            ]
+        }
+    };
+
+    function sumSalaries(department)
+    {
+        if(Array.isArray(department))
+        {
+            return department.reduce((prev, current) => prev + current.salary, 0);
+        }
+        else
+        {
+            let sum = 0;
+            for(let subDep of Object.values(department))
+            {
+                sum += sumSalaries(subDep);
+            }
+            return sum;
+        }
+    }
+
+    alert(sumSalaries(company)); //6700
+</script>
