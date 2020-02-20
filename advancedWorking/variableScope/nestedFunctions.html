@@ -16,6 +16,10 @@
 
     sayHiBye("Goro", "Saito");
 
+    /*
+    関数呼び出し時のlexical environmentの構成は以下
+    count:0 -> makeCounter:function, counter:undefined -> null
+    */
     function makeCounter()
     {
         let count = 0;
@@ -26,8 +30,23 @@
         }
     }
 
+    /*
+    全ての関数は関数作成時のlexical environmentの参照を持っている。
+    その参照値は、隠しプロパティ[[Environment]]に格納されている。
+    つまり、counter.[[Environment]]プロパティによって、{count:0}のLexical Environmentを参照できる
+    */
     let counter = makeCounter();
+    //counter()時のlexical environmentは以下の通り
+    //<empty> -> count:0 -> makeCounter:function, counter:function -> null
     alert(counter()); //0
+    //<empty> -> count:1 -> makeCounter:function, counter:function -> null
     alert(counter()); //1
+    //<empty> -> count:2 -> makeCounter:function, counter:function -> null
     alert(counter()); //2
+
+    /*
+    closure
+    スコープ外の変数を記憶、かつ利用できるような関数のこと。
+    JSの関数は一つの例外を除き全てclosure。
+    */
 </script>
