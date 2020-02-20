@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSのエンジンでは、明らかに使われない変数は削除される。
+    */
+    function f()
+    {
+        let value = Math.random();
+
+        function g()
+        {
+            debugger; //chrome, operaでは削除される。
+        }
+
+        return g;
+    }
+
+    let g = f();
+    g();
+</script>
