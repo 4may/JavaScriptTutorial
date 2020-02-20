@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    関数はスクリプトの開始直後から使えるようになる
+    これは、関数宣言のみに有効である
+    関数表現(let func = () => {...})には適用されない
+    */
+
+    /*execution start*/         /*phrase:uninitialized
+                                  say:function         */
+    let phrase = "hello";       /*phrase:hello*/
+
+    function say(name)
+    {
+        alert(`${phrase}, ${name}`);
+    }
+
+    /*
+    インナー・アウターのLexical Environment
+    */
+
+    /*
+    関数の実行時には、関数のローカル変数を格納するための新しいLexical Environmentが作成される
+    以下のコードの実行時、lexical environmentは以下のような構成になる。
+    name : "John" -> say:function, phrase:"hello" -> null
+
+    変数にアクセスするときは、インナー→アウターの順で参照していく。
+    例えば、
+    name変数の場合はインナーにあるのでインナー変数が、phrase変数はインナーにないのでアウターの変数が使用される
+    */
+    say("John");
+</script>
