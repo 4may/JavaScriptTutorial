@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Lexical Environment
+    以下2つの特徴を持つオブジェクト
+    1.Environment Recordである
+    2.外部Lexical Environmentへの参照を持つ
+    */
+
+    /*
+    1.variables
+    全ての変数は、Environment Recordという特別な内部オブジェクトのプロパティとなっている
+    変数の値を取得・変更することは、プロパティの値を取得・変更することと同義
+    */
+
+    /*
+    スクリプト全体を通して、一つのlexical environmentのみが宣言されている
+    →
+    global lexical environmentと呼ぶ
+    global lexical environmentは、当然外部のLexical Environmentの参照は持たない
+    */
+
+    /*
+    スクリプトの最初に全ての変数毎にuninitializedという特別な内部状態を取る。
+    変数自体は存在していないが、「ある」ことを知っているという特別な内部フラグ
+    */
+                            /*lexical environment*/
+    /*execution start*/     /*phrase : uninitialized*/
+    let phrase;             /*phrase : undefined*/
+    phrase = "Hello";       /*phrase : Hello*/
+    phrase = "Bye";         /*phrase : Bye*/
+</script>
