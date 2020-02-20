@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function sayHiBye(firstName, lastName)
+    {
+        //外の変数にアクセスできる
+        function getFullName()
+        {
+            return firstName + " " + lastName;
+        }
+
+        alert("Hello, " + getFullName());
+        alert("Bye, " + getFullName());
+    }
+
+    sayHiBye("Goro", "Saito");
+
+    function makeCounter()
+    {
+        let count = 0;
+
+        return function()
+        {
+            return count++;
+        }
+    }
+
+    let counter = makeCounter();
+    alert(counter()); //0
+    alert(counter()); //1
+    alert(counter()); //2
+</script>
