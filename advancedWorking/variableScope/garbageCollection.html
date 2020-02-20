@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    他のオブジェクトと同様、Lexical Environmentもいらなくなったら削除される
+    従って、関数の呼び出し終了後にはその関数のlexical environmentは削除されるのが基本。
+    が、例外的にネスト関数の場合は[[Environment]]に参照が残るため削除されない
+    */
+    function f()
+    {
+        let value = 123;
+
+        return function()
+        {
+            alert(value);
+        }
+    }
+
+    //g.[[Environment]]プロパティがf呼び出し時のLexical Environmentを保持している
+    let g = f();
+
+    g();
+
+    function random()
+    {
+        let value = Math.random();
+
+        return function()
+        {
+            alert(value);
+        }
+    }
+
+    //各要素がrandom呼び出し時のlexical environmentへの参照を持つ
+    let arr = [random(), random(), random()];
+
+    /*
+    random関数のlexical environmentがどこからも参照されなくなるため、value変数がメモリから消える
+    */
+    arr = null;
+</script>
