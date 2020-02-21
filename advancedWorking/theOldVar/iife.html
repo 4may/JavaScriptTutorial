@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    immediately-invoked function expressions(IIFE)
+    関数宣言と、関数呼び出しを同時に行える仕組み
+    パターンとしてはいくつかある
+    ・(function(){...})()
+    ・(function(){...}())
+    ・!function(){...}()
+    ・+function(){...}()
+    */
+    (
+        function()
+        {
+            let message = "Hello";
+            alert(message);
+        }
+    )();
+</script>
