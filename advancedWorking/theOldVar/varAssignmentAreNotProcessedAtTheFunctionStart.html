@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    /*
+    値の割り当ては関数の開始時/スクリプトの開始時には評価されない。
+    */
+    function sayHi()
+    {
+        alert(phrase);
+        var phrase = "test";
+        /*
+        上記の文は以下2つの文に分解できる。
+        var phrase;
+        phrase = "test";
+        関数の実行時には、var phraseのみが評価され、値の代入は行われない。
+        従って、sayHi()実行時にはundefinedが表示される。
+        */
+    }
+    sayHi(); //undefined
+</script>
