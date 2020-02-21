@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    関数表現時に名前をつけることができる.
+    関数表現で名前をつけるメリットは、２つある
+    1.関数内部から自身の関数を呼び出せる
+    2.関数の外には公開されない
+    */
+    let sayHi = function func(who)
+    {
+        if(who)
+        {
+            alert(`Hello, ${who}`);
+        }
+        else
+        {
+            func("Guest");
+        }
+    };
+
+    sayHi();
+
+    //func(); Uncaught ReferenceError: func is not defined
+
+    /*
+    名前をつけずに変数名でアクセスすることもできるが、
+    変数名は後から変更される可能性がある。
+    ので、変数名ではなく名前付きで宣言しておく方が良い
+    */
+    let sayHi2 = function(who)
+    {
+        if(who)
+        {
+            alert(`Hello, ${who}`);
+        }
+        else
+        {
+            sayHi2("Guest");
+        }
+    };
+
+    sayHi2();
+    
+    let welcome = sayHi2;
+    sayHi2 = null;
+
+    welcome(); //Uncaught TypeError: sayHi2 is not a function
+</script>
