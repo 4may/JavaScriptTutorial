@@ -9,7 +9,11 @@
         let i = 0;
         while(i < 10)
         {
-            let j = i;
+            /*
+            alert(i)だと全てのshooterオブジェクト間でiの値が共通となってしまう
+            (同じlexical environmentを参照してしまう)
+            */
+            let j = i; //primitive型は値渡し。毎ループ毎に新しいlexical environmentが作成される
             let shooter = function()
             {
                 alert(j);
