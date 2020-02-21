@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    varで宣言した変数はfunction-wideかglobal変数となる
+    つまり、関数のコードブロック内であればどこからでもアクセスできる
+    もしくは、グローバル変数としてif文やfor文を跨いでアクセスできる
+    */
+    if(true)
+    {
+        var test = true;
+    }
+    alert(test);
+
+    for(var j = 0; j < 10; j++)
+    {
+        //...
+    }
+    alert(j);
+
+    function sayHi()
+    {
+        if(true)
+        {
+            var phrase = "Hello";
+        }
+        alert(phrase); //アクセス可
+    }
+    sayHi();
+    alert(phrase); //Uncaught ReferenceError: phrase is not defined
+</script>
