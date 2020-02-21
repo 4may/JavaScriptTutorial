@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let x = 1;
+
+    function func()
+    {
+        //変数が未初期化の状態から値が格納されるまでの期間のことをdead zoneと呼ぶ
+        //------dead zone-------
+        //x:uninitialized -> func:function, x:1 -> null
+        console.log(x);
+        //----------------------
+
+        let x = 2;
+    }
+
+    //同じlexical environmentに属する変数xを参照するが、uninitializedの状態であるためエラー
+    func(); //Uncaught ReferenceError: Cannot access 'x' before initialization
+</script>

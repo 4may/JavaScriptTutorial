@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let name = "John";
+
+    function sayHi()
+    {
+        //アウター変数にアクセス
+        alert("Hi, " + name);
+    }
+
+    name = "Pete";
+
+    /*
+    呼び出し時の変数の値を使う
+    */
+    sayHi(); //Pete
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    https://tc39.es/ecma262/#sec-lexical-environments
+    */
+
+    //<empty> -> count:0 -> makeCounter:function, counter:function, counter2:function -> null
+    function makeCounter()
+    {
+        let count = 0;
+
+        return function()
+        {
+            return count++;
+        };
+    }
+
+    /*
+    同じ関数を割り当てていても、割り当て先の変数が異なればlexical environmentも異なる。
+    (count変数は各変数毎に独立して存在する)
+    */
+    let counter = makeCounter();
+    let counter2 = makeCounter();
+
+    alert(counter()); //0
+    alert(counter()); //1
+
+    alert(counter2()); //0
+    alert(counter2()); //1
+</script>

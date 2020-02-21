@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function makeWorker()
+    {
+        let name = "Pete";
+        alert("makeWorker");
+
+        return function()
+        {
+            alert(name);
+        };
+    }
+
+    let name = "John";
+
+    /*
+    work変数へのmakeWorker割り当て時に、name:"Pete"というlexical environmentが出来る。
+    そして、work.[[Environment]]プロパティは上記のlexical environmentへの参照を保持する。
+    (見かけ上、workはname:"Pete"のlexical environmentの外にいるので紛らわしいが)
+    lexical environmentの関係性は以下の通りとなる。
+    <empty> -> name:"Pete" -> makeWorker:function, name:"John" -> null
+    そのため、alert(name)のnameはPeteとなる。
+    let name = "Pete"という変数宣言がなければ、Johnが使われる。
+    */
+    let work = makeWorker();
+
+    work(); //Pete
+</script>
