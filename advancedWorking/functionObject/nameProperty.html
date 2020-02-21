@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSでは、全ての関数はオブジェクトである
+    */
+    /*
+    nameプロパティ
+    */
+    function sayHi()
+    {
+        alert("hi");
+    }
+    alert(sayHi.name); //sayHi
+
+    /*
+    デフォルト値として指定された場合でも動作する
+    */
+    function f(sayHi = function(){})
+    {
+        alert(sayHi.name);
+    }
+    f();
+
+    /*
+    objectのプロパティmethodにも名前がついている
+    */
+    let user = 
+    {
+        sayHi()
+        {
+            //...
+        },
+
+        sayBye()
+        {
+            //...
+        }
+    }
+
+    alert(user.sayHi.name);
+    alert(user.sayBye.name);
+
+    /*
+    匿名関数には名前がつかない
+    */
+    let arr = [function(){}];
+    alert(arr[0].name); //""
+</script>
