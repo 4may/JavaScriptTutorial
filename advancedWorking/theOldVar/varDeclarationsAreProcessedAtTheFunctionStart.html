@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    var宣言は、スクリプトの開始時あるいは関数の開始時に実行される。
+    (順序は問わない)
+    「値割り当て」は、
+    */
+    function sayHi()
+    {
+        phrase = "Hello";
+        alert(phrase);
+        var phrase;
+
+        test = "test";
+        if(false)
+        {
+            var test;
+        }
+        alert(test);
+    }
+
+    sayHi();
+</script>
