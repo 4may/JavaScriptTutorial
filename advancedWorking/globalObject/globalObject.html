@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    global objectの生成
+    実行環境(ブラウザなのか、node.jsなのか)によってまちまち
+    ・browser:window
+    ・標準:globalThis
+    　・最近追加された機能
+    */
+    window.alert("hello"); //alert("hello")のように直接呼び出すこともできる
+
+    /*
+    varで宣言された変数もglobal objectになる
+    */
+    var gVar = 5;
+    alert(window.gVar); //5
+
+    /*
+    letやconstではglobal objectにはならない
+    */
+    let gLet = 6;
+    alert(window.gLet); //undefined
+    let gConst = 7;
+    alert(window.gConst); //undefined
+
+    /*
+    大事な値に関してはglobalで宣言しておくと良い
+    */
+    window.currentUser = 
+    {
+        name : "John"
+    };
+    /*
+    アクセスするときは、明示的にwindowから書く方がベター(同じ名前のローカル変数が存在するかもしれないので)
+    */
+    alert(window.currentUser.name); //John
+</script>
