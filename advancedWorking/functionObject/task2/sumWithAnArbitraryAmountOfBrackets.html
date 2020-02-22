@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function sum(a)
+    {
+        let currentSum = a;
+
+        function f(b)
+        {
+            currentSum += b;
+            return f; //再帰「呼び出し」ではない。単に関数を返しているだけ。
+        }
+
+        f.toString = function()
+        {
+            return currentSum;
+        };
+
+        return f;
+    }
+
+    alert(sum(1)(2));
+    alert(sum(1)(2)(3));
+</script>
