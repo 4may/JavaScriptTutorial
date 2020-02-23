@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    let timerId = setInterval(() => alert('tick'), 2000);と同義
+    */
+    let timerId = setTimeout(function tick() {
+        alert('tick');
+        timerId = setTimeout(tick, 2000);
+    }, 2000);
+
+    /*
+    状況に応じてdelayの時間を増やすなど、setIntervalよりもnestedSetTimeoutの方がより柔軟性がある
+    また、インターバルの捉え方が違う。
+    setIntervalは処理にかかる時間がインターバルに含まれている。
+    　極端な話、処理にかかる時間がインターバルよりも長い場合、待ち時間なしに次の処理が実行されることになる。
+    setTimeoutは処理にかかる時間がインターバルに含まれていない。
+    　処理時間にかかわらず、常に一定の待ち時間が発生する。
+    */
+    let delay = 5000;
+    let timerId = setTimeout(function request(){
+        //send request
+
+        if(true/*request failed to server overload*/)
+        {
+            delay *= 2;
+        }
+
+        timerId = setTimeout(request, delay);
+    }, delay);
+</script>
