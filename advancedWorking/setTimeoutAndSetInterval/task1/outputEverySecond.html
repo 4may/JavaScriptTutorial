@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function printNumbersIntervals(from, to)
+    {
+        setInterval(() =>
+        {
+            if(from > to){ return; } 
+            alert(from++);
+        }, 1000);
+    }
+
+    function printNumbersNested(from, to)
+    {
+        setTimeout(function printNumber()
+        {
+            //表示と加算は分けた方が良い？
+            alert(from++);
+            if(from <= to) setTimeout(printNumber, 1000);
+        }, 1000);
+    }
+
+    printNumbersIntervals(1, 5);
+
+    printNumbersNested(10, 15);
+</script>

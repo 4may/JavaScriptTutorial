@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let i = 0;
+    //ループの直後に実行される。また、iは1000000となる
+    setTimeout(() => {
+        alert(i);
+    }, 100);
+    
+    //重ーい処理(100msより時間がかかる処理)
+    for(let j = 0; j < 1000000; j++)
+    {
+        i++;
+    }
+</script>
