@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    setTimeout:関数を指定時間後に一度だけ実行する
+    let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)
+    ・func|code : 実行すべき処理。関数か文字列で指定できるが、文字列は非推奨。
+    ・delay : 実行までの時間(milliseconds)
+    ・arg1, arg2 : 関数の引数
+
+    ちなみに、clearTimeoutを呼ぶまで関数はメモリ上に存在する。
+    不必要になったタイミングで、明示的にclearしておくと良い。
+    */
+    function sayHi(phrase, who)
+    {
+        alert(phrase + "," + who);
+    }
+    //第一引数には、関数を指定すること
+    //sayHi()とすると関数を実行することになるため、第一引数にはsayHi()の戻り値が指定されることになる
+    setTimeout(sayHi, 1000, "Hello", "John");
+    
+    /*
+    文字列を指定するパターン
+    */
+    setTimeout('alert("Hello")', 1000);
+
+    /*
+    timerIdを使って処理をキャンセルすることもできる
+    clearTimeout(timerId)
+    */
+    let timerId = setTimeout(() => alert("never happens"), 1000);
+    alert(timerId); //ID
+
+    clearTimeout(timerId);
+    alert(timerId); //同じID(nullにはならない)
+</script>
