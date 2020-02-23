@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
+    delay(ms)の間隔で処理を繰り返し実行する。
+    */
+    let timerId = setInterval(() => {alert('tick')}, 2000);
+    setTimeout(() => {clearInterval(timerId); alert('stop, timerId:' + timerId);}, 5000);
+</script>
