@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    オブジェクトメソッドに対してbindを試す
+    */
+    let user = 
+    {
+        firstName : "John",
+        sayHi()
+        {
+            alert(`Hello, ${this.firstName}`);
+        }
+    };
+
+    let hello = user.sayHi.bind(user);
+
+    hello();
+    setTimeout(hello, 1000);
+
+    user = 
+    {
+        sayHi()
+        {
+            alert("User's value is changed!");
+        }
+    };
+
+    /*
+    bind後のオブジェクトメソッドでも引数をそのまま取れる
+    */
+    let user2 = 
+    {
+        firstName : "Mary",
+        sayHi(phrase)
+        {
+            alert(phrase + "," + this.firstName);
+        }
+    };
+
+    let funcUser2 = user2.sayHi.bind(user2);
+    funcUser2("Hello");
+    funcUser2("Bye");
+</script>
