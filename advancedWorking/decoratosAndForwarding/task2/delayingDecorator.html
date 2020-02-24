@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function f(x)
+    {
+        alert(x);
+    }
+
+    let f1000 = delay(f, 1000);
+    let f1500 = delay(f, 1500);
+
+    f1000("test");
+    f1500("test");
+
+    function delay(f, ms)
+    {
+        return function(...args)
+        {
+            //setTimeout関数の中でthisを呼び出すと、this=windowとなってしまう
+            //そこで、現在のthisを変数に保存しておく
+            let savedThis = this;
+            setTimeout(function()
+            {
+                f.apply(savedThis, args);
+            }
+            , ms);
+        };
+    }
+</script>
