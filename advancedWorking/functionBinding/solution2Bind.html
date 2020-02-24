@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    thisを固定する方法がある
+    let boundFunc = func.bind(context);
+    上記処理によって、this=contextと見なすfuncを取得することができる。
+    呼び出すときは、bindFunc()とすれば良い
+    */
+    let user = 
+    {
+        firstName : "John"
+    };
+
+    function func()
+    {
+        alert(this.firstName);
+    }
+
+    let funcUser = func.bind(user);
+    funcUser(); //John
+
+    /*
+    funcが引数を取る場合、bind後の関数でもそのまま引数を取ることができる
+    */
+    let user2 =
+    {
+        firstName : "Mary"
+    };
+
+    function func2(phrase)
+    {
+        alert(phrase + "," + this.firstName);
+    }
+
+    let funcUser2 = func2.bind(user2);
+    funcUser2("Hello"); //Hello, Mary
+</script>
