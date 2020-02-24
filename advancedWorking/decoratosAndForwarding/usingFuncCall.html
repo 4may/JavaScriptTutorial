@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    オブジェクトメソッドに対してdecoratorを適用する場合は一工夫が必要
+    */
+
+    /*
+    func.call(context, arg1, arg2, ...)
+    明示的にthisを指定して関数を呼び出す方法
+    */
+    function sayHi()
+    {
+        alert(this.name);
+    }
+
+    let user = { name : "John" };
+    let admin = { name : "Admin" };
+
+    sayHi.call(user); //John
+    sayHi.call(admin); //Admin
+
+    /*
+    オブジェクトメソッドに対してdecoratorを適用する例
+    */
+    let worker = 
+    {
+        someMethod()
+        {
+            return 1;
+        },
+
+        slow(x)
+        {
+            alert("called with " + x);
+            return x * this.someMethod();
+        }
+    };
+
+    function cachingDecorator(func)
+    {
+        let cache = new Map();
+
+        return function(x)
+        {
+            if(cache.has(x))
+            {
+                return cache.get(x);
+            }
+
+            //-----ポイント-----
+            let result = func.call(this, x);
+            //-----------------
+            
+            cache.set(x, result);
+            return result;
+        }
+    }
+
+    worker.slow = cachingDecorator(worker.slow);
+
+    //.の前のオブジェクトがthisとみなされ、cachingDecoratorに伝わる
+    alert(worker.slow(2));
+    alert(worker.slow(2));
+</script>
