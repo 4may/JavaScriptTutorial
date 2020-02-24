@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    contextを指定せず、引数だけを固定する
+    */
+    function partial(func, ...argsBound)
+    {
+        return function(...args)
+        {
+            return func.call(this, ...argsBound, ...args);
+        }
+    }
+
+    let user = 
+    {
+        firstName : "John",
+        say(time, phrase)
+        {
+            alert(`[${time}] ${this.firstName} : ${phrase}`);
+        }
+    };
+
+    user.sayNow = partial(user.say, new Date().getHours() + ":" + new Date().getMinutes());
+
+    user.sayNow("Hello"); //[7:47] John : Hello
+</script>
