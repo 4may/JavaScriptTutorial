@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function f(a)
+    {
+        console.log(a);
+    }
+
+    let f1000 = throttle(f, 1000);
+
+    f1000(1); //run
+    f1000(2); //ignored
+    f1000(3); //run(after 1000ms)
+
+    function throttle(f, ms)
+    {
+        let isCooldown = false;
+        let lastArgs;
+        let lastThis;
+
+        function wrapper()
+        {
+            if(isCooldown)
+            {
+                lastArgs = arguments;
+                lastThis = this;
+                return;
+            }
+
+            f.apply(this, arguments);
+            isCooldown = true;
+            setTimeout(function() {
+                isCooldown = false;
+                if(lastArgs)
+                {
+                    wrapper.apply(lastThis, lastArgs);
+                    lastThis = lastArgs = null;
+                }
+            }
+            , ms);
+        }
+
+        return wrapper;
+    }
+</script>
