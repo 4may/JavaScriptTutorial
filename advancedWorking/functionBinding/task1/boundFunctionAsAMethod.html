@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function f()
+    {
+        alert(this);
+    }
+
+    let user = 
+    {
+        //常にnullを表示する関数の出来上がり
+        g : f.bind(null)
+    };
+
+    user.g(); //null
+</script>

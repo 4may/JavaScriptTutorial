@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function f()
+    {
+        alert(this.name);
+    }
+
+    //bindは生成時に一度きりのみしか適用されない
+    f = f.bind( {name : "John"} ).bind( {name : "Ann"} );
+    f(); //John
+
+    //再代入もできない
+    f = f.bind({name : "Mary"});
+    f(); //John
+</script>
