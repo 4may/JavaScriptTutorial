@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    呼び出し対象の関数をラップする
+    */
+    let user = 
+    {
+        firstName : "John",
+        sayHi()
+        {
+            alert(`Hello, ${this.firstName}`);
+        }
+    };
+
+    //[[Environment]]を参照することによって、this=userと認識できる
+    setTimeout(function(){user.sayHi();}, 1000); //Hello, John
+
+    /*
+    問題点として、userの値が変わると、思わぬ動作を招くことがある
+    */
+    user = 
+    {
+        sayHi(){ alert("Another user in setTimeout");}
+    };
+</script>
