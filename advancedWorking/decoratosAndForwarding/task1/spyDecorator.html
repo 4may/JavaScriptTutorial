@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function work(a, b)
+    {
+        alert(a + b);
+    }
+
+    work = spyAnswer(work);
+
+    work(1, 2); //3
+    work(4, 5); //9
+
+    for(let args of work.calls)
+    {
+        alert('call:' + args.join()); //"call:1,2" "call:4,5"
+    }
+
+    function spy(func)
+    {
+        return function save()
+        {
+            if(!save.calls) save.calls = [];
+            let arr = Array.from(arguments);
+            save.calls.push(arr);
+            func.call(this, ...arguments);
+        };
+    }
+
+    function spyAnswer(func)
+    {
+        //rest parameter...を使えば、Array型の変数を取得できる
+        function wrapper(...args)
+        {
+            wrapper.calls.push(args);
+            func.apply(this, args);
+        }
+
+        //work変数の割り当て時に一度だけ実行される。
+        //以降は、lexical environmentのパラメータとして再利用できる。
+        wrapper.calls = [];
+
+        return wrapper;
+    }
+</script>
