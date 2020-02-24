@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    method borrowing
+    */
+    function hash()
+    {
+        /*
+        joinメソッドはthisの要素を結合するメソッド
+        一般的な呼び出し方、array.join()で呼び出すとthisはarrayとなる。
+        ここでは、thisをcallメソッドで明示的に指定することで「差し替えている」
+        配列[555,666]はjoinメソッドを呼び出すためだけに使われており、joinの結果には関係ない
+        */
+        alert([555,666].join.call(arguments));
+        //arguments.join();はエラー。argumentsが純粋なArrayではないから(array-likeかつiterableではあるが)
+    }
+
+    hash(1, 2); //1,2
+</script>
