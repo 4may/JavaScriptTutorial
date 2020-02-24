@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    引数を固定できる
+    let bound = func.bind(context, arg1, arg2, ...)
+
+    どういった場合に使うか？
+    ・繰り返し行われる処理に対して、
+    　・処理にわかりやすい名前を付けられる
+    　・いちいち引数を指定しなくて良い
+    ・めちゃ汎用的な処理を少し限定的にできる
+    　・send(from, to, text)を送り元を固定して
+    　・send(to, text)とするなど
+    */
+    function mul(a, b)
+    {
+        return a * b;
+    }
+
+    //this=null, 第一引数=2のmul関数を定義
+    //第二引数は任意に決められる
+    let double = mul.bind(null, 2);
+
+    alert(double(3));
+    alert(double(4));
+    alert(double(5));
+</script>
