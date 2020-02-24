@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    オブジェクトから切り離されてメソッドが呼び出されると、thisが失われる。
+    */
+    let user = 
+    {
+        firstName : "John",
+        sayHi()
+        {
+            alert(`Hello, ${this.firstName}`);
+        }
+    };
+
+    /*
+    以下の処理と同義
+    let f = user.sayHi;
+    setTimeout(f, 1000);
+
+    setTimeoutはthis=windowとみなして関数を呼び出す
+    つまり、window.firstNameを参照することになる。
+    もちろん、windowにfirstNameは宣言されていないため、undefinedがかえる
+    */
+    setTimeout(user.sayHi, 1000); //Hello, undefined
+</script>
