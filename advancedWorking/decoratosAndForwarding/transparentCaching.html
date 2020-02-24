@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    キャッシング
+    ・キャッシングを行うラッパー関数(decorator)を実装する
+    　・ラッパー関数は、関数を受け取り関数を返す
+    ・decoratorの強みは
+    　・再利用できること(関数を問わない)
+    　・キャッシングとメインの処理が分かれることで、メインの処理が簡潔にわかりやすくなる
+    　・他のdecoratorと組み合わせることもできる
+    ・注意点として、
+    　・プロパティ持ちの関数では一工夫が必要
+    　　・そのまま元の関数を返すとプロパティが失われてしまう
+    　　・proxyを使う
+    */
+    function slow(x)
+    {
+        /*
+        CPUに負荷をかけるめちゃ重い処理
+        */
+        alert(`Called with ${x}`);
+        return x;
+    }
+
+    function cachingDecorator(func)
+    {
+        //関数の処理結果を、一意のkeyで管理
+        let cache = new Map();
+
+        return function(x)
+        {
+            //xに対応するresultがあれば、そのresultを返す
+            if(cache.has(x))
+            {
+                return cache.get(x);
+            }
+
+            //xに対応するresultがなければ、キャッシュに登録する
+            let result = func(x);
+
+            cache.set(x, result);
+            return result;
+        };
+    }
+
+    slow = cachingDecorator(slow);
+
+    alert(slow(1));
+    alert("Again: " + slow(1));
+
+    alert(slow(2));
+    alert("Again: " + slow(2));
+</script>
