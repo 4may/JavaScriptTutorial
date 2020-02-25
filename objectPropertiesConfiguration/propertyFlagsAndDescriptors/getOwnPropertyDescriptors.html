@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    全てのプロパティに対するdescriptorを取得する
+    */
+    let user = {name : "John", surname : "Smith"};
+    let descriptors = Object.getOwnPropertyDescriptors(user);
+    alert(descriptors.name.value); //John
+    alert(descriptors.surname.configurable); //true
+
+    /*
+    利用して、cloneできる
+    for...inを利用する方法と比べて、こちらはフラグの値までコピーできるためベター
+    */
+    let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(user));
+    alert(clone.name); //John
+    alert(clone.surname); //Smith
+
+    /*
+    オブジェクト全体に適用する方法もある(プロパティ毎に個別設定するのではなく
+    ・Object.seal(obj)
+    ・Object.freeze(obj)
+    ・・・
+    */
+</script>
