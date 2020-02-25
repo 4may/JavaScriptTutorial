@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    arrow関数自体はarguments変数を持たない(外のargumentsを利用できる)
+    */
+    function defer(f, ms)
+    {
+        return function()
+        {
+            setTimeout(() => f.apply(this, arguments), ms);
+        };
+    }
+
+    function sayHi(who)
+    {
+        alert('Hello, ' + who);
+    }
+
+    let sayHiDeffered = defer(sayHi, 1000);
+    sayHiDeffered("John");
+</script>
