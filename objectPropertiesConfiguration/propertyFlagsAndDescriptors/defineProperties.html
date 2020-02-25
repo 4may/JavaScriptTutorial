@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    プロパティをまとめて宣言する方法もある
+    */
+    let user = {};
+
+    Object.defineProperties(user,
+    {
+        name : {value : "John", writable : true},
+        surname : {value : "Smith", writable : false}
+    });
+
+    alert(user.name + ',' + user.surname); //John,Smith
+</script>
