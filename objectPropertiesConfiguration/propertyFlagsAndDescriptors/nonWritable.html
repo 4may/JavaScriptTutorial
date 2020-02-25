@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    書き込み禁止(読み取り専用)
+    ・strictモードだとエラー
+    ・non-strictモードだとエラーにならない
+    */
+    let user = 
+    {
+        name : "John"
+    };
+
+    Object.defineProperty(user, "name", 
+    {
+        writable : false
+    });
+
+    //Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+    //user.name = "Pete";
+
+    /*
+    スクラッチ版
+    writable以外のフラグは明示的にtrueで宣言する必要がある
+    */
+    let user2 = {};
+
+    Object.defineProperty(user2, "name", 
+    {
+        value : "John",
+        enumerable : true,
+        configurable : true
+    });
+
+    alert(user.name);
+    //Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+    user2.name = "Ann";
+</script>
