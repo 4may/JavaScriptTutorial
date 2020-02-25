@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ビルトイン関数はnon-configurableなことが多い
+    */
+    let descriptor = Object.getOwnPropertyDescriptor(Math, "PI");
+    alert(JSON.stringify(descriptor));
+    /*
+    {
+        "value": 3.141592653589793,
+        "writable": false,
+        "enumerable": false,
+        "configurable": false
+    }
+    */
+
+    /*
+    non-configurableであることを活用すれば、不変な値の変数を作ることができる
+    (後から書き換え可能にすることもできない)
+    */
+    let user = {};
+
+    Object.defineProperty(user, "name", 
+    {
+        value : "John",
+        writable : false,
+        configurable : false
+    });
+    //Uncaught TypeError: Cannot redefine property: name
+    Object.defineProperty(user, "name", {writable : true});
+</script>
