@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    オブジェクトプロパティにはflagと呼ばれる特別な属性をつけることができる
+    なお、デフォルトでは全てtrueとなっている。
+    ・writable：trueなら書き換え可能。falseなら読み取り専用
+    ・enumerable：trueならlistに載る。falseならlistに載らない。
+    ・configurable：trueならプロパティを削除可能かつ属性を変更可能。falseなら何も不可。
+
+    Object.getOwnPropertyDescriptor(obj, propertyName)によりプロパティを取得可能
+    */
+    let user = 
+    {
+        name : "John"
+    };
+
+    let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+    //{"value":"John","writable":true,"enumerable":true,"configurable":true}
+    alert(JSON.stringify(descriptor));
+
+    /*
+    Object.defineProperty(obj, propertyName, descriptor)
+    ・もしプロパティが存在すれば、そのプロパティの値を更新する
+    ・もしプロパティが存在しなければ、新しくプロパティを作成、値を設定する。
+    　もしフラグが指定されていなければ、falseを設定することに注意
+    */
+    let user2 = {};
+
+    Object.defineProperty(user2, "name", {value : "John"});
+    let descriptor2 = Object.getOwnPropertyDescriptor(user2, 'name');
+    //{"value":"John","writable":false,"enumerable":false,"configurable":false}
+    alert(JSON.stringify(descriptor2));
+</script>
