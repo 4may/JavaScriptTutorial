@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    自作toString()はデフォルトだとfor...inループに含まれてしまう。
+    */
+    let user = 
+    {
+        name : "John",
+        toString()
+        {
+            return this.name;
+        }
+    };
+    for(let key in user) alert(key); //name, toString
+
+    /*
+    上記を回避したい場合、toStringをnon-enumerableにすれば良い
+    */
+    let user2 = 
+    {
+        name : "John",
+        toString()
+        {
+            return this.name;
+        }
+    };
+
+    Object.defineProperty(user2, "toString", 
+    {
+        enumerable : false
+    });
+    for(let key in user2) alert(key); //name
+    //Object.keysにも含まれない
+    alert(Object.keys(user2)); //name
+</script>
