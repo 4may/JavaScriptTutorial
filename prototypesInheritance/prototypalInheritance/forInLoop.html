@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    プロパティの列挙について
+    列挙の方法毎に表示内容が異なる
+    ・Object.keys：objectのプロパティのみ
+    ・for...inループ：object,prototypeの各プロパティ全て
+    　・obj.hasOwnProperty(key)：keyがobjのプロパティならtrue, obj以外のプロパティならfalse
+    ・[[Prototype]]プロパティは、デフォルトではObject.prototypeという特別なオブジェクトを指す。
+    ・継承関係は以下の通り
+    null
+    |
+    Object.prototype
+    |
+    animal
+    |
+    rabbit
+    */
+    let animal = 
+    {
+        eats : true
+    };
+
+    let rabbit = 
+    {
+        jumps : true,
+        __proto__ : animal
+    };
+
+    alert(Object.keys(rabbit)); //jumps
+    for(let key in rabbit) alert(key); //jumps, eats
+
+    /*
+    Object.prototypeのプロパティはenumerable=falseとなっている。
+    そのため、for...inループにObject.prototypeのプロパティ自身は出現しない。
+    */
+    for(let prop in rabbit)
+    {
+        let isOwn = rabbit.hasOwnProperty(prop);
+
+        if(isOwn)
+        {
+            alert(`Our : ${prop}`);
+        }
+        else
+        {
+            alert(`Inherited : ${prop}`);
+        }
+    }
+</script>
