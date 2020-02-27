@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    プロパティの変更に対応できる
+    例えば、利便性の観点から、ageからbirthdayというプロパティに変更したとする
+    その際、ageを参照していたコードが動かなくなるという互換性の問題が発生するかもしれない。
+    その解決策として、getter/setterを利用する方法が考えられる。
+    */
+
+    //function User(name, age)
+    function User(name, birthday)
+    {
+        this.name = name;
+        //this.age = age
+        this.birthday = birthday;
+
+        /*
+        ageのgetterを追加する
+        */
+        Object.defineProperty(this, "age", 
+        {
+            get()
+            {
+                let todayYear = new Date().getFullYear();
+                return todayYear - this.birthday.getFullYear();
+            }
+        });
+    }
+
+    let john = new User("John", new Date(1992, 6, 1));
+
+    alert(john.name);
+    alert(john.birthday);
+    alert(john.age);
+</script>
