@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    accessorはdata propertiesとは異なる以下のdescriptorsを持つ
+    ・get
+    ・set
+    ・enumerable
+    ・configurable
+
+    propertyはdata/accessorの何か一方にしかなれないことに注意。
+    例えば、get()とvalueを共に指定するとエラーになる。
+    */
+    let user = 
+    {
+        name : "John",
+        surname : "Smith"
+    };
+
+    Object.defineProperty(user, 'fullName',
+    {
+        get()
+        {
+            return `${this.name} ${this.surname}`;
+        },
+
+        set(value)
+        {
+            [this.name, this.surname] = value.split(" ");
+        }
+    }
+    );
+
+    alert(user.fullName);
+
+    for(let key in user) alert(key);
+</script>
