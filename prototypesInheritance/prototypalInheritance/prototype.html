@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    [[Prototype]]プロパティ
+    ・値として、他のオブジェクトへの参照/nullを取る
+    　・Prototypeプロパティで参照されるオブジェクトのことを、prototypeと呼ぶ
+    ・objectとprototypeは継承関係にある。
+    　・prototypeのプロパティ/関数にはobjectからアクセスできる
+    ・内部/隠しプロパティであり、特殊なアクセス方法を取る
+    　・__proto__を参照する
+    　　・[[Prototype]]のgetter/setterであり、[[Prototype]]そのものではないことに注意
+    　　・ブラウザ環境でのみ利用を推奨
+    ・制約
+    　・循環参照は禁止
+    　・Prototypeに指定できるのはオブジェクト型/nullのみ
+    　・
+    */
+    let animal = 
+    {
+        eats : true
+    };
+
+    let rabbit = 
+    {
+        jumps : true
+    };
+
+    rabbit.__proto__ = animal;
+    alert(rabbit.eats); //true
+    alert(rabbit.jumps); //true
+
+    /*
+    animalの関数へobjectからアクセス
+    */
+    animal.walk = function(){ alert("Animal walk") };
+    rabbit.walk(); //Animal walk
+
+    let horse = 
+    {
+        run : true,
+        __proto__ : animal
+    };
+
+    let longTail = 
+    {
+        tailLength : 10,
+        __proto__ : horse
+    };
+
+    longTail.walk(); //Animal walk
+    alert(longTail.run); //true
+</script>
