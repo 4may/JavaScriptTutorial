@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    thisは、常に.の前のオブジェクトを指す。
+    いかなるprototypeの影響も受けない。
+    つまり、プロパティは共有されるが各オブジェクトの状態は共有されないということ。
+    */
+    let animal = 
+    {
+        walk()
+        {
+            if(!this.isSleeping)
+            {
+                alert(`I walk`);
+            }
+        },
+
+        sleep()
+        {
+            this.isSleeping = true;
+        }
+    };
+
+    let rabbit = 
+    {
+        name : "White Rabbit",
+        __proto__ : animal
+    };
+
+    rabbit.sleep();
+
+    alert(rabbit.isSleeping); //true
+    alert(animal.isSleeping); //undefined
+</script>
