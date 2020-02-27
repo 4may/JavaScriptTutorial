@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    prototypeプロパティのwrite/deleteは子であるobjectからは行えない。
+    */
+    let animal = 
+    {
+        eats : true,
+        walk()
+        {
+            alert("this method won't be used by rabbit");
+        }
+    };
+
+    let rabbit =
+    {
+        __proto__ : animal
+    };
+
+    let horse = 
+    {
+        __proto__ : animal
+    };
+
+    /*
+    prototypeであるanimalのwalk()は書き換わらず、rabbitにwalkという名前の関数が追加される。
+    */
+    rabbit.walk = function(){ alert("Animal walk") };
+    rabbit.walk(); //Animal walk
+    horse.walk(); //this method won't be used by rabbit
+
+    /*
+    setter/getterを使えば、prototypeのプロパティにアクセスできる。
+    (その場合、objectのプロパティ値は変わるが、prototypeのプロパティ値は変わらないことに注意)
+    */
+    let user = 
+    {
+        name : "John",
+        surname : "Smith",
+
+        set fullName(value)
+        {
+            [this.name, this.surname] = value.split(" ");
+        },
+
+        get fullName()
+        {
+            return `${this.name} ${this.surname}`;
+        }
+    };
+    
+    let admin = 
+    {
+        __proto__ : user,
+        isAdmin : true
+    };
+
+    alert(admin.fullName); //John Smith
+    admin.fullName = "Alice Cooper";
+    //adminの値は変わるが、userの値は変わらない
+    alert("Admin: " + admin.fullName); //Alice Cooper
+    alert("User: " + user.fullName); //John Smith
+</script>
