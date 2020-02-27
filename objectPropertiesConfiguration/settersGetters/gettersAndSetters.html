@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ゲッター:get
+    セッター:set
+    */
+    let user = 
+    {
+        name : "John",
+        surname : "Smith",
+
+        get fullName()
+        {
+            return `${this.name} ${this.surname}`;
+        },
+
+        set fullName(value)
+        {
+            [this.name, this.surname] = value.split(" ");
+        },
+    };
+
+    //getter
+    alert(user.fullName);
+
+    //setter
+    user.fullName = "Alice Cooper";
+
+    alert(user.name);
+    alert(user.surname);
+</script>
