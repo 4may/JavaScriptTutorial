@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let animal = 
+    {
+        eat()
+        {
+            this.full = true;
+        }
+    };
+
+    let rabbit = 
+    {
+        __proto__ : animal
+    };
+
+    //関数呼び出し時の.の前のオブジェクト(rabbit)がthisとなる。
+    //関数がどこで定義されているかは関係ない
+    rabbit.eat();
+    alert(rabbit.full); //true
+    alert(animal.full); //undefined
+</script>

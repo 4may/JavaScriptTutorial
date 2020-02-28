@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let hamster = 
+    {
+        //speedy,lazyにstomachというプロパティが存在しないため、プロトタイプ(hamster)のstomachを「共有して」参照する
+        stomach : [],
+
+        eat(food)
+        {
+            this.stomach.push(food);
+            //this.stomach = [food]であれば、値が共有されない
+            //プロトタイプを参照せず、直接thisにあたる個別のオブジェクトにstomachというプロパティを追加するため。
+        }
+    };
+
+    let speedy = 
+    {
+        //各オブジェクトごとに個別にプロパティを持てばstomachが共有されることはなくなる
+        stomach : [],
+        __proto__ : hamster
+    };
+
+    let lazy = 
+    {
+        stomach : [],
+        __proto__ : hamster
+    };
+
+    speedy.eat("apple");
+    alert(speedy.stomach);
+
+    alert(lazy.stomach);
+</script>
