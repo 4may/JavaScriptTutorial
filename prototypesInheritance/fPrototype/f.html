@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Constructor.prototypeに指定されたオブジェクトは、
+    newで生成したオブジェクトの[[Prototype]]にセットされる。
+
+    Rabbit → animal {eats : true}
+               ↑
+             rabbit {name : White Rabbit} 
+    */
+    let animal = 
+    {
+        eats : true
+    };
+
+    function Rabbit(name)
+    {
+        this.name = name;
+    }
+
+    //prototypeという名前の通常のプロパティ    
+    Rabbit.prototype = animal;
+
+    let rabbit = new Rabbit("White Rabbit");
+    alert(rabbit.constructor == Rabbit);
+    alert(rabbit.eats);
+
+    /*
+    Rabbit.prototypeはオブジェクト生成時に一度だけ使用され、以降は生成オブジェクトと値を共有しない。
+    そのため、後からprototypeを変更したとしても、変更以前に生成したオブジェクトには影響を与えない。
+    */
+    let creature = 
+    {
+        tail : "cute"
+    };
+
+    Rabbit.prototype = creature;
+
+    let cuteRabbit = new Rabbit("Cute Rabbit");
+
+    alert(cuteRabbit.tail); //cute
+    alert(rabbit.tail); //undefined
+    alert(rabbit.eats);
+</script>
