@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    コンストラクタのprototypeにはconstructorというプロパティがあり、
+    デフォルトではコンストラクタ自身を指している。
+
+    Rabbit         default prototype
+    prototype   →   constructor
+                ←
+    */
+    function Rabbit(name)
+    {
+        this.name = name;
+        alert(name);
+    }
+
+    alert(Rabbit.prototype.constructor == Rabbit); //true
+
+    let rabbit = new Rabbit("White Rabbit");
+    alert(rabbit.constructor == Rabbit); //true
+
+    /*
+    object.constructor()によってobjectのコンストラクタにアクセス可能
+    どのコンストラクタが使われたのかわからないオブジェクト(OSSなどのオブジェクトなど)
+    の複製が必要な時に便利
+
+    ただし、あくまでconstructorプロパティの値であるため、その値が必ずコンストラクタを指している保証はない。
+    */
+    let rabbit2 = rabbit.constructor("Black Rabbit");
+
+    Rabbit.prototype = 
+    {
+        jumps : true
+    };
+
+    let jumpedRabbit = new Rabbit("jump");
+    alert(jumpedRabbit.constructor == Rabbit); //false
+
+    /*
+    上記を避けるためには、
+    ・Constructor.prototype.propertyName = value のように、prototypeにプロパティを追加する
+    ・constructorプロパティを明示的に指定する
+    */
+    Rabbit.prototype = 
+    {
+        jumps : true,
+        constructor : Rabbit
+    };
+    let rabbit3 = new Rabbit("truely constructor");
+    alert(rabbit3.constructor == Rabbit);
+</script>
