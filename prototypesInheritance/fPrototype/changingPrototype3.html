@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function Rabbit(){}
+    Rabbit.prototype = 
+    {
+        eats : true
+    };
+
+    let rabbit = new Rabbit();
+
+    /*
+    deleteは指定オブジェクトのみに対して実行される(参照を辿らない)
+    rabbitはeatsプロパティを持たないため、以下の処理では何も起こらない
+    */
+    delete rabbit.eats;
+
+    alert(rabbit.eats); //true
+</script>

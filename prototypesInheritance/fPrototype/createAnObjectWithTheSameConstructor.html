@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //---objと同じコンストラクタを呼び出せるケース---
+    function Obj(){ alert("called") };
+
+    let obj = new Obj();
+
+    let obj2 = new obj.constructor();
+    //---------------------------------------------
+
+    //---objと異なるコンストラクタを呼び出すケース---
+    Obj.prototype.constructor = function()
+    {
+        alert("another one called");
+    };
+    /*
+    1.objのconstructorプロパティを読みにいく → prototypeない
+    2.objのprototypeであるObjを読みにいく → prototypeある
+    3.prototypeのconstructorを呼び出す
+    */
+    let obj3 = new obj.constructor();
+    //----------------------------------------
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function Rabbit(){}
+    Rabbit.prototype = 
+    {
+        eats : true
+    };
+
+    /*
+    コンストラクタによるオブジェクの作成では、
+    Rabbit.prototypeで指定される、一つのオブジェクトを共有している。
+    イメージ的には、
+    let a = {};
+    let b = a;
+    */
+    let rabbit = new Rabbit();
+
+    Rabbit.prototype.eats = false;
+
+    /*
+    rabbit自体はeatsプロパティを持たず、
+    Rabbit.prototypeで指定されているオブジェクトを参照することに注意
+    */
+    alert(rabbit.eats); //false
+</script>
