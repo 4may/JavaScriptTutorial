@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    __proto__は古い表記であり、代替の関数が用意されている。
+    * Object.create(proto[, descriptors]) : [[Prototype]]がprotoであり、
+                                            かつdescriptorsで定義されるパラメータを持つ新しいオブジェクトを作る
+    * Object.getPrototypeOf(obj) : objの[[Prototype]]を返す
+    * Object.setPrototypeOf(obj, proto) : objの[[Prototype]]にprotoをセットする
+
+    createは2012年、get/setは2015年に実装された。
+    createからget/setまで3年空いているが、その間は__proto__を使ってget/setしていた。
+    */
+    let animal = { eats : true };
+
+    let rabbit = Object.create(animal, 
+    {
+        jumps : 
+        {
+            value : true,
+            writable : true,
+            enumerable : false,
+            configurable : true
+        }
+    });
+
+    alert(rabbit.eats); //true
+
+    alert(Object.getPrototypeOf(rabbit) === animal); //true
+
+    /*
+    性能を気にするならprototypeの値は作成時の値から変更しない方が良い
+    JS内部で行っている最適化が壊れる
+    */
+    Object.setPrototypeOf(rabbit, {});
+
+    /*
+    オブジェクトのクローン
+    */
+    let clone = Object.create(Object.getPrototypeOf(rabbit), Object.getOwnPropertyDescriptor(rabbit));
+</script>
