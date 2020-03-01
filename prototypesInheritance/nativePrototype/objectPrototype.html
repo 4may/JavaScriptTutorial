@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    toString()メソッドが明記されていないのに、alert関数が出力をしている。
+    これは、Object型の変数はそのプロトタイプ(Object.prototype)でビルトインの関数群を暗黙的に指定しているため。
+    Object   →   Object.prototype
+                 ・constructor : Object
+                 ・toString : function
+                 ...
+
+                 ↑ [[Prototype]]
+
+                 obj = new Object()
+    */
+    let obj = {};
+    alert(obj); //[object Object]
+    alert(obj.__proto__ === Object.prototype); //true
+    
+    /*
+    Object.prototypeのプロトタイプは存在しない(Object.prototypeが最上位)
+    */
+    alert(Object.prototype.__proto__); //null
+</script>
