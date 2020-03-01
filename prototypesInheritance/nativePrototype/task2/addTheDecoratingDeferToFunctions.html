@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    if(!Function.prototype.defer)
+    {
+        Function.prototype.defer = function(ms)
+        {
+            let f = this;
+            //setTimeoutをネストしない場合、
+            //this = func.deferのfunc
+            //arguments = deferの引数、つまりms
+            //となってしまい、deferによって実行したい処理のthisとargumentsが取得できない。
+            return function()
+            {
+                //applyの引数はnullではなくthisにしておかないと、
+                //fがグローバル関数でない時(オブジェクトプロパティである場合など)に動作しない。
+                setTimeout(() => f.apply(this, arguments), ms);
+            }
+        };
+    };
+
+    function f(a, b)
+    {
+        alert(a + b);
+    }
+
+    f.defer(1000)(1, 2);
+
+    let user = 
+    {
+        name : "John",
+        sayHi()
+        {
+            alert(this.name);
+        }
+    };
+
+    //「user.」のようにドット付きで割り当てているのがポイント
+    //ドット付きで呼び出すことによって、sayHi関数にthis=userと教えることができる
+    user.sayHi = user.sayHi.defer(1000);
+    user.sayHi(); //1秒後にJohnが表示
+</script>
