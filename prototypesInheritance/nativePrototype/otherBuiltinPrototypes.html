@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    全ての参照型はObject.prototypeを上位のプロトタイプとしてもつ
+                                    null
+                                    ↑ [[Prototype]]
+                                Object.prototype
+                                ・toString : function
+                                ・...
+       ↑ [[Prototype]]              ↑ [[Prototype]]             ↑ [[Prototype]]
+    Array.prototype              Function.prototype            Number.prototype
+    ・slice:function             ・call : function              ・toFixed:function
+    ・join:function              ・...                          ・...
+    ・...
+       ↑ [[Prototype]]              ↑ [[Prototype]]             ↑ [[Prototype]]
+    [1,2,3]                     function f(args){...}          5
+    */
+    let arr = [1, 2, 3];
+    alert(arr.__proto__ === Array.prototype); //true
+    alert(arr.__proto__.__proto__ === Object.prototype); //true
+    alert(arr.__proto__.__proto__.__proto__); //null
+
+    /*
+    Array.prototypeは固有のtoString()を持つ
+    */
+    alert(arr); //1,2,3
+
+    function f(){}
+    alert(f.__proto__ === Function.prototype); //true
+    alert(f.__proto__.__proto__ === Object.prototype); //true
+</script>
