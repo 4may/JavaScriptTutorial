@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    別のプロトタイプの関数を使うこともできる
+    */
+    let obj = 
+    {
+        0 : "Hello",
+        1 : "World!",
+        length : 2
+    };
+
+    obj.join = Array.prototype.join;
+    alert(obj.join(',')); //Hello,World!
+
+    /*
+    objectのプロトタイプそのものを変更することもできる
+    */
+    let obj2 = 
+    {
+        0 : "Hello",
+        1 : "World!",
+        length : 2
+    };
+
+    obj2.__proto__ = Array.prototype;
+    alert(obj2.join(','));
+</script>
