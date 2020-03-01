@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    prototypeはObject型の値/nullのいずれかのみを取る。
+    という仕組みは、Object.prototypeの__proto__アクセッサによって実現されている。
+      Object.prototype
+    ・get __proto__ : function
+    ・set __proto__ : function
+        　↑ [[Prototype]]
+         obj
+    */
+    let obj = {};
+
+    let key = prompt("What's the key?", "__proto__");
+    obj[key] = "some value";
+
+    //"some value"ではなく、Objectが格納されている
+    alert(obj[key]); //[object Object]
+</script>
