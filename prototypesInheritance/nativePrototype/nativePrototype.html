@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ネイティブ型(number, string. boolean...)は参照型でないためObject.prototypeなどの便利な関数は持たないが、
+    ラッパーオブジェクト(Number, String, Boolean,...)はObject.prototypeを継承している。
+    */
+    let num = Number(1);
+    alert(num.__proto__ === Number.prototype); //true
+    alert(num.__proto__.__proto__ === Object.prototype); //true
+</script>
