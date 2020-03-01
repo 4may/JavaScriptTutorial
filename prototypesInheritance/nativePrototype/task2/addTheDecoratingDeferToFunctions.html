@@ -6,11 +6,18 @@
     {
         Function.prototype.defer = function(ms)
         {
+            //defer呼び出し時のthis、つまり遅延実行したい処理は覚えておく必要がある
+            //覚えておかないと、ms後に実行する際にどの処理を実行すれば良いかわからなくなるため。
             let f = this;
+
             //setTimeoutをネストしない場合、
             //this = func.deferのfunc
             //arguments = deferの引数、つまりms
             //となってしまい、deferによって実行したい処理のthisとargumentsが取得できない。
+
+            //また、
+            //function(){}でネストして、()=>で呼び出すのがポイント。
+            //function(){}はthis,argumentsを持つが、()=>はthis,argumentshを持たない(アウター、ここではfunction(){}の値を利用する)
             return function()
             {
                 //applyの引数はnullではなくthisにしておかないと、
