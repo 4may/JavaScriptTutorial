@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    class MyClass
+    {
+        constructor(){...}
+        method1(){...}
+        method2(){...}
+        ...
+    }
+
+    * ,が不要なことに注意
+    　・objectの場合、,が必要
+    */
+    class User
+    {
+        constructor(name)
+        {
+            this.name = name;
+        }
+
+        sayHi()
+        {
+            alert(this.name);
+        }
+    }
+
+    let user = new User("John");
+    user.sayHi();
+</script>
