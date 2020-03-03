@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    classはfunctionの一種
+    class宣言は、正確には以下の挙動をする
+    1.Userという名前の関数を作成する。なお、関数の中身はconstructor(){...}となる。
+    2.User.prototypeにクラスメソッドを追加する。
+
+    User          prototype    User.prototype
+    ・constrcutor      →       ・constructor : User
+                        　　　　・sayHi : function 
+    */
+    class User
+    {
+        constructor(name) { this.name = name; }
+        sayHi() { alert(this.name) }
+    }
+
+    alert(typeof User); //function
+
+    alert(User === User.prototype.constructor); //true
+
+    alert(User.prototype.sayHi); //sayHi() { alert(this.name) }
+
+    alert(Object.getOwnPropertyNames(User.prototype)); //constructor, sayHi
+</script>
