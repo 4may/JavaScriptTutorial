@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Animal      →       Animal.prototype
+                        ・constructor:Animal
+                        ・run:function
+                        ・stop:function
+
+                        ↑   [[Prototype]]
+
+                        new Animal
+                        ・name:"My animal"
+    */
+    class Animal
+    {
+        constructor(name)
+        {
+            this.speed = 0;
+            this.name = name;
+        }
+
+        run(speed)
+        {
+            this.speed = speed;
+            alert(`${this.name} runs with speed ${this.speed}`);
+        }
+
+        stop()
+        {
+            this.speed = 0;
+            alert(`${this.name} stands still.`);
+        }
+    }
+
+    let animal = new Animal("My animal");
+
+    /*
+    継承：extends
+    prototypeを使って実現されている。
+    例)class Rabbit extends Animal
+    上記の場合、Rabbit.prototype.[[Prototype]]をAnimal.prototypeとする
+
+    Animal          →       Animal.prototype
+    ・constructor           ・constructor
+                            ・run
+                            ・stop
+
+                                ↑   [[Prototype]] = extends
+
+    Rabbit          →       Rabbit.prototype
+    ・constructor           ・constructor
+                            ・hide
+
+                                ↑   [[Prototype]]
+
+                            new Rabbit
+                            ・name:"White Rabbit"
+
+    rabbit.runは、new Rabbit → Rabbit.prototype → Animal.prototypeの順に探索される。
+    */
+    class Rabbit extends Animal
+    {
+        hide()
+        {
+            alert(`${this.name} hides!`);
+        } 
+    }
+
+    let rabbit = new Rabbit("White Rabbit");
+    rabbit.run(5); //White Rabbit runs with speed 5
+    rabbit.hide(); //White Rabbit hides!
+
+    /*
+    extendsの後は、どんな表現でも指定できる
+    条件によって、生成するクラスを作り分けたいときなどに役立つ
+    */
+    function f(phrase)
+    {
+        return class
+        {
+            sayHi(){alert(phrase)};
+        }
+    }
+
+    class User extends f("Hello"){}
+    class User2 extends f("Hi"){}
+
+    new User().sayHi(); //Hello
+    new User2().sayHi(); //Hi
+</script>
