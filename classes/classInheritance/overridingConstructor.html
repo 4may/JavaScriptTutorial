@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    子クラスのコンストラクタを省略した場合、親クラスのコンストラクタを呼び出すコンストラクタが
+    暗黙的に追加される。
+    class Rabbit extends Animal
+    {
+        constructor(...args)
+        {
+            super(...args)
+        }
+    }
+
+    継承を使っているクラスのコンストラクタは、継承を使っていないクラスのコンストラクタとは微妙に扱いが異なる。
+    具体的には、特別な内部プロパティ[[ConstructorKind]]が、"derived"にセットされている。
+    なお、継承を使っていないクラスのコンストラクタの場合は、"base"にセットされている。
+    ConcstructorKind=derivedの場合、「new実行時に空のオブジェクトを作り、thisを生成オブジェクトにセットする」ことをしない。
+    ConstructorKind=baseのコンストラクタに新しいオブジェクトの生成を委譲している。
+    */
+
+    class Animal
+    {
+        constructor(name)
+        {
+            this.speed = 0;
+            this.name = name;
+        }
+
+        //...
+    }
+
+    class Rabbit extends Animal
+    {
+        constructor(name, earLength)
+        {
+            /*
+            superのコンストラクタを呼び出さないとエラーになる
+            this.speed = 0;
+            this.name = name;
+            */
+            super(name);
+            this.earLength = earLength;
+        }
+
+        //...
+    }
+
+    let rabbit = new Rabbit("White Rabbit", 10);
+    alert(rabbit.name);
+    alert(rabbit.earLength);
+</script>
