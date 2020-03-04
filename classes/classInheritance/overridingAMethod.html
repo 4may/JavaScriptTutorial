@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    親クラスのメソッドと同名のメソッドを小クラスで宣言することにより処理の上書きができる。
+    なお、以下のようにsuperを使うことで、明示的に親クラスのメソッドを使うことができる。
+    ・super(...)：コンストラクタの場合
+    ・super.Method(...)：コンストラクタ以外の場合
+    */
+    class Animal
+    {
+        constructor(name)
+        {
+            this.speed = 0;
+            this.name = name;
+        }
+
+        run(speed)
+        {
+            this.speed = speed;
+            alert(`${this.name} runs with speed ${this.speed}`);
+        }
+
+        stop()
+        {
+            this.speed = 0;
+            alert(`${this.name} stands still`);
+        }
+    }
+
+    class Rabbit extends Animal
+    {
+        hide()
+        {
+            alert(`${this.name} hides!`);
+        }
+
+        /*
+        overrides
+        */
+        stop()
+        {
+            super.stop();
+            this.hide();
+        }
+    }
+
+    let rabbit = new Rabbit("White Rabbit");
+
+    rabbit.run(5); //White Rabbit runs with speed 5
+
+    //White Rabbit stands still
+    //White Rabbit hides!
+    rabbit.stop();
+
+    /*
+    arrow functionsは自身のsuperを持たない.
+    superはouter関数から特定する。
+    */
+    class Tortoise extends Animal
+    {
+        stop()
+        {
+            setTimeout(() => super.stop(), 1000);
+        }
+    }
+
+    //Animal.stopが呼ばれる
+    new Tortoise("Black Tortoise").stop(); //Black Tortoise stands still
+</script>
