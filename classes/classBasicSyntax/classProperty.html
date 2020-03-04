@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    クラスでもプロパティを宣言できる
+    なお、クラスプロパティはClass.prototypeには追加されず、オブジェクト自身に追加される
+    */
+    class User
+    {
+        //コンストラクタなどのクラスメソッドとは異なり、セミコロン;が必要
+        name = "Anonymous";
+
+        sayHi()
+        {
+            alert(`Hello, ${this.name}!`);
+        }
+    }
+
+    let user = new User();
+    user.sayHi(); //Hello, Anonymous!
+
+    alert(User.prototype.sayHi); //sayHiの処理
+    alert(User.prototype.name); //undefined
+    alert(user.name); //Anonymous
+</script>
