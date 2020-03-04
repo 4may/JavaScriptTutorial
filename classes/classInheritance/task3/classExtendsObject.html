@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<script>
+    /*
+    class Rabbitとclass Rabbit extends Objectの違い
+    
+    class Rabbit                  class Rabbit extends Object
+    
+    Function.prototype            Function.prototype
+    ・call:function               ・call:function
+    ・bind:function               ・bind:function
+    ・...                         ・...
+
+            ↑ [[Prototype]]              ↑ [[Prototype]]
+    
+    Rabbit                        Object
+    ・constructor                 ・constructor
+
+                                         ↑ [[Prototype]]
+
+                                  Rabbit
+                                  ・constructor
+    */
+    class Rabbit extends Object
+    {
+        constructor(name)
+        {
+            //Objectのコンストラクタを明示的に呼ばなければいけない
+            super();
+            this.name = name;
+        }
+    }
+
+    let rabbit = new Rabbit("Rab");
+
+    alert(rabbit.hasOwnProperty('name')); //true
+</script>
