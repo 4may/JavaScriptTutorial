@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    classは単なるsyntactic sugarではない
+    以下、異なる点を4つ挙げる
+    */
+    
+    /*
+    1.classは特別な内部プロパティを持つ
+      [[FunctionKind]]:"classConstructor"
+    */
+
+    /*
+    2.classのコンストラクタは必ずnew付きで呼び出す必要がある
+    */
+    class User
+    {
+        constructor(){}
+
+        sayHi(){}
+
+        sayBye(){}
+    }
+
+    alert(typeof User); //function
+    //User(); //Uncaught TypeError: Class constructor User cannot be invoked without 'new'
+
+    let user = new User();
+    /*
+    
+    /*
+    3.クラスメソッドはnon-enumerableである
+    */
+
+    /*
+    4.クラスは常にstrictモードである
+    */
+</script>
