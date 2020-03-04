@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    クラスに属さない関数であれば、コピーしても誤動作を招かなかった。
+    一方、[[HomeObject]]が関数の属しているオブジェクト/クラスを記憶しており、かつHomeObjectの値が変更できない
+    ことから、オブジェクト/クラスに属している関数をコピーすると誤動作を招く可能性がある。
+    */
+    let animal = 
+    {
+        sayHi()
+        {
+            console.log(`I'm an animal`);
+        }
+    };
+
+    let rabbit = 
+    {
+        __proto__ : animal,
+        sayHi() //rabbit.sayHi.[[HomeObject]] == rabbit
+        {
+            super.sayHi();
+        }
+    };
+
+    let plant = 
+    {
+        sayHi()
+        {
+            console.log("I'm a plant");
+        }
+    };
+
+    let tree = 
+    {
+        __proto__ : plant,
+        /*
+        rabbitの関数を使い回す
+        rabbit.sayHi.[[HomeObject]]はrabbitのままであるため、
+        superはplantではなくanimalを指す。
+        */
+        sayHi : rabbit.sayHi
+    };
+
+    tree.sayHi(); //I'm an animal
+</script>
