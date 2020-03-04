@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    classもfunction同様、割り当てや返却などが行える
+    */
+    let User = class
+    {
+        sayHi()
+        {
+            alert("Hello");
+        }
+    };
+
+    /*
+    名前付きclassも作成できる
+    その名前はクラスの中でのみ参照可能
+    */
+    let User2 = class MyClass
+    {
+        sayHi()
+        {
+            alert(MyClass);
+        }
+    };
+
+    new User2().sayHi(); //クラスのコードが表示
+
+    //alert(MyClass); //Uncaught ReferenceError: MyClass is not defined
+
+    /*
+    クラスを戻り値として返すこともできる。
+    これにより、必要に応じて動的にクラスを作ることができる。
+    */
+    function makeClass(phrase)
+    {
+        return class
+        {
+            sayHi()
+            {
+                alert(phrase);
+            }
+        }
+    }
+
+    let User3 = makeClass("Hello");
+    new User3().sayHi(); //Hello
+</script>
