@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    baseメソッドを呼び出す仕組みを理解してみる。
+    先ずは、簡単化のためにオブジェクトを使って検証。
+    */
+    let animal = 
+    {
+        name : "Animal",
+        eat()
+        {
+            alert(`${this.name} eats.`);
+        }
+    };
+
+    let rabbit = 
+    {
+        __proto__ : animal,
+        name : "Rabbit",
+        eat()
+        {
+            //eat.call(this)がポイント。
+            //単にeat()と呼び出すと現在のオブジェクト(rabbit)に対してメソッドが実行されないため、
+            //Animal eats.と表示されてしまう。
+            this.__proto__.eat.call(this);
+        }
+    };
+
+    rabbit.eat(); //Rabbit eats.
+
+    /*
+    もう一つオブジェクトを追加してみると...
+    Uncaught RangeError: Maximum call stack size exceeded
+    とエラーになる。
+
+    これは、rabbitのeat()を実行する際のthisがlongEarであるため発生している。
+    (本当は、animalのeatを呼び出したい)
+    つまり、rabbit.eat.call(longEar)という処理を永遠と呼び出すことになる。
+    */
+    let longEar = 
+    {
+        __proto__ : rabbit,
+        eat()
+        {   //rabbit.eat.call(longEar)
+            this.__proto__.eat.call(this);
+        }
+    }
+
+    longEar.eat();    
+</script>
