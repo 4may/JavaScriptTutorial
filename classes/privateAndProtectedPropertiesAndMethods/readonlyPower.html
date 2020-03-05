@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    readonlyなプロパティを作る
+    ->
+    getterを書かず、setterのみ書く
+
+    プロパティXXXに対するsetter/getterを、setXXX/getXXXのように書く方法もある。
+    */
+   class CoffeeMachine
+   {
+       //...
+       _waterAmount = 0;
+
+       setWaterAmount(value)
+       {
+           if(value < 0) throw new Error("Negative water");
+           this._waterAmount = value;
+       }
+
+       getWaterAmount()
+       {
+           return this._waterAmount;
+       }
+
+       constructor(power)
+       {
+           this._power = power;
+       }
+
+       get power()
+       {
+           return this._power;
+       }
+   }
+
+   let coffeeMachine = new CoffeeMachine(20);
+
+    coffeeMachine.setWaterAmount(100);
+    alert(coffeeMachine.getWaterAmount()); //100
+
+   alert(`Power is ${coffeeMachine.power}W`); //Power is 20W
+   coffeeMachine.power = 25; //Uncaught TypeError: Cannot set property power of #<CoffeeMachine> which has only a getter
+</script>
