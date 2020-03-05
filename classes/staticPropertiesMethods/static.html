@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Class自身に所属するメソッド(static method)を作成できる
+    2通りの宣言方法がある
+    1.クラスの中で、static修飾子をつけて宣言する
+    2.Class.methodName = function(){ ... }; のようにプロパティに割り当てる。
+    */
+    class User
+    {
+        static staticMethod()
+        {
+            //.の前のオブジェクトがthisである、というルールに基づきthisはUserとなる
+            alert(this === User);
+        }
+    }
+
+    User.staticMethod2 = function()
+    {
+        alert(this === User);
+    };
+
+    User.staticMethod(); //true
+    User.staticMethod2(); //true
+    alert(Object.getOwnPropertyNames(User.prototype)); //constructor
+
+    class Article
+    {
+        constructor(title, date)
+        {
+            this.title = title;
+            this.date = date;
+        }
+
+        static compare(article1, article2)
+        {
+            return article1.date - article2.date;
+        }
+
+        static createTodays()
+        {
+            return new this("Today's digest", new Date());
+        }
+    }
+
+    let articles = 
+    [
+        new Article("HTML", new Date(2019, 1, 1)),
+        new Article("CSS", new Date(2019, 0, 1)),
+        new Article("JavaScript", new Date(2019, 11, 1)),
+    ];
+    articles.sort(Article.compare);
+    alert(articles[0].title); //CSS
+
+    let article = Article.createTodays();
+    alert(article.title); //Today's digest
+</script>
