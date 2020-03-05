@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    private propertyは#propertyNameで宣言する。
+    宣言したクラス内からのみアクセス可能。子クラスからもアクセスできない。
+    なお、private propertyはES6からの追加機能であるため、環境によっては動作しない。
+    */
+    class CoffeeMachine
+    {
+        #waterAmount = 0;
+
+        get waterAmount()
+        {
+            return this.#waterAmount;
+        }
+
+        set waterAmount(value)
+        {
+            if(value < 0) throw new Error("Negative water");
+            this.#waterAmount = value;
+        }
+    }
+
+    let machine = new CoffeeMachine();
+
+    machine.waterAmount = 100;
+    alert(machine.#waterAmount); //error
+</script>
