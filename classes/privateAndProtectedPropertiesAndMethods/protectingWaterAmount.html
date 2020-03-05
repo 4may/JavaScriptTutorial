@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSのアクセス修飾子は2通りある。
+    ・public
+    ・private
+
+    protected(自身のクラス、及び自クラスと継承関係のクラスからアクセス可能)はない
+    getter/setterを利用することでプロパティの値を制御することはできる。
+    JSでは、protectedに相当するプロパティにはアンダースコア_を記載する。
+    (getter/setterを介さず、._propertyとすればアクセスできてしまうため厳密なprotectedではないが)
+
+    アクセス修飾子を使うメリット
+    ・ユーザーの誤用を防ぐ
+    ・高いサポート性
+    ・複雑さの秘匿
+    */
+    class CoffeeMachine
+    {
+        _waterAmount = 0;
+
+        set waterAmount(value)
+        {
+            if(value < 0)  throw new Error("Negative water");
+            this._waterAmount = value;
+        }
+
+        get waterAmount()
+        {
+            return this._waterAmount;
+        }
+
+        constructor(power)
+        {
+            this._power = power;
+        }
+    }
+
+    let coffeeMachine = new CoffeeMachine(100);
+
+    coffeeMachine.waterAmount = 200;
+
+    coffeeMachine.waterAmount = -10;
+</script>
