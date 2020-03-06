@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    map/filter/reduce関数などで返すオブジェクトの型は制御できる。
+    [Symbol.species]という特別なプロパティを利用する。
+    戻り値を決定する際、[Symbol.species]のゲッターが存在すれば、そのゲッターが返す型を使う。
+    */
+    class PowerArray extends Array
+    {
+        isEmpty()
+        {
+            return this.length === 0;
+        }
+
+        static get [Symbol.species]()
+        {
+            return Array;   
+        }
+    }
+
+    let arr = new PowerArray(1, 2, 5, 10, 50);
+    alert(arr.isEmpty()); //false
+
+    let filteredArr = arr.filter((item) => item >= 10);
+    alert(filteredArr); //10,50
+    alert(filteredArr.isEmpty()); //Uncaught TypeError: filteredArr.isEmpty is not a function
+</script>
