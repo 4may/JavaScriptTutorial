@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    instanceofの挙動をカスタマイズしてみる。
+    instanceofメソッドが実行された際、Class[Symbol.hasInstance](obj)が存在する場合、
+    そのメソッドの戻り値がinstanceofの結果となる。
+    */
+    class Animal
+    {
+        static [Symbol.hasInstance](obj)
+        {
+            if(obj.canEat) return true;
+        }
+    }
+
+    let obj = { canEat : true };
+
+    alert(obj instanceof Animal); //true
+
+    /*
+    Symbol.hasInstanceを持たないクラスも存在する。
+    その場合は、再帰的にprototypeのマッチングが行われる。
+    obj.__proto__ === Class.prototype?
+    obj.__proto__.__proto__ === Class.prototype
+    obj.__proto__.__proto__.__proto__ === Class.prototype
+    ...
+    */
+   class Animal2 {}
+   class Rabbit extends Animal2 {}
+
+   let rabbit = new Rabbit();
+   alert(rabbit instanceof Animal2); //true
+   alert(rabbit.__proto__.__proto__ === Animal2.prototype); //true
+
+   /*
+   Class.isPrototypeOf(obj)というメソッドもある。
+   */
+   alert(Animal2.prototype.isPrototypeOf(rabbit)); //true
+   alert(Rabbit.prototype.isPrototypeOf(rabbit)); //true
+</script>
