@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    標準クラスを継承するクラスを作ることも可能
+
+    Array       →       Array.prototype
+                            
+                            ↑
+    
+    PowerArray  →       PowerArray.prototype
+
+                            ↑
+
+                        arr
+    */
+    class PowerArray extends Array
+    {
+        isEmpty()
+        {
+            return this.length === 0;
+        }
+    }
+
+    let arr = new PowerArray(1, 2, 5, 10, 50);
+    alert(arr.isEmpty()); //false
+
+    /*
+    filter関数の戻り値の型がArrayではなく、PowerArrayであることに注意
+    ちなみに、filterだけでなくmapやreduceといった他の標準関数も同様の挙動となる。
+    これは、filterやmapの内部処理で新しい配列を作成する際に、constructorプロパティ(arr.constructor)を参照していることに依る。
+    */
+    let filteredArr = arr.filter((num) => num >= 10);
+    alert(filteredArr); //10,50
+    alert(filteredArr.isEmpty()); //false
+</script>
