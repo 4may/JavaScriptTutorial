@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    mixins:別のクラスに対して機能追加するために用意されたメソッド。
+    　　　　通常、単独では用いられない。
+           既存のクラスメソッドを上書きしないよう、mixinの名前には注意する。
+    */
+   let sayHiMixin = 
+   {
+       sayHi()
+       {
+           alert(`Hello ${this.name}`);
+       },
+
+       sayBye()
+       {
+           alert(`Bye ${this.name}`);
+       }
+   };
+
+   /*
+   Object   →       Object.prototype
+
+                          ↑
+
+   User     →       User.prototype ※mixinをここに追加する。
+                    ・constructor
+
+                          ↑
+
+                    user
+                    ・name : June
+   */
+   class User
+   {
+       constructor(name)
+       {
+           this.name = name;
+       }
+   }
+
+   //mixinの追加処理
+   Object.assign(User.prototype, sayHiMixin);
+
+   let user = new User("June");
+   user.sayHi(); //Hello June
+</script>
