@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+                                            sayMixin
+                                            ・say:function
+
+                                                ↑ [[Prototype]]
+
+    User.prototype                          sayHiMixin
+    ・constructor:User   [[HomeObject]]     ・sayHi:function
+    ・sayHi:function          →             ・sayBye:function
+    ・sayBye:function         →
+
+    ↑ [[Prototype]]
+
+    user
+    ・name
+    */
+    let sayMixin = 
+    {
+        say(phrase)
+        {
+            alert(phrase);
+        }
+    };
+
+    let sayHiMixin = 
+    {
+        __proto__ : sayMixin,
+
+        sayHi()
+        {
+            //superメソッドは、[[HomeObject]].[[Prototype]]を参照する
+            //ここで、[[HomeObject]]=sayHiMixinであるため、探索の対象はsayHiMixin.[[Prototype]]
+            super.say(`Hello ${this.name}`);
+        },
+
+        sayBye()
+        {
+            super.say(`Bye ${this.name}`);
+        }
+    };
+
+    class User
+    {
+        constructor(name)
+        {
+            this.name = name;
+        }
+    }
+
+    Object.assign(User.prototype, sayHiMixin);
+    let user = new User("June");
+
+    user.sayHi(); //Hello June
+</script>
