@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    標準クラスのオブジェクトは、staticな継承関係にはない。
+    (Date.[[Prototype]] はObjectを参照していない)
+
+    Object          →           Object.prototype
+
+                                    　↑ [[Prototype]]
+
+    Date            →           Date.prototype
+
+                                    　↑ [[Prototype]]
+
+                                new Date()
+    */
+   alert(Date.__proto__ === Object); //false
+   alert(Date.prototype.__proto__ === Object.prototype); //true
+</script>
