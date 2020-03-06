@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Object.prototype.toStringは型に合わせて適切な戻り値を返す
+    */
+    let objectToString = Object.prototype.toString;
+    let arr = [];
+    alert(objectToString.call(arr)); //[object Array]
+    alert(objectToString.call(123)); //[object Number]
+    alert(objectToString.call(null)); //[object Null]
+    alert(objectToString.call(alert)); //[object Function]
+
+    /*
+    toStringの挙動をカスタマイズしてみる
+    */
+   let user = 
+   {
+       [Symbol.toStringTag] : "User"
+   };
+
+   alert({}.toString.call(user)); //[object User]
+
+   /*
+   環境依存のオブジェクトの[Symbol.toStringTag]
+   */
+   alert(window[Symbol.toStringTag]); //Window
+   alert({}.toString.call(window)); //[object Window]
+
+   /*
+   型チェックの方法は三通りある。
+   方法 : 対象 : 戻り値
+   ・typeof : primitive型用 : string
+   ・{}.toString : primitive, built-in object用 : string
+   ・instanceof : object用 : true/false
+   */
+</script>
