@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    エラー発生時のエラーの内容はerrorオブジェクトに格納される。(catchの引数で受取可能)
+    errorオブジェクトのプロパティは基本的に2つ
+    ・name:エラー名 ex)ReferenceError
+    ・message:エラーの詳細説明
+    環境によっては、もう一つ
+    ・stack:スタックトレース
+    */
+   try
+   {
+       lalala;
+   }
+   catch(err)
+   {
+       alert(err.name); //ReferenceError 
+       alert(err.message); //lalala is not defined
+       alert(err.stack); //ReferenceError: lalala is not defined at (...call stack)
+
+       //errorオブジェクト自体を表示。name: messageの文字列
+       alert(err); //ReferenceError: lalala is not defined
+   }
+
+   /*
+   errorオブジェクトは省略可能
+   新しい機能のため、ポリフィルが必要
+   */
+   try
+   {
+       lalala;
+   }
+   catch
+   {
+       alert("error object is omitted.");
+   }
+</script>

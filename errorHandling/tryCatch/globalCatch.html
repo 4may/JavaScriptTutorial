@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    開発者にエラー内容を知らせるための機構
+    */
+    window.onerror = function(message, url, line, col, error)
+    {
+        alert(`${message}\n At ${line}:${col} of ${url}`);
+    };
+
+    function readData()
+    {
+        badfunc();
+    }
+
+    readData();
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    finally: errorが起きようが起きまいが必ず実行される処理
+    つまり、try-catch-finallyのコードブロックの実行は、以下の２パターンで行われる。
+    ・try -> finally
+    ・try -> catch -> finally
+    */
+   let num = +prompt("Enter a positive integer number?", 35);
+   let diff, result;
+
+   function fib(n)
+   {
+       if(n < 0 || Math.trunc(n) != n)
+       {
+           throw new Error("Must not be negative,and also an integer.");
+       }
+       return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+   }
+
+   let start = Date.now();
+
+   try
+   {
+       result = fib(num);
+   }
+   catch(err)
+   {
+       result = 0;
+   }
+   finally
+   {
+       diff = Date.now() - start;
+   }
+
+   alert(result || "Error occured");
+   alert(`execution took ${diff}ms`);
+</script>

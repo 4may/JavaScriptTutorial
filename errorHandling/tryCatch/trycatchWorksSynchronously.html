@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    非同期処理は処理内のコードをtry-catchで括る。
+
+    以下のコードの場合、try-catchが非同期処理(setTimeoutの中身)の外を括っているため、
+    非同期処理実行時にはtry-catchが実行されない。
+    */
+   try
+   {
+       setTimeout(function()
+       {
+           noSuchVariable; //Uncaught ReferenceError: noSuchVariable is not defined
+       }, 1000);
+   }
+   catch(err)
+   {
+       alert(`won't work`);
+   }
+</script>

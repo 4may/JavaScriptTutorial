@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    try
+    {
+        {{ //Uncaught SyntaxError: Unexpected token 'catch'
+    }
+    catch(err)
+    {
+        /*
+        syntax errorのようなスクリプトのread時に発生するエラーはキャッチできない。
+        一方、スクリプトの実行時に発生するエラー(runtime error)はキャッチできる。
+
+        JSでは、read -> runのように二段階の処理を経てスクリプトが実行される。
+        */
+        alert(`the engine can't understand this code, it's invalid`);
+    }
+</script>

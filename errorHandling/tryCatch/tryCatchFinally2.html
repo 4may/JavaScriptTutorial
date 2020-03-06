@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    finallyブロックはtry-catchを抜ける際に必ず実行される。
+    例えば、try/catch内にreturn文が宣言されていたとしても例外ではない。
+    (returnの処理を実施後にfinallyが実行される)
+    */
+   function func()
+   {
+       let a = "init";
+
+       try
+       {
+           a = "try";
+           return a; //戻り値はここで確定
+       }
+       catch(e)
+       {
+           //...
+       }
+       finally
+       {
+           a = "finally"; //aの値は変わるが、戻り値は変わらない。
+           alert(a); //finally
+       }
+   }
+
+   alert(func()); //try
+</script>

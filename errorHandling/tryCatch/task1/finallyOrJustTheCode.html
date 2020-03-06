@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function f()
+    {
+        try
+        {
+            alert("try");
+            noSuchVariable;
+        }
+        catch(err)
+        {
+            alert("error");
+            throw new Error(err.message);
+        }
+        finally
+        {
+            //エラーがあろうがなかろうが必ず実行される
+            alert("Clean up!");
+        }
+    }
+    
+    f();
+</script>
