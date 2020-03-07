@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    //上位のモジュールは、ユーザデータの読み込み時のエラー「原因」は知らなくて良い
+    //そのため、ValidationErrorとSyntaxErrorの２種は1つのエラーにまとめる。
+    class ReadError extends Error
+    {
+        constructor(message, cause)
+        {
+            super(message);
+            this.cause = cause;
+            this.name = 'ReadError';
+        }
+    }
+
+    class ValidationError extends Error { }
+
+    class PropertyRequiredError extends ValidationError { }
+
+    function validateUser(user)
+    {
+        if(!user.age)
+        {
+            throw new PropertyRequiredError("age");
+        }
+
+        if(!user.name)
+        {
+            throw new PropertyRequiredError("name");
+        }
+    }
+
+    function readUser(json)
+    {
+        let user;
+
+        try
+        {
+            user = JSON.parse(json);
+        }
+        catch(err)
+        {
+            /*
+            SytanxError(既知のエラー)である場合、ReadErrorに丸める
+            */
+            if(err instanceof SyntaxError)
+            {
+                throw new ReadError("Syntax Error", err);
+            }
+            else
+            {
+                //未知のエラーは上位へ伝える
+                throw err;
+            }
+        }
+
+        try
+        {
+            validateUser(user);
+        }
+        catch(err)
+        {
+            /*
+            ValidationError(既知のエラー)である場合、ReadErrorに丸める
+            */
+            if(err instanceof ValidationError)
+            {
+                throw new ReadError("Validation Error", err);
+            }
+            else
+            {
+                //未知のエラーは上位へ伝える
+                throw err;
+            }
+        }
+    }
+
+    try
+    {
+        readUser('{bad json}');
+    }
+    catch(e)
+    {
+        if(e instanceof ReadError)
+        {
+            alert(e);
+            alert("Original Error: " + e.cause);
+        }
+        else
+        {
+            //未知のエラーは上位へ伝える
+            throw e;
+        }
+    }
+</script>
