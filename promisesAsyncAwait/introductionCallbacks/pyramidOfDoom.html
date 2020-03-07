@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    callbackをネストすると大変なので、1callback1関数に分けて実装する方法もある。
+    が、ベストは後述するpromiseを使う方法
+    */
+    function loadScript(src, callback)
+    {
+        let script = document.createElement('script');
+        script.src = src;
+
+        script.onload = () => callback(null, script);
+        script.onerror = () => callback(new Error(`Script load error for ${src}`));
+
+        document.head.append(script);
+    }
+
+    loadScript('1.js', step1);
+
+    function step1(error, script)
+    {
+        if(error)
+        {
+            alert(error);
+        }
+        else
+        {
+            sayHi();
+            loadScript('2.js', step2);
+        }
+    }
+
+    function step2(error, script)
+    {
+        if(error)
+        {
+            alert(error);
+        }
+        else
+        {
+            sayHello();
+            loadScript('3.js', step3);
+        }
+    }
+
+    function step3(error, script)
+    {
+        if(error)
+        {
+            alert(error);
+        }
+        else
+        {
+            sayBye();
+        }
+    }
+</script>
