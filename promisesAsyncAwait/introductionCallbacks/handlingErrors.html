@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    エラーオブジェクトを第一引数にとり、第二引数以降にscriptを指定するパターン
+    */
+    function loadScript(src, callback)
+    {
+        let script = document.createElement('script');
+        script.src = src;
+
+        script.onload = () => callback(null, script);
+        script.onerror = () => callback(new Error(`Script load error for ${src}`));
+
+        document.head.append(script);
+    }
+
+    //存在しないファイルを指定
+    loadScript('error.js', function(error, script)
+    {
+        if(error)
+        {
+            alert(error);
+        }
+        else
+        {
+            e();
+            alert('success');
+        }
+    });
+</script>
