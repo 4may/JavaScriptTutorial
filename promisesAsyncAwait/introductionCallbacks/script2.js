@@ -1,0 +1,4 @@
+function sayBye()
+{
+    alert('Bye');
+}

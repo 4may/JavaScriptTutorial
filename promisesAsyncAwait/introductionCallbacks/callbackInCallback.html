@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    処理を順序立てて実行したい場合、callbackをネストにする
+    */
+   function loadScript(src, callback)
+   {
+       let script = document.createElement('script');
+       script.src = src;
+
+       script.onload = () => callback(script);
+
+       document.head.append(script);
+   }
+
+   loadScript('script.js', function()
+   {
+       sayHi();
+       loadScript('script2.js', function()
+       {
+           sayBye();
+       });
+   });
+</script>
