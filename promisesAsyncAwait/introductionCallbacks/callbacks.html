@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    スクリプトの読み込みは非同期で行われる
+    そのため、読み込みを待ってから実行する(scriptタグを追加する)ようにしている。
+    この時の処理をcallbackと呼ぶ。
+    */
+    //src:ファイルパス
+    function loadScript(src, callback)
+    {
+        let script = document.createElement('script');
+        script.src = src;
+
+        //スクリプトが読み込まれるまで待つ
+        script.onload = () => callback(script);
+
+        document.head.append(script);
+    }
+
+    loadScript('script.js', function(){sayHi()});
+</script>
