@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ネストが深くならない！
+    */
+    function loadScript(src)
+    {
+        return new Promise(function(resolve, reject)
+        {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => resolve(script);
+            script.onerror = () => reject(new Error(''));
+
+            document.head.append(script);
+        });
+    }
+
+    loadScript('one.js')
+    .then(script => loadScript('two.js'))
+    .then(script => loadScript('three.js'))
+    .then(script => 
+    {
+        one();
+        two();
+        three();
+    });
+</script>
