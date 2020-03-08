@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    callbackに対しての、)promiseのメリット
+    ・自然な順序で処理を実装できる。
+    　処理A→処理B→処理C→...
+    ・好きなだけ処理を繋げることが出来る。
+    */
+    function loadScript(src, callback)
+    {
+        return new Promise(function(resolve, reject)
+        {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => resolve(script);
+            script.onerror = () => reject(new Error(`script load error for ${src}`));
+
+            document.head.append(script);
+        });
+    }
+
+    let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+    promise.then
+    (
+        script => alert(`${script.src} is loaded`),
+        error => alert(error)
+    );
+
+    promise.then(alert('another handler ...'));
+</script>
