@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    1promiseに1resolve/rejectの原則により、２回目のresolveは無視される  
+    */
+    let promise = new Promise(function(resolve, reject)
+    {
+        resolve(1);
+        setTimeout(() => resolve(2), 1000);
+    });
+
+    promise.then(alert); //1
+</script>

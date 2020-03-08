@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function delay(ms)
+    {
+        return new Promise(function(resolve, reject)
+        {
+            //delayから何も引数を受け取っていないため、そのままresolveを呼び出す
+            setTimeout(resolve, ms);
+        });
+    }
+
+    delay(3000).then(() => alert('runs after 3 seconds'));
+</script>
