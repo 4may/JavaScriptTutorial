@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    promiseの実行結果を取り扱う
+    promise.then
+    */
+    let promise = new Promise(function(resolve, reject)
+    {
+        setTimeout(() => resolve("done"), 1000);
+    });
+
+    promise.then
+    (
+        result => alert(result), //"done"
+        error => alert(error) //doesn't run
+    );
+
+    //一行で書くこともできる
+    promise.then(alert);
+
+    /*
+    finallyブロック
+    promise.finally(f)
+    promise.then(f, f)
+    なお、finallyは引数を取らない。が、処理の成否は関係ないため問題なし。
+    また、finallyは次のハンドラ(then,catch)へそのままresult,errorを渡す。
+    */
+    new Promise((resolve, reject) =>
+    {
+        setTimeout(() => resolve("result"), 2000)
+    })
+    .finally(() => alert("promise ready"))
+    .then(result => alert(result));
+
+    /*
+    エラーを取り扱う
+    promise.catch()
+    promise.then(null, f)
+    */
+    let promise3 = new Promise(function(resolve, reject)
+    {
+        setTimeout(() => reject(new Error("Whoops!")), 3000);
+    });
+
+    //エラーをハンドル
+    promise3.catch(alert); //Error: Whoops!
+    promise3.then(null, alert); //Error: Whoops!
+
+    //エラー発生
+    promise3.then(alert);
+</script>
