@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ポイントは2つ
+    ・resultを各thenで共有する
+    ・then関数は戻り値としてPromiseオブジェクトを返す。
+    */
+    new Promise(function(resolve, reject) 
+    {
+        setTimeout(() => resolve(1), 1000);
+    })
+    .then(function(result)
+    {
+        alert(result); //1
+        return result * 2;
+    })
+    .then(function(result)
+    {
+        alert(result); //2
+        return result * 2;
+    })
+    .then(function(result)
+    {
+        alert(result); //4
+        return result * 2;
+    })
+</script>
