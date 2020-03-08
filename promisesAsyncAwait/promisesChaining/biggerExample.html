@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    リモートサーバからユーザデータを取得
+    */
+    fetch('user.json')
+    .then(response => response.json())
+    .then(text => alert(text));
+</script>
