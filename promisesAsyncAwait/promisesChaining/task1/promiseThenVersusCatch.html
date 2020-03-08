@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    promise.then(f1).catch(f2)
+    と
+    promise.then(f1, f2)
+    では挙動が異なる。
+
+    前者は、then(f1)で発生したエラーをcatch(f2)が拾う。
+    後者は、f1で発生したエラーをcatchできない。
+    逆に言えば、.thenはresult/errorを次のthen/catchに伝えている。
+    例えば、then(f1)でエラー発生時にcatch(f2)がなければエラー終了する。
+    */
+    function f1(){ throw new Error('f1') };
+
+    function f2(){ alert('catch!') };
+
+    let promise = new Promise(function(resolve, reject)
+    {
+        resolve(1);
+    });
+
+    promise.then(f1, f2); //Uncaught (in promise) Error: f1
+    promise.then(f1).catch(f2); //catch!
+    promise.then(f1); //Uncaught (in promise) Error: f1
+</script>
