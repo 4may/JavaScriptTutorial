@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    厳密には、then関数はthenableオブジェクトを返している
+    thenableとは、thenという名前の関数を持つオブジェクトのことを指す。
+    */
+   class Thenable
+   {
+       constructor(num)
+       {
+           this.num = num;
+       }
+
+       then(resolve, reject)
+       {
+           alert(resolve); //function(){native code}
+           setTimeout(() => resolve(this.num * 2), 1000);
+       }
+   }
+
+   new Promise(resolve => resolve(1))
+   .then(result => 
+   {
+       return new Thenable(result);
+   })
+   .then(alert);
+</script>
