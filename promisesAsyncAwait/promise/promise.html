@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    promise:singer/fan、需要/供給のように二つの事象を繋げて扱う仕組み
+            別の言い方では、非同期処理を扱う仕組み
+
+    let promise = new Promise(function(resolve, reject)
+    {
+        //executor(singer)
+    })
+    ・executor:Promiseインスタンスの作成時に実行する処理
+    ・resolve(value):処理成功時に呼ばれるコールバック関数。valueはany型。
+    ・reject(error):処理失敗時に呼ばれるコールバック関数。errorはany型。(実際はError型が好ましい)
+    なお、resolve,rejectは予約されている関数であるため自分で定義する必要はない。
+
+    promiseオブジェクトは特別な内部プロパティを持つ
+    ・state:初期状態は'pending',resolve呼び出し時に'fulfilled',reject呼び出し時に'rejected'
+    ・result:初期状態は'undefined',resolve呼び出し時に'value',reject呼び出し時に'error'
+    なお、二つとも内部プロパティであり、直接アクセスすることはできない
+    */
+    let promise = new Promise(function(resolve, reject)
+    {
+        /*
+        executorの実行により、Promiseオブジェクトの内部状態は以下の通りとなる。
+        state:fulfilled
+        result:done
+        */
+        setTimeout(() => resolve("done"), 1000);
+    });
+
+    let promise2 = new Promise(function(resolve, reject)
+    {
+        /*
+        executorの実行により、Promiseオブジェクトの内部状態は以下の通りとなる。
+        state:rejected
+        result:new Error("Whoops!")
+        */
+        setTimeout(() => reject(new Error("Whoops!")), 1000);
+    });
+
+    /*
+    1executorにつき、1resolve/1rejectのみ
+    複数のresolve,rejectがあったとしても無視される
+    また、resolve,rejectの引数は1つのみ
+    2番目以降の引数は無視される
+    */
+    let promise3 = new Promise(function(resolve, reject)
+    {
+        //以下の処理は同期的に即時実行される。
+        resolve("done");
+        reject(new Error("...")); //ignored
+        resolve("not ignored", "ignored", "ignored"); //ignored
+    });
+
+    //内部プロパティへの直接アクセスはできない。
+    alert(promise3.state); //undefined
+    alert(promise3.result); //undefined
+</script>
