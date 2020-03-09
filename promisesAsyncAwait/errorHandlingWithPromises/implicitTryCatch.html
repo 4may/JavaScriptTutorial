@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    new Promise((resolve, reject) => 
+    {
+        /*
+        以下と同義
+        reject(new Error("Whoops!"))
+        */
+        throw new Error("Whoops!");
+    })
+    .catch(alert); //Error: Whoops!
+
+    /*
+    throwだけでなく、全てのプログラミングエラーに対して
+    ・暗黙的catch
+    ・発生エラーのhandlerへの受け渡し
+    を行っている。
+    */
+   new Promise((resolve, reject) => 
+   {
+       resolve("OK")
+   })
+   .then(result =>
+   {
+       blabla(); //プログラミングエラー
+   })
+   .catch(err => alert(err)); //ReferenceError: blabla is not defined
+
+   /*
+   一連のチェインの中で複数のエラーが発生し得る場合、最初のエラーのみをキャッチする。
+   */
+   new Promise((resolve, reject) =>
+   {
+       noSuchFunction();
+   })
+   .then(result => noSuchFunction2())
+   .then(result => noSuchFunction3())
+   .catch(err => alert(err)); //ReferenceError: noSuchFunction is not defined
+</script>
