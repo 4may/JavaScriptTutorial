@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    new Promise(function(resolve, reject)
+    {
+        // executorの実行中にエラーが発生するわけではないため、catchできない。
+        // Uncaught Error: Whoops!
+        // setTimeout(() => 
+        // {
+        //     throw new Error("Whoops!");
+        // }, 1000);
+
+        //非同期処理内でcatchする。
+        setTimeout(() =>
+        {
+            try
+            {
+                throw new Error("Whoops!");
+            }
+            catch(err)
+            {
+                alert(err);
+            }
+        }, 1000);
+    })
+    .catch(alert);
+</script>
