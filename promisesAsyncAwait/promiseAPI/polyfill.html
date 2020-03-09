@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    if(!Promise.allSettled)
+    {
+        Promise.allSettled = function(promises)
+        {
+            return Promise.all(promises.map(p => Promise.resolve(p).then(
+                value => ({state:'fulfilled', value}),
+                reason => ({state:'rejected', reason})
+            )));
+        };
+    }
+</script>
