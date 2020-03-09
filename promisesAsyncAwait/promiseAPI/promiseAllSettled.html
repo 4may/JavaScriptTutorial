@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Promise.allSettled
+    成功/失敗問わず全てのPromiseの処理をする。
+    結果は以下の２パターンに分かれる。
+    ・成功時　→　{status:"fulfilled", value:result}
+    ・失敗時　→　{status:"rejected", reason:error}
+    */
+    let urls = [
+    'https://api.github.com/users/iliakan',
+    'https://api.github.com/users/remy',
+    'https://no-such-url'
+    ];
+
+    Promise.allSettled(urls.map(url => fetch(url)))
+    .then(results =>
+    {
+        results.forEach((result, num) =>
+        {
+            if(result.status === "fulfilled")
+            {
+                alert(`${urls[num]}: ${result.value.status}`);
+            }
+            if(result.status === "rejected")
+            {
+                alert(`${urls[num]}: ${result.reason}`);
+            }
+        });
+    });
+</script>
