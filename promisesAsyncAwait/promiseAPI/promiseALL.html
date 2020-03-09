@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Promise.all([...promises...])
+    全てのpromiseの実行が終了するまでまち、結果を配列として返す。
+    */
+    Promise.all([
+        new Promise(resolve => setTimeout(() => resolve(1), 3000)),
+        new Promise(resolve => setTimeout(() => resolve(2), 2000)),
+        new Promise(resolve => setTimeout(() => resolve(3), 1000)),
+    ])
+    .then(alert);
+
+    let urls = [
+        'https://api.github.com/users/iliakan',
+        'https://api.github.com/users/remy',
+        'https://api.github.com/users/jeresig'
+    ];
+
+    let requests = urls.map(url => fetch(url));
+
+    /*
+    https://api.github.com/users/iliakan:200
+    https://api.github.com/users/remy:200
+    https://api.github.com/users/jeresig:200
+    */
+    Promise.all(requests)
+    .then(responses => responses.forEach(
+        response => alert(`${response.url}:${response.status}`)
+    ));
+
+    /*
+    Promise.all中のいずれかのPromiseでエラーが発生した場合、直ちに処理を止めて発生したエラーを返す
+    その時、他の実行中のPromiseの処理は無視されるようになる。
+    */
+   Promise.all([
+       new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
+       new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
+       new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000)),
+   ])
+   .catch(alert); //Error: Whoops!
+
+   /*
+   Promise.allの引数にPromise型以外の値が存在する時、その値は「そのまま」返却される
+   */
+    Promise.all([
+        new Promise(resolve => resolve(1), 1000),
+        2,
+        3
+    ])
+    .then(alert); //1,2,3
+</script>
