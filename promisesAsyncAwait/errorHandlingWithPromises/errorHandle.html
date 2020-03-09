@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    promise chainの最後にcatch文を書いておく
+    */
+    fetch('https://no-such-server.blabla')
+    .then(response => response.json())
+    .catch(error => alert(error)); //TypeError: Failed to fetch
+</script>
