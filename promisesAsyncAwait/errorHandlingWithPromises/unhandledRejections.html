@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    catchしていないエラーはglobalエラーとして登録されている。
+    */
+   window.addEventListener('unhandledrejection', function(event)
+   {
+       alert(event.promise); //[object Promise]
+       alert(event.reason); //Error: Whoops!
+   });
+
+   /*
+   catchが存在しない
+   */
+   new Promise(function()
+   {
+       throw new Error("Whoops!");
+   });
+</script>
