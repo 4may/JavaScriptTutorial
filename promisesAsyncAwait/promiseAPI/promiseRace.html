@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    早いもんがち
+    最初に実行終了したPromiseの結果のみが返る
+    */
+    Promise.race([
+        new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
+        new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
+        new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000)),
+    ])
+    .then(alert);
+</script>
