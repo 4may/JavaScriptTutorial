@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    途中でエラーが発生しても続行させることが出来る。
+    以下の処理は、こんなイメージ
+    try
+    {
+        throw new Error("Whoops!");
+    }
+    catch(error)
+    {
+        alert(...);
+    }
+
+    try
+    {
+        alert(...);
+    }
+    catch(err)
+    {
+        ...
+    }
+    */
+    new Promise((resolve, reject) =>
+    {
+        throw new Error("Whoops!");
+    })
+    .catch(error => alert("The error is handled, continue normally"))
+    .then(() => alert("Next successful handler runs"));
+
+    /*
+    
+    */
+   new Promise((resolve, reject) =>
+   {
+       throw new Error("Whoops!");
+   })
+   .catch(error =>
+   {
+       if(error instanceof URIError)
+       {
+           //...handle it
+       }
+       else
+       {
+           alert("can't handle such error");
+
+           throw error; //rethrow
+       }
+   })
+   .then(result => alert("this code is not executed."))
+   .catch(error => alert(`the unknown error has occured: ${error}`));
+</script>
