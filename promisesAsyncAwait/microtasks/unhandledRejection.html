@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    unhandledrejectionについて補足。
+    unhandledrejectionは、promiseエラーがmicrotask queueの最後までハンドルされない場合、発生する。
+    */
+
+    /*
+    以下の処理の場合、次のことが起こる
+    ・Error: Promise failedが表示
+    ・caughtが表示
+    つまり、エラーがハンドルできない。
+    これは、setTimeoutの処理が行われる「前」に、microtask queueが参照され、エラーハンドラがないと判断されているため。
+    */
+    let promise = Promise.reject(new Error("Promise failed"));
+    setTimeout(() => promise.catch(err => alert('caught')), 1000);
+
+    window.addEventListener('unhandledrejection', event => alert(event.reason));
+</script>
