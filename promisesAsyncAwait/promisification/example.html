@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    promisification:callback関数を受け取る関数をpromiseを返す関数に変換する。
+                    利便性の観点からその方が都合が良い。
+    */
+    function loadScript(src, callback) {
+        let script = document.createElement('script');
+        script.src = src;
+
+        script.onload = () => callback(null, script);
+        script.onerror = () => callback(new Error(`Script load error for ${src}`));
+        
+        document.head.append(script);
+    }
+
+    function loadScriptPromise(src)
+    {
+        return new Promise((resolve, reject) =>
+        {
+            loadScript(src, (err, script) =>
+            {
+                if(err)
+                {
+                    reject(err);
+                }
+                else
+                {
+                    resolve(script);
+                }
+            })
+        })
+    }
+</script>
