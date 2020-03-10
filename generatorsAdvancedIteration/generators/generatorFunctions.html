@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Generator
+    ・複数の値を、順次取得する(生み出す)ための仕組み
+    ・generator functionsを宣言するには、function* / function *Nameと書く。
+    ・generator functionsを最初に呼び出した時は、generator objectと呼ばれる特別なオブジェクトを返す。
+    */
+    function* generateSequence()
+    {
+        yield 1;
+        yield 2;
+        return 3;
+    }
+
+    let generator = generateSequence();
+
+    alert(generator); //[object Generator]
+
+    /*
+    next()
+    ・次の値を取得する
+    ・結果は、{value:xxx, done:true/false}のようなオブジェクト
+    　・value:値
+    　・done:generatorの最後の値であるかどうか(関数が終わりかどうか).yesならtrue,noならfalse
+    　　・done:true以降に再度next()すると、常に{"done":true}というオブジェクトが返る
+    ・yield; のように値を省略することもできる。この場合、value:undefinedとなる
+    ・
+    */
+    let one = generator.next();
+    alert(JSON.stringify(one)); //{"value":1,"done":false}
+
+    let two = generator.next();
+    alert(JSON.stringify(two)); //{"value":2,"done":false}
+
+    let three = generator.next();
+    alert(JSON.stringify(three)); //{"value":3,"done":true}
+
+    let nothing = generator.next();
+    alert(JSON.stringify(nothing)); //{"done":true}
+</script>
