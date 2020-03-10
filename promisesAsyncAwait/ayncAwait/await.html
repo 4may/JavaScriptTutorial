@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    let value = await promise;
+
+    asyncスコープ内でのみ使用可能。
+    あくまで、then/catch/finallyの代替となる書き方であることに注意。
+    非同期処理である事に変わりはなく、asyncの処理はmicrotask queueに登録される。
+    */
+    async function f()
+    {
+        let promise = new Promise((resolve, reject) =>
+        {
+            setTimeout(() => resolve("done!"), 1000);
+        });
+
+        /*
+        Promiseが解決されるまで待つ
+        */
+        let result = await promise;
+
+        alert(result);
+    }
+
+    f(); //code finishedの表示処理の後に実行
+
+    alert("code finished"); //こちらが先に実行される。
+</script>
