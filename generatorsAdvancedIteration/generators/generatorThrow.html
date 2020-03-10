@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    generatorに対して、エラーを返すことも可能
+    (1)に対して、(2)がエラーを投げている。
+    */
+    function* gen()
+    {
+        try
+        {
+            let result = yield "2 + 2 = ?"; //(1)
+        }
+        catch(err)
+        {
+            alert(err);
+        }
+    }
+
+    let generator = gen();
+
+    let question = generator.next().value;
+    alert(question);
+
+    generator.throw(new Error("The answer is not found in my database")); //(2)
+
+    /*
+    逆に、generator内のエラーを呼び出し側でハンドルすることもできる
+    */
+    function* gen2()
+    {
+        let result = yield "2 + 2 = ?";
+    }
+
+    let generator2 = gen2();
+    let result = generator2.next().value;
+    alert(result);
+
+    try
+    {
+        generator2.throw(new Error("we can handle an error occured in generator at the outer."));
+    }
+    catch(e)
+    {
+        alert(e);
+    }
+</script>
