@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    function loadScript(src, callback)
+    {
+        let script = document.createElement('script');
+        script.src = src;
+
+        script.onload = () => callback(null, script);
+        script.onerror = () => callback(new Error(`Script load error for ${src}`));
+
+        document.head.append(script);
+    }
+
+    /*
+    Promise化を行う汎用関数
+    引数は2つであると仮定。
+    */
+    function promisify(f)
+    {
+        return function(...args)
+        {
+            return new Promise((resolve, reject) =>
+            {
+                function callback(err, result)
+                {
+                    if(err)
+                    {
+                        reject(err);
+                    }
+                    else
+                    {
+                        resolve(result);
+                    }
+                }
+
+                /*
+                汎用callbackを引数の最後に加える。
+                なぜなら、promise化対象の関数fは、f(param, callback)という形式をしているから。
+                */
+                args.push(callback);
+
+                f.call(this, ...args);
+            })
+        }
+    }
+
+    let loadScriptPromise = promisify(loadScript);
+    
+    loadScriptPromise('no/such/file')
+    .catch(alert); //Error: Script load error for no/such/file
+</script>
