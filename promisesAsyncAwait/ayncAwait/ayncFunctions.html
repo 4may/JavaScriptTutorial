@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    async:Promiseを返す。
+    */
+    async function f()
+    {
+        //解決済みのPromiseと見なす。
+        return 1;
+    }
+
+    function f2()
+    {
+        //f()と同義
+        return Promise.resolve(1);
+    }
+
+    f().then(alert); //1
+    f2().then(alert); //1
+</script>
