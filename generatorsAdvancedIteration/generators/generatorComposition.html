@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    yield* : 結果を組み込む仕組み
+    途中結果を保存する変数を用意する必要がない分、メモリに優しい
+    */
+    function* generateSequence(start, end) 
+    {
+        for(let i = start; i <= end; i++) yield i;
+    }
+
+    //数字は文字コードを表す
+    function* generatePasswordCodes() 
+    {
+        //0..9
+        yield* generateSequence(48, 57);
+        //for (let i = 48; i <= 57; i++) yield i;
+
+        //A..Z
+        yield* generateSequence(65, 90);
+        //for (let i = 65; i <= 90; i++) yield i;
+
+        //a..z
+        yield* generateSequence(97, 122);
+        //for (let i = 97; i <= 122; i++) yield i;
+    }
+
+    let str = '';
+
+    for(let code of generatePasswordCodes())
+    {
+        str += String.fromCharCode(code);
+    }
+
+    alert(str); //0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+</script>
