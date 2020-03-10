@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    generatorはgenerator外のコードと値の受け渡しが出来る。
+    */
+    function* gen() 
+    {
+        let result = yield "2 + 2 = ?";
+
+        alert(result);
+    }
+
+    //genaratorオブジェクトの取得
+    let generator = gen();
+
+    //generatorの最初の値"2 + 2 = ?"を取得(generatorは一旦停止)
+    let question = generator.next().value;
+    alert(question);
+
+    //generatorに値を渡す(generatorが処理を続行する)
+    //なお、すぐに実行する必要はない。
+    generator.next(4);
+
+    /*
+    その他の例
+
+    generatorと呼び出し側を行き来する。
+
+    generatorが呼び出された！
+    →最初のyieldまで実行
+    →呼び出し側から値が帰ってくるまで待機
+    →値が帰ってきた！
+    →次のyieldまで実行
+    →呼び出し側から...
+    */
+    function* gen2()
+    {
+        let ask1 = yield "2 + 2 = ?";
+
+        alert(ask1);
+
+        let ask2 = yield "3 * 3 = ?";
+
+        alert(ask2);
+    }
+
+    let generator2 = gen2();
+
+    //呼び出し側で表示　→　generator内で表示
+    alert(generator2.next().value); //2 + 2 = ? → 4
+    alert(generator2.next(4).value); //3 * 3 = ?　→ 9
+    alert(generator2.next(9).done); //true
+</script>
