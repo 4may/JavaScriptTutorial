@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    resolve同様、rejectに対してもasync-awaitは使える
+    */
+    async function f()
+    {
+        await Promise.reject(new Error("Whoops!"));
+    }
+
+    f().catch(alert);
+
+    /*
+    try-catchで括ることもできる
+    */
+    async function f2()
+    {
+        try
+        {
+            let response = await fetch('no/such/url');
+        }
+        catch(err)
+        {
+            alert(err);
+        }
+    }
+
+    f2(); //TypeError: Failed to fetch
+
+    //try-catchも、.catch()もしていなければ、エラー落ちする
+    f(); //Uncaught (in promise) Error: Whoops!
+</script>
