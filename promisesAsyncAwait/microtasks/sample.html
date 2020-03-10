@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    promiseが即時解決されていたとしても、
+    ハンドラ(then/catch/finally)以降のコードが先に実行される。
+    */
+    let promise = Promise.resolve();
+
+    promise.then(() => alert("Promise done!")); //後
+
+    alert("code finished"); //こちらが先
+</script>
