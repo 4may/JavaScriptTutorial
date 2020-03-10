@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Generatorはiterable!
+    ・next()メソッドがあることから明らか
+    ・ので、iterableに使える仕組みは全て使える
+    　・例えば、for...of構文やspread syntax(...)
+    　・ただし、for...ofはdone:trueであるオブジェクトは無視する。
+    　　言い換えると、return文は無視される。
+    */
+    function* generateSequence()
+    {
+        yield 1;
+        yield 2;
+        return 3;
+    }
+
+    let generator = generateSequence();
+    for(let value of generator)
+    {
+        alert(value); //1,2 3が表示されない！
+    }
+
+    /*
+    全てyieldにすれば良い
+    */
+    function* generateSequence2()
+    {
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+
+    let generator2 = generateSequence2();
+    for(let value of generator2)
+    {
+        alert(value); //1,2,3
+    }
+
+    /*
+    spread syntax
+    */
+    let sequence = [0, ...generateSequence2()];
+    alert(sequence); //0,1,2,3
+</script>
