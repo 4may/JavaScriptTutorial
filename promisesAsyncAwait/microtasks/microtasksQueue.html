@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    JSでは、非同期処理の制御のため、PromiseJobsという内的キューを保持している。
+    主な特徴として、
+    ・FIFOである。
+    ・他に何も処理が動いていない時のみPromiseJobs内の処理を実行する。
+    　つまり、非同期処理以外の処理が全て終わって初めて非同期処理が実行される。
+    */
+
+    /*
+    非同期処理の後に終えたい処理があるなら、その処理も非同期処理とすれば良い(キューに突っ込む)
+    */
+    Promise.resolve()
+    .then(() => alert("promise done!"))
+    .then(() => alert("code finished"));
+</script>
