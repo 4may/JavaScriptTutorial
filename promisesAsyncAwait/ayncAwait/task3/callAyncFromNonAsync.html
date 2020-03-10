@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    同期関数から非同期関数を呼び出す際は、非同期関数の戻り値がPromiseである事に着目
+    */
+    async function wait()
+    {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        return 10;
+    }
+
+    function f()
+    {
+        //async関数の戻り値の型はPromise
+        wait().then(result => alert(result));
+    }
+
+    f();
+</script>

@@ -7,6 +7,7 @@
 
     asyncスコープ内でのみ使用可能。
     あくまで、then/catch/finallyの代替となる書き方であることに注意。
+    (同期処理に近い見た目で非同期処理を実装できることがメリット)
     非同期処理である事に変わりはなく、asyncの処理はmicrotask queueに登録される。
     */
     async function f()
