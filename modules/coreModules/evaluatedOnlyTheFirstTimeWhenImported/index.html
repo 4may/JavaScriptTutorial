@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<script type="module" src="1.js">
+    /*
+    同じモジュールを異なるファイルで読み出す場合、モジュールは最初の一度だけ評価される。
+    二度目以降は使い回し。
+    この場合、1.jsがモジュールshow.jsを読み出す際に一度だけshow.jsは評価される。
+    (つまり、一度だけメッセージが表示される。)
+    */
+</script>
+<script type="module" src="2.js"></script>
