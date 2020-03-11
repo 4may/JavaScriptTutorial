@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    asyncなiteratorを作るポイント
+    ・[Symbol.asyncIterator]を実装する
+    ・next()はpromiseを返す
+    呼び出すときは、for await(let value of iterable)のようにforの後にawaitをつける
+    */
+    let range = 
+    {
+        from : 1,
+        to : 5,
+
+        //[Symbol.iterator]のasync版
+        [Symbol.asyncIterator]()
+        {
+            return{
+                current : this.from,
+                last : this.to,
+
+                //next()はPromiseを返す(asyncキーワードによって、暗黙的にPromiseラップ)
+                async next()
+                {
+                    //awaitを使うこともできる
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+
+                    if(this.current <= this.last)
+                    {
+                        return { done: false, value: this.current++ };
+                    }
+                    else
+                    {
+                        return { done: true };
+                    }
+                }
+            };
+        }
+    };
+
+    (async() =>
+    {
+        for await(let value of range)
+        {
+            alert(value);
+        }
+    })();
+</script>
