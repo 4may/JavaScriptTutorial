@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<script>
+    alert(this); //[object Window]
+</script>
+
+<script type="module">
+    /*
+    moduleには最上位のthisがない
+    */
+    alert(this); //undefined
+</script>
