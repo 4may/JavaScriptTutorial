@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    非同期なgenerator:function*の前にasyncをつけるだけ。
+    ちなみに、generator.next()も非同期になる
+    let result = await generator.next();
+    */
+    async function* generateSequence(start, end)
+    {
+        for(let i = start; i <= end; i++)
+        {
+            //awaitな処理もかける！
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            yield i;
+        }
+    }
+
+    (async() =>
+    {
+        let generator = generateSequence(1, 5);
+        for await(let value of generator)
+        {
+            alert(value);
+        }
+    })();
+</script>
