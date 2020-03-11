@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    yield, asyncを使ってiterableなオブジェクトをさくっと作る。
+    */
+    let range = 
+    {
+        from : 1,
+        to : 5,
+
+        async *[Symbol.asyncIterator]() //[Symbol.asyncIterator] : async function*()
+        {
+            for(let value = this.from; value <= this.to; value++)
+            {
+                //非同期処理
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                yield value;
+            }
+        }
+    };
+
+    (async() =>
+    {
+        for await(let value of range)
+        {
+            alert(value);
+        }
+    })();
+</script>
