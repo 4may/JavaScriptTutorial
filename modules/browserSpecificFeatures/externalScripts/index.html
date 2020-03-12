@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script type="module" src="show.js">
+    /*
+    同じsrcを複数回呼んでも実行されるのは一度だけ。
+    ここは実行される。
+    */
+</script>
+<script type="module" src="show.js">
+    /*
+    ここは実行されない。
+    */
+</script>
+<script type="module" src="http://another-site.com/their.js">
+    /*
+    ブラウザ上で別の場所(サイト、ローカルPC)にあるファイルを実行する際には、CORSヘッダが必要
+    ・Access-Control-Allow-Origin
+    現に、勉強のためにローカルのファイルをブラウザ実行しているが、ローカルサーバ経由でファイルアクセス
+    (ファイルパスの先頭を、http://で始まるように)している。
+    */
+</script>
