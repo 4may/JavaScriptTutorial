@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<script type="module">
+    /*
+    モジュールスクリプトはHTMLソース全体が処理されてから実行される。
+    そのため、ソース上buttonの宣言前にbuttonを参照してもエラーにならない。
+    */
+    alert(typeof button); //object
+</script>
+
+<button id="button">Button</button>

@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<script>
+    /*
+    モジュールでないスクリプトは上から順に即時実行されるため、要素宣言の順序によっては動かない
+    */
+    alert(button); //Uncaught ReferenceError: button is not defined
+</script>
+
+<button id="button">Button</button>
