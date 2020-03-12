@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<script async type="module">
+    /*
+    モジュールスクリプトは基本的に遅延実行されるが、asyncキーワードをつけることで
+    即時実行させることが出来る。
+    */
+   import {counter} from './analytics.js';
+
+   alert(counter.count());
+   alert(counter.count());
+   alert(counter.count());
+</script>
