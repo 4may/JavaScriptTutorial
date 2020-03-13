@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Proxy:オブジェクトをラップし、付加価値を与える機構
+    new Proxy(target, handler)
+    ・target:任意のObject(関数も含める)
+    ・handler:proxyの設定
+    */
+    let target = {};
+
+    let proxy = new Proxy(target, {});
+
+    proxy.test = 5;
+    
+    alert(proxy.test); //5
+    //proxyに変更を加えると、ラップ元にもその変更が適用される。
+    alert(target.test); //5
+
+    for(let key in proxy) alert(key); //test
+
+    /*
+    proxyのprototypeとtargetのprototypeは常に等しい。
+    */
+    alert(Object.getPrototypeOf(proxy) === Object.getPrototypeOf(target));
+</script>
