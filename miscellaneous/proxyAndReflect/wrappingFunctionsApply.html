@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    ラッパー関数をproxyを使って実現する。
+    apply(target, thisArg, args)
+    ・target:new Proxyの第一引数のオブジェクト等価
+    ・thisArg:thisと等価
+    ・args:引数のリスト
+    */
+    function delay(f, ms)
+    {
+        return new Proxy(f, 
+        {
+            apply(target, thisArg, args)
+            {
+                setTimeout(() => target.apply(thisArg, args), ms);
+            }
+        });
+    }
+
+    function sayHi(user)
+    {
+        alert(`Hello, ${user}`);
+    }
+
+    sayHi = delay(sayHi, 1000);
+
+    /*
+    decoratorパターンだと、wrapper後のlengthが0になってしまう。
+    proxyパターンは、wrapper後も正しいlengthを取得できる。(ここでは、sayHi関数の引数の数を取得する)
+    */
+    alert(sayHi.length); //1
+
+    sayHi("John"); //Hello, John
+</script>
