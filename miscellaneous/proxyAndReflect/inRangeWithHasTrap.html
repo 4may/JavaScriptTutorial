@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    in演算子のproxyにはhas(target, property)を使う
+    ・target:new Proxyの第一引数のオブジェクトと等価
+    ・property:プロパティ名
+    */
+    let range = 
+    {
+        start : 1,
+        end : 10
+    };
+
+    range = new Proxy(range, 
+    {
+        has(target, property)
+        {
+            return property >= target.start && property <= target.end;
+        }
+    });
+
+    alert(5 in range); //true
+    alert(50 in range); //false
+</script>
