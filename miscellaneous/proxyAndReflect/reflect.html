@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Reflect:内部関数のラッパー
+    ・[[Set]]:Reflect.set(obj, prop, value)
+    ・[[Get]]:Reflect.get(obj, prop)
+    ・...
+    */
+    let user = {};
+
+    Reflect.set(user, 'name', 'John');
+
+    alert(user.name);
+</script>
