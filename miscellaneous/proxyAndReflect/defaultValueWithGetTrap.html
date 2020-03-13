@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    よく使われるhandlerであるget/setについて解説。
+    get(target, property, receiver)
+    ・target:new Proxyの第一引数と等価
+    ・property:プロパティ名
+    ・receiver:getの場合、thisを指す。多くの場合、proxy自身。
+    */
+
+    /*
+    handlerを使って、デフォルト値を返す処理を実装してみる。
+    */
+    let numbers = [0, 1, 2];
+
+    numbers = new Proxy(numbers,
+    {
+        get(target, property)
+        {
+            if(property in target)
+            {
+                return target[property];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    });
+
+    alert(numbers[1]); //1
+    alert(numbers[123]); //0
+
+    /*
+    実装例その２「翻訳辞書にない単語はそのまま返す」
+    */
+    let dictionary = 
+    {
+        'Hello' : 'Hola',
+        'Bye' : 'Adios'
+    };
+
+    dictionary = new Proxy(dictionary, 
+    {
+        get(target, phrase)
+        {
+            if(phrase in target)
+            {
+                return target[phrase];
+            }
+            else
+            {
+                return phrase;
+            }
+        }
+    });
+
+    alert(dictionary['Hello']); //Hola
+    alert(dictionary['Welcome to Proxy']); //Welcome to Proxy
+</script>
