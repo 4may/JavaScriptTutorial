@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    receiverが必要となるケースを紹介
+    */
+
+    /*
+    先ずはうまくいかない例(Reflectを使わないパターン)
+    */
+    let user = 
+    {
+        _name : "Guest",
+        get name()
+        {
+            return this._name;
+        }
+    };
+
+    let userProxy = new Proxy(user,
+    {
+        get(target, property, receiver)
+        {
+            //this=target, target=userよりuserのプロパティを参照する
+            return target[property];
+        }
+    });
+
+    alert(userProxy.name); //Guest
+
+    let admin = 
+    {
+        //親オブジェクトがreceiverを指定していないproxy
+        __proto__ : userProxy,
+        _name : "Admin"
+    };
+
+    alert(admin.name); //Guest
+
+    /*
+    改善例(Reflectを使うパターン)
+    */
+    let userProxyFixed = new Proxy(user, 
+    {
+        get(target, property, receiver)
+        {
+            //receiverによって、target=adminFixedとなるため、(言い換えればthis=adminFixed)
+            //正しいプロパティを参照できる事になる。
+            //なお、以下の処理はReflect.get(...arguments)に代替できる。
+            return Reflect.get(target, property, receiver);
+        }
+    });
+
+    alert(userProxyFixed.name); //Guest
+
+    let adminFixed = 
+    {
+        __proto__ : userProxyFixed,
+        _name : "Admin"
+    };
+
+    alert(adminFixed.name); //Admin
+</script>
