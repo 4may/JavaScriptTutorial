@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    set(target, property, value, receiver)
+    ・target:new Proxy の第一引数と等価
+    ・property:プロパティ名
+    ・value:プロパティ値
+    ・receiver:getと同様、thisを指す。多くの場合、proxy自身
+    */
+
+    /*
+    追加できる型に制限を設けてみる。
+    なお、値のセットが成功/失敗したら必ずtrue/falseを返す必要がある。
+    */
+    let numbers = [];
+
+    numbers = new Proxy(numbers, 
+    {
+        set(target, property, value)
+        {
+            if(typeof value =='number')
+            {
+                target[property] = value;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    });
+
+    numbers.push(1);
+    numbers.push(2);
+    alert('Length is: ' + numbers.length);
+
+    numbers.push("test"); //Uncaught TypeError: 'set' on proxy: trap returned falsish for property '2'
+
+    alert("This line is never reached.");
+</script>
