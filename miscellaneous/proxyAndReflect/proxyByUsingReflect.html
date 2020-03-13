@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let user =
+    {
+        name : "John"
+    };
+
+    user = new Proxy(user,
+    {
+        get(target, property, receiver)
+        {
+            alert(`GET ${property}`);
+            //return target[property]と等価
+            return Reflect.get(target, property, receiver);
+        },
+
+        set(target, property, value, receiver)
+        {
+            alert(`SET ${property}`);
+            //setの場合は、Reflectの方が記述量が少なくて済む
+            return Reflect.set(target, property, value, receiver);
+        }
+    });
+
+    let name = user.name;
+    alert(name);
+</script>
