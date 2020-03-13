@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    privateプロパティを実装してみる。
+    ここでは、_から始まるプロパティをprivateプロパティとみなす。
+    以下、4つのhandlerを実装する。
+    ・get(target, property, receiver)：privateプロパティが指定された場合、エラー
+    ・set(target, property, value, receiver):privateプロパティが指定された場合、エラー
+    ・deleteProperty(target, property)：privateプロパティが指定された場合、エラー
+    ・ownKeys(target)：privateプロパティは除く
+    */
+    let user = 
+    {
+        name: "John",
+        _password: "***"
+    };
+
+    user = new Proxy(user,
+    {
+        get(target, property)
+        {
+            if(isPrivate(property))
+            {
+                throw new Error("Access denied");
+            }
+
+            let value = target[property];
+            //_passwordを扱うオブジェクト関数を定義することを考慮
+            //「proxyを介さない」ようにアクセスする。
+            return typeof value == 'function' ? value.bind(target) : value;
+        },
+
+        set(target, property, value)
+        {
+            if(isPrivate(property))
+            {
+                throw new Error("Access denied");
+            }
+
+            target[property] = value;
+            return true;
+        },
+
+        deleteProperty(target, property)
+        {
+            if(isPrivate(property))
+            {
+                throw new Error("Access denied");
+            }
+
+            delete target[property];
+            return true;
+        },
+
+        ownKeys(target)
+        {
+            return Object.keys(target).filter(key => !isPrivate(key));
+        }
+    })
+
+    function isPrivate(val)
+    {
+        return val.startsWith('_');
+    }
+
+    try
+    {
+        alert(user._password);
+    }
+    catch(err)
+    {
+        alert(err.message);
+    }
+
+    try
+    {
+        user._password = "test";
+    }
+    catch(err)
+    {
+        alert(err.message);
+    }
+
+    try
+    {
+        delete user._password;
+    }
+    catch(err)
+    {
+        alert(err.message);
+    }
+
+    for(let key in user) alert(key); //name
+</script>
