@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    revoke(proxy取り消し)可能なproxyを宣言
+    let {proxy, revoke} = Proxy.revocable(target, handler)
+    revokeはfunctionである。
+    revoke()のように呼び出す。
+    */
+    let object = 
+    {
+        data : "Valunerable data"
+    };
+
+    let {proxy, revoke} = Proxy.revocable(object, {});
+
+    alert(proxy.data); //Valunerable data
+
+    revoke();
+
+    //revoke後にproxyを使おうとするとエラー
+    try
+    {
+        alert(proxy.data);
+    }
+    catch(err)
+    {
+        alert(err.message); //Uncaught TypeError: Cannot perform 'get' on a proxy that has been revoked
+    }
+</script>

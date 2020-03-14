@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    /*
+    revokeをWeakMapに一旦しまっておくこともできる。
+    */
+    let revokes = new WeakMap();
+
+    let object = 
+    {
+        data : "Valuable data"
+    };
+
+    let {proxy, revoke} = Proxy.revocable(object, {});
+
+    //一旦取っておく
+    revokes.set(proxy, revoke);
+
+    revoke = revokes.get(proxy);
+    revoke();
+
+    alert(proxy.data); //Uncaught TypeError: Cannot perform 'get' on a proxy that has been revoked
+</script>
