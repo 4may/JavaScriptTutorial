@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    //重複を避けるため、Symbol型で作成
+    let handlers = Symbol('handlers');
+    function makeObservable(target) 
+    {
+        /*
+        Proxy宣言外で行うことは2つ
+        ・target[handlers]の初期化
+        ・observeの定義
+        */
+        target[handlers] = [];
+
+        target.observe = function(handler)
+        {
+            this[handlers].push(handler);
+        };
+
+        return new Proxy(target, 
+        {
+            set(target, property, value, receiver)
+            {
+                let result = Reflect.set(...arguments);
+                if(result)
+                {
+                    target[handlers].forEach(handler => handler(property, value));
+                }
+                return result;
+            }
+        });
+    }
+
+    let user = {};
+
+    user = makeObservable(user);
+
+    user.observe((key, value) =>
+    {
+        alert(`SET ${key}=${value}`);
+    });
+
+    user.name = "John";
+</script>
