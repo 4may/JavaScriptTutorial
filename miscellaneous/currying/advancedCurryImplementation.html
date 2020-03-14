@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    (a)(b)(c)のようにバラバラに渡されている引数を(a,b,c)と一つにまとめる。
+    左から右へ、順に引数をconcatする。
+    */
+    function curry(func)
+    {
+        return function curried(...args) 
+        {
+            if(args.length >= func.length)
+            {
+                //引数をまとめきったらオリジナルの関数を呼び出す
+                return func.apply(this, args);
+            }
+            else
+            {
+                return function(...args2)
+                {
+                    //引数をまとめ切っていないなら、引数を結合後、再帰的に結合処理を呼び出す。
+                    return curried.apply(this, args.concat(args2));
+                }
+            }
+        };
+    }
+
+    function sum(a, b, c) 
+    {
+        return a + b + c;    
+    }
+
+    let curriedSum = curry(sum);
+
+    alert(curriedSum(1, 2, 3));
+    alert(curriedSum(1)(2,3));
+    alert(curriedSum(1)(2)(3));
+</script>
