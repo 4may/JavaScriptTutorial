@@ -10,6 +10,7 @@
         Proxy宣言外で行うことは2つ
         ・target[handlers]の初期化
         ・observeの定義
+        　・proxyはあくまでビルトイン関数のラッパーであるため、自作関数の定義はproxy外で行う必要がある。
         */
         target[handlers] = [];
 
