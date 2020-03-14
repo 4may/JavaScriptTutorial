@@ -4,8 +4,8 @@
 
     /*
     proxyを使うにあたって注意が必要なパターン１「InternalSlotsが存在する」
-    Map/Set/Date/Promiseなどには、InternalSlotsという特別な内部プロパティが存在する。
-    注意すべきなのは、InternalSlotsに対して、[[Get]]/[[Set]]を介さずアクセスする点
+    Map/Set/Date/Promise/#privateなどには、InternalSlotsという特別な内部プロパティが存在する。
+    注意すべきなのは、InternalSlotsに対しては、[[Get]]/[[Set]]を介さずアクセスする点
     */
     let map = new Map();
     let proxy = new Proxy(map, {});
