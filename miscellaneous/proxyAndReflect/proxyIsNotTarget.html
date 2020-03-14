@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    /*
+    proxyとproxy対象のオブジェクトは別のオブジェクトとして扱われる。
+    (当たり前といえば当たり前だが)
+
+    ちなみに、===はproxy化できない。
+    */
+    let allUsers = new Set();
+
+    class User
+    {
+        constructor(name)
+        {
+            this.name = name;
+            allUsers.add(this);
+        }
+    }
+
+    let user = new User("John");
+
+    alert(allUsers.has(user)); //true
+
+    let proxy = new Proxy(user, {});
+
+    alert(allUsers.has(proxy)); //false
+</script>
