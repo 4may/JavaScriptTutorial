@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    evalは「evil」。むかーしからある古い機構であるため、出来るだけ使わない。
+    例えば、evalで指定する文字列は最適化処理(変数名の変更など)の対象外であるため、
+    もしeval内でouter変数にアクセスしていると、そんな変数ありませんよとエラーになる可能性がある。
+    */
+
+    /*
+    解決策１
+    グローバルオブジェクト(ブラウザならwindow)にアクセスする。
+    */
+    let x = 1;
+
+    {
+        let x = 5;
+        window.eval('alert(x)'); //1
+    }
+
+    /*
+    ローカル変数へのアクセスが必要な場合、evalをnew Function()に置き換える
+    */
+    let f = new Function('a', 'alert(a)');
+    f(10); //10
+</script>
