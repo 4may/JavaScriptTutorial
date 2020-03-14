@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    /*
+    proxyを使うにあたって注意が必要なパターン１「InternalSlotsが存在する」
+    Map/Set/Date/Promiseなどには、InternalSlotsという特別な内部プロパティが存在する。
+    注意すべきなのは、InternalSlotsに対して、[[Get]]/[[Set]]を介さずアクセスする点
+    */
+    let map = new Map();
+    let proxy = new Proxy(map, {});
+    try
+    {
+        proxy.set('test', 1);
+    }
+    catch(err)
+    {
+        /*
+        Mapは全てのデータを[[MapData]]というInternalSlotsに登録している。
+        そこで、Map.prototype.set関数はthis.[[MapData]]を読みにいくが、この例ではthis=proxyとなっているため
+        実際はproxy.[[MapData]]を読みにいく。
+        一方、proxy.[[MapData]]というプロパティは存在しない。よってエラーとなっている。
+        */
+        alert(err); //Uncaught TypeError: Method Map.prototype.set called on incompatible receiver [object Object]
+    }
+    
+    let proxyFixed = new Proxy(map, 
+    {
+        get(target, property, receiver)
+        {
+            let value = Reflect.get(...arguments);
+            //target=mapであるため、結果的にthis=mapとできる
+            return typeof value == 'function' ? value.bind(target) : value;
+        }
+    });
+    proxyFixed.set('test', 1);
+    alert(proxyFixed.get('test')); //1
+</script>
