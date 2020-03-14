@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Currying:関数の変形を行う。
+    例えば、f(a, b)をf(a)(b)と呼べるようにする
+    */
+    function curry(f) 
+    {
+        return function (a) 
+        {
+            return function (b) 
+            {
+                //f, aはouter lexcial environmentから取得
+                return f(a, b);
+            };
+        };
+    }
+
+    function sum(a, b) 
+    {
+        return a + b;
+    }
+
+    let curriedSum = curry(sum);
+
+    alert(curriedSum(1)(2));
+</script>
