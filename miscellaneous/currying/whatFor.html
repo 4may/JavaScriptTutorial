@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script src="lodash.js"></script>
+<script>
+    'use strict';
+
+    /*
+    curryingが役立つ例
+    */
+    function log(date, importance, message)
+    {
+        alert(`[${date.getHours()}:${date.getMinutes()}] [${importance}] ${message}`);
+    }
+
+    //外部ライブラリlodashを使っている。
+    //https://lodash.com/
+    log = _.curry(log);
+
+    log(new Date(), "DEBUG", "some debug"); //[7:42] [DEBUG] some debug
+
+    log(new Date())("DEBUG")("some debug"); //[7:42] [DEBUG] some debug
+
+    //一部を固定値にした関数を宣言
+    let logNow = log(new Date());
+    logNow("INFO", "message");
+
+    //さらに固定値を追加
+    let debugNow = logNow("DEBUG");
+    debugNow("message");
+</script>
