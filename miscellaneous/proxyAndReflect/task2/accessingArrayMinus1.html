@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let array = [1,2,3];
+
+    array = new Proxy(array, 
+    {
+        get(target, property, receiver)
+        {
+            if(property < 0)
+            {
+                //propertyは負数、かつstring型
+                return Reflect.get(target, target.length + +property, receiver);
+            }
+
+            return Reflect.get(target, property, receiver);
+        }
+    });
+
+    alert(array[1]);
+    alert(array[-1]);
+    alert(array[-2]);
+</script>
