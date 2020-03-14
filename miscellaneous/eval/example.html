@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    string型の文字列をコードとみなして実行する。
+    */
+    let code = 'alert("Hello")';
+    eval(code); //Hello
+
+    /*
+    文が複数ある場合、最後の文の結果を返す
+    */
+    let value = eval('1+1');
+    alert(value); //2
+
+    value = eval('let i = 0; ++i;')
+    alert(value); //1
+
+    /*
+    eval自身のlexical environmentを持つ
+    そのため、eval内で宣言した変数はeval外には見えない
+    */
+    eval('let inner = 5; function f(){};');
+    alert(typeof inner); //undefined
+
+    /*
+    外のlexical environmentを参照可能
+    */
+    let a = 1;
+
+    function f()
+    {
+        let a = 2;
+        eval('alert(a)'); //2
+    }
+
+    f();
+
+    /*
+    外の変数を変えることが出来る
+    */
+    let x = 5;
+    
+    eval('x=10');
+    
+    alert(x);
+</script>
