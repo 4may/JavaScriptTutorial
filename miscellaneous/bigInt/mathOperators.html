@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    Numberと同じく四則演算が可能
+    */
+    alert(1n + 2n); //3
+    alert(5n / 2n); //2
+
+    /*
+    ただし、bitintとNumberは混ぜるな危険
+    */
+    try
+    {
+        alert(1n + 2); //Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+    }
+    catch(err)
+    {
+        alert(err);
+    }
+
+    /*
+    明示的な型変換が必要
+    ただ、bigintをnumberに変える際に丸め誤差が発生する可能性があるため注意
+    */
+    let bigint = 1n;
+    let number = 2;
+
+    alert(bigint + BigInt(number)); //3
+    alert(Number(bigint) + number); //3
+</script>
