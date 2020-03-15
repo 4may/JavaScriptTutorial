@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    /*
+    BigIntに対してもNumber同様、比較演算子を適用できる。
+    ・NumberとBigIntを混ぜた比較もできる
+    ・当たり前ではあるが、NumberとBigIntは型が異なるため===はfalseとなる。
+    */
+    alert(2n > 1n); //true
+
+    alert(2n > 1); //true
+
+    alert(1 == 1n); //true
+
+    alert(1 === 1n); //false
+</script>
